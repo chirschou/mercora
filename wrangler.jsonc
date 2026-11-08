@@ -4,7 +4,7 @@
  */
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "melt-party",
+  "name": "melt",
   "main": "worker.ts",
   "triggers": {
     // Recovery queues: every 5m; Admin BI: every 6h; recommendations: daily at 08:15 UTC.
@@ -108,7 +108,7 @@
    * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
    */
   "vars": {
-    "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_bGVhcm5pbmctbGlnZXItMTAuY2xlcmsuYWNjb3VudHMuZGV2JA",
+    "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_live_Y2xlcmsubWVsdC5wYXJ0eSQ",
     "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "pk_test_51Rwyc6LL7e1EcFUl2kqrcgWa8KDNzC9m4lc38wQQKiKVmekTxi3q6R6R2nohizFzRNNw9bHTeN8mripgZzgUYUDd00nlOhCWEs",
     "NEXT_PUBLIC_IMAGE_CDN": "https://images.melt.party",
     "NEXT_PUBLIC_SITE_URL": "https://melt.party",
