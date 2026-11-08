@@ -204,6 +204,8 @@ export default async function RootLayout({
   const themeTokens = getThemeTokens(activeTheme);
   return (
     <ClerkProvider
+      signInUrl="/sign-in"
+      signUpUrl="/sign-up"
       appearance={{
         theme: dark,
         variables: {

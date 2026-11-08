@@ -106,9 +106,11 @@ export default clerkMiddleware(async (auth, req: NextRequest) => {
   }
 
   // Skip maintenance check for admin routes and MCP API - always accessible
-  if (pathname.startsWith('/admin') || 
-      pathname.startsWith('/api/admin') || 
-      pathname.startsWith('/api/mcp')) {
+  // 上方 admin 门禁把未登录管理员送往 /sign-in，维护期若拦截登录/注册页，管理员将无法登录。
+  if (pathname.startsWith('/admin') ||
+      pathname.startsWith('/api/admin') ||
+      pathname.startsWith('/api/mcp') ||
+      /^\/sign-(in|up)(\/|$)/.test(pathname)) {
     return NextResponse.next();
   }
   
