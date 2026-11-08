@@ -11,7 +11,7 @@ you've already read it.
 
 Melt Party is a themeable commerce platform on Cloudflare's edge, fronted by **Floe**, an AI shopping
 assistant, and an MCP server that exposes commerce operations to external AI agents. The default
-storefront ships an outdoor-gear sample catalogue rendered through one of seven visual presets — see
+storefront ships an outdoor-gear sample catalogue rendered through one of eight visual presets — see
 `docs/theming.md` for the token contract that makes that possible.
 
 **Key features:**
@@ -190,7 +190,8 @@ sessions).
 ### Code Style
 - TypeScript strict mode; function components with TypeScript
 - Token-driven Tailwind classes against the `--store-*` contract, never a hardcoded palette; 4
-  light presets (`luxe`, `clinical`, `atelier`, `market`), 3 dark (`volt-dark`, `midnight`, `retro`)
+  light presets (`luxe`, `clinical`, `atelier`, `market`), 4 dark (`glacier-night`, `volt-dark`, `midnight`,
+  `retro`)
 - kebab-case for files, PascalCase for components
 
 ### Key Patterns
@@ -233,4 +234,4 @@ npx wrangler tail
 ```
 
 ---
-**Last Updated:** 2026-09-05, Phase 8.2 (Documentation Overhaul & Agent Onboarding)
+**Last Updated:** 2026-11-08, FEAT-20261108-02 (Melt Party rebrand, Glacier Night default preset)

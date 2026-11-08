@@ -384,8 +384,8 @@ Checklist when adding or changing a public value:
 3. Redeploy. Build-time values only change on the next build; a runtime var change alone does not re-inline them.
 
 The theme fallback specifically: `NEXT_PUBLIC_THEME_DEFAULT` must be one of the names in
-`lib/themes/manifest.generated.ts` (today: `atelier`, `clinical`, `luxe`, `market`, `midnight`,
-`retro`, `volt-dark`). It is only step 2 of the resolution order in `docs/theming.md`; an admin
+`lib/themes/manifest.generated.ts` (today: `atelier`, `clinical`, `glacier-night`, `luxe`, `market`,
+`midnight`, `retro`, `volt-dark`). It is only step 2 of the resolution order in `docs/theming.md`; an admin
 selection saved in D1 always wins over it.
 
 ### **Step 2: Build and Deploy**

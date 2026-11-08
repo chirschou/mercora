@@ -2,7 +2,7 @@
 
 Melt Party is a themeable reference storefront on Cloudflare — Next.js on Workers, D1, R2, Vectorize,
 Workers AI, Clerk, and Stripe — built to render any catalogue. The outdoor-gear catalogue shipped in
-this repository is sample data, not the product; the default look is one of seven presets the
+this repository is sample data, not the product; the default look is one of eight presets the
 storefront can render, chosen by an admin without touching component code.
 
 ## Quick start
@@ -42,7 +42,8 @@ Every row below is copied verbatim from that theme file's header comment in `the
 
 | Preset | Industry | Synopsis |
 |---|---|---|
-| Volt Dark (default) | outdoor & technical gear | The store's original look — high-contrast black, electric-orange accent, built for gear that gets used hard. |
+| Glacier Night (default) | technical outdoor & performance sports gear | Deep graphite and night-sky surfaces, a glacier-cyan primary and a signal-lime accent — a precision-instrument feel for gear built for the cold. |
+| Volt Dark | outdoor & technical gear | The store's original look — high-contrast black, electric-orange accent, built for gear that gets used hard. |
 | Luxe | fashion, jewelry, watches, fragrance | A small luxury house that wants the site to feel like a printed lookbook — ivory paper, a single champagne-gold accent, serif headlines. |
 | Midnight | consumer electronics, audio, gaming peripherals | For shoppers who compare specs before they buy — indigo-black surfaces, a violet accent, a polished, cinematic feel. |
 | Clinical | skincare, wellness, supplements, pharmacy, dental | Trustworthy and regulated — pure white surfaces, cool graphite text, one sea-teal accent, and a lot of air. Reads like a well-designed pharmacy label. |
@@ -50,10 +51,10 @@ Every row below is copied verbatim from that theme file's header comment in `the
 | Atelier | furniture, ceramics, home goods, handmade & small-batch | Warm linen surfaces, a clay accent, a sage secondary, and soft serif headlines — feels like a maker's studio page. |
 | Market | grocery, specialty food, coffee, farm boxes | Bright, dense and friendly — off-white surfaces, forest-green text, a produce-green accent, and big radius rounded sans. Feels like a good neighborhood grocer's app. |
 
-The same default layout, one home page, all seven presets:
+The same default layout, one home page, all eight presets:
 
-![Volt Dark](docs/images/presets/volt-dark.png) ![Luxe](docs/images/presets/luxe.png) ![Midnight](docs/images/presets/midnight.png) ![Clinical](docs/images/presets/clinical.png)
-![Retro](docs/images/presets/retro.png) ![Atelier](docs/images/presets/atelier.png) ![Market](docs/images/presets/market.png)
+![Glacier Night](docs/images/presets/glacier-night.png) ![Volt Dark](docs/images/presets/volt-dark.png) ![Luxe](docs/images/presets/luxe.png) ![Midnight](docs/images/presets/midnight.png)
+![Clinical](docs/images/presets/clinical.png) ![Retro](docs/images/presets/retro.png) ![Atelier](docs/images/presets/atelier.png) ![Market](docs/images/presets/market.png)
 
 Three independent layout switches, members and defaults copied verbatim from `lib/layout/variants.ts`:
 
@@ -64,7 +65,7 @@ Three independent layout switches, members and defaults copied verbatim from `li
 | Product gallery position | `left`, `top` | `left` |
 
 All four appearance choices — the preset and the three layout switches — are set from the admin.
-Switching between shipped presets needs no deploy. There is one deployment and seven looks, not seven
+Switching between shipped presets needs no deploy. There is one deployment and eight looks, not eight
 demo sites. See [docs/theming.md](docs/theming.md) for the token contract and switching mechanism.
 
 ## Architecture at a glance

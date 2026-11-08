@@ -3,7 +3,7 @@
 Melt Party is a themeable reference storefront on Cloudflare — Next.js on Workers, D1, R2, Vectorize,
 Workers AI, Clerk, and Stripe — built to render any catalogue. The outdoor-gear catalogue shipped
 in this repository is sample data, not the product; the visual identity you'll see by default is
-one of seven presets the storefront can render, chosen by an admin without touching component code.
+one of eight presets the storefront can render, chosen by an admin without touching component code.
 Read this file end to end before changing anything.
 
 ## Prerequisites

@@ -159,11 +159,12 @@ manifest directly. What does not happen automatically: a genuinely **new** theme
 because the manifest is generated at build time, not read at request time. Switching *between*
 shipped themes (the ones already in the manifest) is instant — no deploy needed.
 
-**A converted preset should be re-checked, not assumed to pass.** Six of this repo's seven shipped
+**A converted preset should be re-checked, not assumed to pass.** Six of this repo's eight shipped
 presets (`luxe`, `midnight`, `clinical`, `retro`, `atelier`, `market`) were converted from
 the retired theme-direction spec (removed 2026-09-05; its per-theme values live in each `themes/*.css` header)'s own oklch design values onto this 23-token hex contract
 (`volt-dark` predates that document — it's the store's original look, relocated verbatim, not a
-conversion). Of those six converted presets, **five carry a deliberate contrast correction** away
+conversion; `glacier-night` is a new design made directly on the 23-token contract, not a conversion
+either). Of those six converted presets, **five carry a deliberate contrast correction** away
 from the direction document's literal values, because a direct oklch-to-hex transcription measured
 below its required WCAG contrast threshold on that preset's own surface (details are in each theme
 file's own header comment). **`retro` is the one converted preset that needed no correction** — every
@@ -222,7 +223,7 @@ order, on every request:
    before any admin selection has ever been saved, not an anomaly, so it carries no telemetry.
 2. **The deploy-time environment default**, `NEXT_PUBLIC_THEME_DEFAULT` — used only if it is itself
    a manifest theme name.
-3. **The manifest default**, `DEFAULT_THEME_NAME` (`volt-dark`) — the final fallback.
+3. **The manifest default**, `DEFAULT_THEME_NAME` (`glacier-night`) — the final fallback.
 
 A present stored value that is **not** a manifest theme name is a genuinely unknown selection: the
 resolver emits exactly one telemetry signal, `theme.unknown_selection`, carrying only
@@ -357,4 +358,4 @@ clean, so there is no QA-sourced item to add to this table beyond the items alre
 |---|---|---|
 | `NEXT_PUBLIC_THEME_DEFAULT` build-time wiring | `docs/DEPLOYMENT_SETUP.md` §6 Step 1b | Documented 2026-09-05: `wrangler.jsonc` `vars` is the source of truth (injected by `build:worker`); the Dashboard Build variable is an optional fallback that must match. Russell added the Dashboard variable the same day. |
 | The admin Appearance page (theme grid + layout switches) has never been walked through in a real browser with a real Clerk admin session | `.planning/WINDOWS.md` #2 | A manual pass signed in as an admin, clicking through both sections, confirming ring/badge/toast behaviour and keyboard arrow-key selection |
-| Six of the seven presets carry design-direction properties (shadow, border-width, image-aspect, some `accent-2` values, font-mono, letter-spacing, and several per-theme layout behaviours) that this milestone's tokens-only architecture deliberately does not carry | `.planning/todos/pending/theme-contract-dropped-properties.md` (luxe/midnight), `.planning/todos/pending/theme-direction-doc-backlog-06.1.md` (clinical/retro/atelier/market) | A new contract-widening milestone with its own token sweep — not an incremental addition to the frozen 23-token contract |
+| Six of the eight presets carry design-direction properties (shadow, border-width, image-aspect, some `accent-2` values, font-mono, letter-spacing, and several per-theme layout behaviours) that this milestone's tokens-only architecture deliberately does not carry | `.planning/todos/pending/theme-contract-dropped-properties.md` (luxe/midnight), `.planning/todos/pending/theme-direction-doc-backlog-06.1.md` (clinical/retro/atelier/market) | A new contract-widening milestone with its own token sweep — not an incremental addition to the frozen 23-token contract |
