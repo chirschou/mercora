@@ -22,9 +22,14 @@ try {
   const publicVars = Object.fromEntries(Object.entries(vars).filter(([key]) => key.startsWith("NEXT_PUBLIC_")));
   const placeholders = Object.entries(publicVars).filter(([, value]) => String(value).includes("REPLACE_WITH_"));
   if (placeholders.length) throw new Error(`unfilled public placeholder(s): ${placeholders.map(([key]) => key).join(", ")}`);
+  const buildEnv = { ...process.env, ...publicVars };
+  // Clerk 公钥不在 wrangler.jsonc 中，缺失时 Next 仍会构建成功，但产出的站点运行时无法登录。
+  if (!buildEnv.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY?.trim()) {
+    throw new Error("NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY is not set; provide it as a Workers Builds Build variable or a shell variable.");
+  }
   const result = spawnSync(command[0], command.slice(1), {
     stdio: "inherit",
-    env: { ...process.env, ...publicVars },
+    env: buildEnv,
   });
   process.exit(result.status ?? 1);
 } catch (error) {

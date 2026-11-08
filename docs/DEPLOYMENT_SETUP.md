@@ -154,23 +154,15 @@ NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_your_publishable_key_here
 CLERK_SECRET_KEY=sk_test_your_secret_key_here
 ```
 
-#### **Production (Cloudflare Secrets)**
+#### **Production (Cloudflare Secrets and Build variables)**
 ```bash
 # Add Clerk secret to Cloudflare
 echo "sk_test_your_secret_key_here" | npx wrangler secret put CLERK_SECRET_KEY
-
-# Add public key to wrangler.jsonc vars
 ```
 
-Update `wrangler.jsonc` vars:
-```json
-{
-  "vars": {
-    "NODE_ENV": "production",
-    "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_your_publishable_key_here"
-  }
-}
-```
+Set `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` as a Workers Builds **Build variable**
+(Dashboard > Settings > Builds > Variables and secrets), or export it in the shell
+when building by hand. Do not put it in `wrangler.jsonc`; see Step 1b in §6.
 
 These are the only two variables this runbook lists for Clerk. Every other
 public or optional configuration value — store identity, images, email
@@ -221,23 +213,16 @@ STRIPE_SECRET_KEY=sk_test_your_secret_key_here
 STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret_here
 ```
 
-#### **Production (Cloudflare Secrets)**
+#### **Production (Cloudflare Secrets and Build variables)**
 ```bash
 # Add Stripe secrets to Cloudflare
 echo "sk_test_your_secret_key_here" | npx wrangler secret put STRIPE_SECRET_KEY
 echo "whsec_your_webhook_secret_here" | npx wrangler secret put STRIPE_WEBHOOK_SECRET
 ```
 
-Update `wrangler.jsonc` vars:
-```json
-{
-  "vars": {
-    "NODE_ENV": "production",
-    "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_your_clerk_key",
-    "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "pk_test_your_stripe_key"
-  }
-}
-```
+Set `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` as
+Workers Builds **Build variables** (or shell variables for a hand-run build); they are
+not stored in `wrangler.jsonc`. See Step 1b in §6.
 
 ### **Step 6: Test Payments and Tax**
 Use Stripe's published test values during development. These are documentation
@@ -373,7 +358,8 @@ Two kinds of values matter at **build** time, and they are resolved differently:
 
 | Variable | Where it must live | Why |
 |---|---|---|
-| `NEXT_PUBLIC_*` (e.g. `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_THEME_DEFAULT`, `NEXT_PUBLIC_IMAGE_CDN`) | `wrangler.jsonc` → `vars` (source of truth). Optionally also as a Dashboard Build variable. | Next.js inlines `NEXT_PUBLIC_*` when the bundle is built. `build:worker` runs `scripts/build-with-public-env.mjs`, which copies every `NEXT_PUBLIC_*` key from `wrangler.jsonc` into the build environment and **overrides** any Dashboard Build variable with the same name. A Dashboard value is only used if the key is absent from `wrangler.jsonc`, or if a build command bypasses `build:worker`. |
+| Other `NEXT_PUBLIC_*` (e.g. `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_THEME_DEFAULT`, `NEXT_PUBLIC_IMAGE_CDN`) | `wrangler.jsonc` → `vars` (source of truth). Optionally also as a Dashboard Build variable. | Next.js inlines `NEXT_PUBLIC_*` when the bundle is built. `build:worker` runs `scripts/build-with-public-env.mjs`, which copies every `NEXT_PUBLIC_*` key from `wrangler.jsonc` into the build environment and **overrides** any Dashboard Build variable with the same name. A Dashboard value is only used if the key is absent from `wrangler.jsonc`, or if a build command bypasses `build:worker`. |
+| `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Dashboard Build variable only (or the local shell for a hand-run build). Never in `wrangler.jsonc`. | These are per-environment public keys (`pk_live_…` vs `pk_test_…`), so the repository does not pin them. Because the keys are absent from `wrangler.jsonc`, `build-with-public-env.mjs` leaves the Dashboard value untouched and Next.js inlines it. Without the Clerk key `build-with-public-env.mjs` aborts the build (Next.js would otherwise build a site that cannot sign anyone in); without the Stripe key the build succeeds but the payment step is disabled (`lib/stripe.ts` only warns), so verify it is set. |
 | `MELT_PARTY_ALLOW_PRODUCTION_MIGRATIONS=1` | Dashboard Build variable only | `npm run deploy:ci` (the Workers Builds deploy command) applies production D1 migrations before upload and refuses without this gate (ADR-DBM-04). Never put it in `wrangler.jsonc`. |
 
 Checklist when adding or changing a public value:
@@ -459,14 +445,8 @@ echo "whsec_your_live_webhook_secret" | npx wrangler secret put STRIPE_WEBHOOK_S
 ```
 
 ### **Step 3: Update Public Variables**
-Update `wrangler.jsonc`:
-```json
-{
-  "vars": {
-    "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "pk_live_your_live_publishable_key"
-  }
-}
-```
+Change the Workers Builds **Build variable** `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` to the
+live publishable key (`pk_live_…`). It is not stored in `wrangler.jsonc`.
 
 ### **Step 4: Redeploy**
 ```bash

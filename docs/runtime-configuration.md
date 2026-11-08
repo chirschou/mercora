@@ -34,6 +34,12 @@ Cloudflare secrets remotely, never in this file or `wrangler.jsonc`.
 Cloudflare Dashboard Build variable of the same name; see `docs/DEPLOYMENT_SETUP.md`
 §6 Step 1b for the full precedence and checklist.
 
+The two publishable keys, `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and
+`NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`, are the exception: they are not in `wrangler.jsonc`.
+Provide them as Workers Builds Build variables (or shell variables for a hand-run build),
+and as `.dev.vars` entries locally. `build:worker` aborts without the Clerk key; without the
+Stripe key it still builds, but the payment step is disabled.
+
 Storefront colours no longer come from an environment variable. The active
 look is selected by the `data-theme` attribute on `<html>` and resolves
 through the matching `themes/*.css` file in the CSS cascade.
