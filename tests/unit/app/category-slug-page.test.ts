@@ -98,4 +98,26 @@ describe("category page", () => {
     expect(toPublicProduct).toHaveBeenCalledTimes(1);
     expect(vi.mocked(toPublicProduct).mock.calls[0][0]).toEqual({ id: "p1", status: "active" });
   });
+
+  it.each([
+    ["a flat record", { url: "categories/camping.png" }, "/categories/camping.png"],
+    ["a MACH media record", { type: "image", file: { url: "categories/camping.png" } }, "/categories/camping.png"],
+    ["an absolute URL", { url: "https://images.example.test/categories/camping.png" }, "https://images.example.test/categories/camping.png"],
+  ])("hands the hero image to the image loader as-is from %s, never a hardcoded host", async (_label, primaryImage, expected) => {
+    vi.mocked(getCategoryBySlug).mockResolvedValue({ ...CATEGORY, primary_image: primaryImage } as never);
+    vi.mocked(getProductsByCategory).mockResolvedValue([]);
+
+    const tree = await render("camping");
+
+    expect(imageSources(tree)).toEqual([expected]);
+  });
 });
+
+function imageSources(node: unknown): string[] {
+  if (Array.isArray(node)) return node.flatMap(imageSources);
+  if (!node || typeof node !== "object" || !("props" in node)) return [];
+  const props = (node as { props: { src?: unknown; fill?: unknown; children?: unknown } }).props;
+  const own = typeof props.src === "string" && props.fill ? [props.src] : [];
+  return [...own, ...imageSources(props.children)];
+}
+
