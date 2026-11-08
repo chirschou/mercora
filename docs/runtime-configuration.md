@@ -2,7 +2,7 @@
 
 **Status:** Current (2026-09-09).
 
-Mercora has neutral demo defaults in `lib/store-config.ts`. A storefront can
+Melt Party has neutral demo defaults in `lib/store-config.ts`. A storefront can
 override public, non-secret values without editing components. The configuration
 is resolved when a request/render needs it; it is not captured at module import
 time.
@@ -16,7 +16,7 @@ time.
 | Browser persistence | `NEXT_PUBLIC_STORAGE_NAMESPACE`, `NEXT_PUBLIC_CART_STORAGE_KEY`, `NEXT_PUBLIC_CHAT_STORAGE_KEY` |
 | Theme | `NEXT_PUBLIC_STORE_LOGO_PATH`, `NEXT_PUBLIC_THEME_DEFAULT` (deploy-time theme fallback; see `docs/theming.md`) |
 | Contact and legal links | `STORE_SUPPORT_EMAIL`, `STORE_SENDER_EMAIL`, `STORE_REPLY_TO_EMAIL`, `STORE_MERCHANT_NOTIFICATION_EMAIL`, `STORE_POSTAL_ADDRESS`, `STORE_SUPPORT_HOURS`, `NEXT_PUBLIC_PRIVACY_URL`, `NEXT_PUBLIC_TERMS_URL`, `NEXT_PUBLIC_RETURNS_URL` |
-| Commerce formatting | `STORE_LOCALE` (canonical BCP 47 locale, defaults to `en-US`), `STORE_CURRENCY` (must match active catalog variant currency; Mercora checkout is single-currency per cart) |
+| Commerce formatting | `STORE_LOCALE` (canonical BCP 47 locale, defaults to `en-US`), `STORE_CURRENCY` (must match active catalog variant currency; Melt Party checkout is single-currency per cart) |
 | Gift-card honor (redeem, settle, refund existing cards) | `STORE_FEATURE_GIFT_CARD_RECONCILIATION=true` (defaults off; keep enabled while any card balance or reservation exists — see the four-state table below) |
 | Gift-card sell (new purchases) | `STORE_FEATURE_GIFT_CARD_ACQUISITION=true` (defaults off; requires honor enabled — see the four-state table below) |
 | Gift-card bearer lookup secrets | Server-only `GIFT_CARD_CODE_HMAC_CURRENT_VERSION` plus `GIFT_CARD_CODE_HMAC_KEYS_JSON` (at most four versioned keys; never `NEXT_PUBLIC_*`) |
@@ -79,7 +79,7 @@ The four states:
 | Sell | Honor | What a shopper sees | What an operator should know |
 | --- | --- | --- | --- |
 | on | on | Normal. Gift cards are for sale; existing cards redeem, settle, and refund. | — |
-| off | on | Stopped selling, still honoring. The product is hidden from every listing (home, category, search, `/api/products`, Volt's results); a direct link to `/product/gift-card` still renders, with "Gift cards are not available right now" in place of the purchase form. Checkout refuses any gift-card line. | This is the rollback state — see below. |
+| off | on | Stopped selling, still honoring. The product is hidden from every listing (home, category, search, `/api/products`, Floe's results); a direct link to `/product/gift-card` still renders, with "Gift cards are not available right now" in place of the purchase form. Checkout refuses any gift-card line. | This is the rollback state — see below. |
 | off | off | Gift cards do not exist. Every surface is absent or 404s: no listing entry, no product page, no checkout panel, no admin nav entry, no public balance endpoint. | If a balance or open reservation still exists, the runtime keeps honoring it anyway (see below) even though every surface is hidden — hiding is presentation, honoring is money. |
 | on | off | Invalid. Capability resolution throws `CommerceCapabilityConfigurationError` on the first request or cron tick after a deploy in this state. | Never deploy this combination. Selling a card the runtime cannot redeem is a configuration bug, not a rollback strategy. |
 

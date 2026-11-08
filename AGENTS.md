@@ -1,9 +1,9 @@
-# Agent Guide for Mercora
+# Agent Guide for Melt Party
 
-Mercora is a themeable reference storefront on Cloudflare — Next.js on Workers, D1, R2, Vectorize,
+Melt Party is a themeable reference storefront on Cloudflare — Next.js on Workers, D1, R2, Vectorize,
 Workers AI, Clerk, and Stripe — built to render any catalogue. The outdoor-gear catalogue shipped
 in this repository is sample data, not the product; the visual identity you'll see by default is
-one of seven presets the storefront can render, chosen by an admin without touching component code.
+one of eight presets the storefront can render, chosen by an admin without touching component code.
 Read this file end to end before changing anything.
 
 ## Prerequisites
@@ -83,7 +83,7 @@ rather than a second copy of it here.
   or remove one that's already applied. See `docs/database-migrations.md` for the full policy.
 - `npm run deploy` never applies remote migrations. Only `npm run deploy:ci` does, and only
   Cloudflare Workers Builds runs `deploy:ci` — never run it from a developer machine.
-- The production-migration gate variable, `MERCORA_ALLOW_PRODUCTION_MIGRATIONS`, belongs only in
+- The production-migration gate variable, `MELT_PARTY_ALLOW_PRODUCTION_MIGRATIONS`, belongs only in
   the Cloudflare dashboard's Build variables. It must never appear in `wrangler.jsonc`.
 - No secret belongs in `wrangler.jsonc`. Only public, non-secret values (`NEXT_PUBLIC_*` and
   similar) belong in its `vars` block. Secrets go in `.dev.vars` locally or in Worker secrets

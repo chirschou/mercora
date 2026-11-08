@@ -16,7 +16,7 @@ function isDumpOrExport(path: string): boolean {
 
 describe("repository database-artifact boundary", () => {
   it("detects artifacts by name or database extension while honoring owners", () => {
-    expect(isDumpOrExport("mercora-db-dump.sql")).toBe(true);
+    expect(isDumpOrExport("melt-party-db-dump.sql")).toBe(true);
     expect(isDumpOrExport("exports/catalog-export.json")).toBe(true);
     expect(isDumpOrExport("scratch/local.sqlite")).toBe(true);
     expect(isDumpOrExport("scripts/query.sql")).toBe(false);
@@ -29,7 +29,7 @@ describe("repository database-artifact boundary", () => {
     const isIgnored = (path: string) =>
       spawnSync("git", ["check-ignore", "--no-index", "-q", path]).status === 0;
 
-    expect(isIgnored("scratch/mercora-db-dump.sql")).toBe(true);
+    expect(isIgnored("scratch/melt-party-db-dump.sql")).toBe(true);
     expect(isIgnored("scratch/catalog.sqlite")).toBe(true);
     expect(isIgnored("scripts/query.sql")).toBe(false);
     expect(isIgnored("tests/fixtures/catalog.db")).toBe(false);

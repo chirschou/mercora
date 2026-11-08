@@ -110,8 +110,8 @@ const FULL_BLEED_COMPONENT_PATH = "components/layout/home/HomeHeroFullBleed.tsx"
 function productWithImage() {
   return {
     id: "featured-1",
-    name: "Volt Trail Jacket",
-    primary_image: { url: "products/volt-trail-jacket.jpg" },
+    name: "Melt Trail Jacket",
+    primary_image: { url: "products/melt-trail-jacket.jpg" },
     media: [],
   } as never;
 }
@@ -119,7 +119,7 @@ function productWithImage() {
 function productWithNoImageData() {
   return {
     id: "featured-2",
-    name: "Volt Base Layer",
+    name: "Melt Base Layer",
   } as never;
 }
 
@@ -142,7 +142,7 @@ describe.each(NEW_HERO_VARIANTS)("$name home hero variant", ({ name, Component, 
       "High-performance electric gear, rugged and designed for the edge of",
     );
     expect(html).toContain("Shop Featured Gear");
-    expect(html).toContain('src="/products/volt-trail-jacket.jpg"');
+    expect(html).toContain('src="/products/melt-trail-jacket.jpg"');
     expect(html.match(new RegExp(`data-home-hero="${name}"`, "g"))).toHaveLength(1);
   });
 

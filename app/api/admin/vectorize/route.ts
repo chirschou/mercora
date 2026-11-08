@@ -195,7 +195,7 @@ export async function POST(request: NextRequest) {
           tags: product.tags || [],
           useCases: product.extensions?.use_cases || [],
           aiNotes: product.extensions?.ai_notes || '',
-          brand: product.brand || 'Mercora',
+          brand: product.brand || 'Melt Party',
           rating: product.rating || {},
           relatedProducts: product.related_products || [],
           extensions: product.extensions || {},

@@ -57,7 +57,7 @@ import type { ImageLoaderProps } from "next/image";
  * these files — a rewrite would point the browser at a 404 even though the
  * asset ships with the deployment.
  */
-const LOCAL_ASSET_PREFIXES = ["/placeholder", "/logo", "/volt"];
+const LOCAL_ASSET_PREFIXES = ["/placeholder", "/logo"];
 
 function isLocalAsset(src: string) {
   return LOCAL_ASSET_PREFIXES.some((prefix) => src.startsWith(prefix));

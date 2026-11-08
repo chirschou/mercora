@@ -1,7 +1,7 @@
 /**
  * MACH Alliance Open Data Model Types
  * 
- * Mercora - First MACH Alliance Open Data Model Compliant Platform
+ * Melt Party - First MACH Alliance Open Data Model Compliant Platform
  * 
  * These TypeScript interfaces implement the official MACH Alliance
  * Open Data Model specifications, ensuring 100% compliance and interoperability.

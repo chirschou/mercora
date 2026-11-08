@@ -56,7 +56,7 @@ describe('order confirmation provider boundary', () => {
     expect(html).toContain('Test Store');
     expect(html).toContain('Test commerce');
     expect(html).toContain('https://images.example.com/cdn-cgi/image/width=100,quality=80,format=auto/catalog/product.jpg');
-    expect(html).not.toContain('Voltique');
+    expect(html).not.toContain('Melt Party');
   });
 
   it('returns success false when the provider rejects the attempt', async () => {

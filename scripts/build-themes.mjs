@@ -26,7 +26,7 @@ const DEFAULT_THEME_DIR = "themes";
 const MANIFEST_PATH = "lib/themes/manifest.generated.ts";
 const BARREL_PATH = "themes/index.generated.css";
 const GENERATED_BARREL_FILENAME = "index.generated.css";
-const DEFAULT_THEME_NAME = "volt-dark";
+const DEFAULT_THEME_NAME = "glacier-night";
 
 // The 23-token contract (05-TOKEN-MAP.md §1), kebab-case with the
 // `--store-` prefix, in the same order as lib/themes/tokens.ts's

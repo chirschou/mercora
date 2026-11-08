@@ -1,6 +1,6 @@
 # Privacy-safe commerce observability
 
-Mercora emits a versioned, bounded telemetry envelope for actionable commerce
+Melt Party emits a versioned, bounded telemetry envelope for actionable commerce
 failures. Telemetry is always best effort: logging, Analytics Engine, Tail
 processing, cooldown storage, and alert delivery may all fail without changing
 payment, webhook, refund, inventory, fulfillment, email, or recommendation

@@ -72,7 +72,7 @@ export default function HomeHeroFullBleed({ featuredProduct }: HomeHeroFullBleed
           </h1>
           <p className="relative text-white/80 text-base sm:text-lg max-w-2xl mb-6 sm:mb-8">
             High-performance electric gear, rugged and designed for the edge of
-            the map. Modular. Adaptable. Voltique.
+            the map. Modular. Adaptable. Melt Party.
           </p>
           {/* gsd:scan-ignore-end */}
           <Link href="/category/featured" className="relative inline-block">

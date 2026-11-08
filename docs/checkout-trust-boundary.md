@@ -2,21 +2,21 @@
 
 **Status:** Accepted (2026-08-05)
 
-Mercora treats checkout as one server-owned state transition rather than a
+Melt Party treats checkout as one server-owned state transition rather than a
 client-created paid order.
 
 ## Checkout sequence
 
 1. The browser sends product ids, variant ids, quantities, a destination,
    shipping-method id, and optional promotion codes to `POST /api/payment-intent`.
-2. Mercora resolves the active catalog entities and recomputes canonical line
+2. Melt Party resolves the active catalog entities and recomputes canonical line
    names, SKUs, prices, discounts, taxable line bases, tax, shipping, optional
    reserved tender, and the final cash charge with `Money`. It persists exact
    discount and tax allocation by stable line id and verifies authoritative
    variant availability before creating the PaymentIntent.
-3. Mercora creates the PaymentIntent, then persists a `pending` order containing
+3. Melt Party creates the PaymentIntent, then persists a `pending` order containing
    the provider-reported amount and immutable PaymentIntent binding. If the D1
-   insert fails, Mercora attempts to cancel the intent and never returns its
+   insert fails, Melt Party attempts to cancel the intent and never returns its
    client secret.
 4. Inline completion, redirect return, and the signed Stripe webhook all call
    the same finalizer. It retrieves the PaymentIntent server-side and requires
@@ -64,7 +64,7 @@ order, required to be idempotent, and retried during paid convergence.
 Subscription `orderPaid` implementations have the same order-idempotent retry
 contract.
 
-When concurrent checkouts race for the last coupon use, Mercora honors each
+When concurrent checkouts race for the last coupon use, Melt Party honors each
 already-captured order's persisted server quote rather than stranding paid
 funds. A losing redemption writes the protected
 `coupon_reconciliation_codes` marker on the paid order for operational repair;
@@ -80,7 +80,7 @@ is called. Paid decrements are keyed by order and variant in
 commit in one D1 batch.
 
 Refunds require the immutable PaymentIntent binding in both protected order JSON
-columns. Mercora reserves cumulative refundable balance before calling Stripe,
+columns. Melt Party reserves cumulative refundable balance before calling Stripe,
 uses a deterministic provider idempotency key, and reconciles delayed or
 Dashboard refunds from signed Stripe events. Exact local returned lines stage
 deterministic restocks. Dashboard partial refunds never guess line attribution,
@@ -91,7 +91,7 @@ for event subscriptions, retries, repair queries, and migration order.
 
 ## Fulfillment boundary
 
-Mercora still has no shipment command. The future atomic shipment transition
+Melt Party still has no shipment command. The future atomic shipment transition
 must include `SHIPMENT_NO_UNSETTLED_REFUNDS_SQL` so a `pending` or
 `requires_action` refund reservation cannot race a transition to `shipped`.
 The accompanying real-D1 contract test covers malformed and legacy JSON shapes;

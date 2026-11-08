@@ -46,7 +46,7 @@ export const EMBEDDING_MODEL = {
  * Model configurations for specific use cases
  */
 export const AI_MODELS = {
-  /** For chat/conversational AI (Volt assistant) */
+  /** For chat/conversational AI (Floe assistant) */
   CHAT: {
     ...TEXT_GENERATION_MODEL,
     temperature: 0.1, // Lower temperature for more consistent responses

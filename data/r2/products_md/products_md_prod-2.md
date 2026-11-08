@@ -2,7 +2,7 @@
 id: prod_2
 sku: variant_2
 name: Dusty Fire Tool
-brand: Mercora
+brand: Melt Party
 created: 2025-08-23 16:15:37
 updated: 2025-08-23 16:15:37
 price: 24.99
@@ -19,7 +19,7 @@ rating_count: 34
 ## Product Information
 - **SKU**: variant_2
 - **Product ID**: prod_2
-- **Brand**: Mercora
+- **Brand**: Melt Party
 - **Price**: $24.99
 - **Categories**: , , 
 - **Tags**: EDC, firestarter, survival

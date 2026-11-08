@@ -44,6 +44,6 @@ describe('HTML sanitizer source and sink wiring', () => {
     expect(middleware).toContain('escapeHtmlText(getStoreConfig().identity.name)');
     expect(middleware).toContain('${maintenanceMessage}');
     expect(middleware).toContain('${storeName}');
-    expect(middleware).not.toContain('<div class="logo">Voltique</div>');
+    expect(middleware).not.toContain('<div class="logo">Melt Party</div>');
   });
 });

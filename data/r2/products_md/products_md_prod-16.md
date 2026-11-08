@@ -2,7 +2,7 @@
 id: prod_16
 sku: variant_16
 name: Iron Echo Tool
-brand: Mercora
+brand: Melt Party
 created: 2025-08-23 16:15:37
 updated: 2025-08-23 16:15:37
 price: 42.99
@@ -19,7 +19,7 @@ rating_count: 16
 ## Product Information
 - **SKU**: variant_16
 - **Product ID**: prod_16
-- **Brand**: Mercora
+- **Brand**: Melt Party
 - **Price**: $42.99
 - **Categories**: 
 - **Tags**: impact, tactical, breaching, rescue

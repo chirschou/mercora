@@ -386,7 +386,7 @@ export default function PageManagement() {
       
       const prompt = `CRITICAL: Generate complete, untruncated HTML content. Do NOT stop mid-sentence or mid-tag.
 
-You are generating HTML content for a page titled "${formData.title}" (${templateDescription}) for Mercora outdoor gear eCommerce.
+You are generating HTML content for a page titled "${formData.title}" (${templateDescription}) for Melt Party outdoor gear eCommerce.
 
 STRICT REQUIREMENTS:
 - Generate ONLY inner HTML content (NO DOCTYPE, html, head, body tags)
@@ -433,9 +433,9 @@ Generate complete content now:`;
           .replace(/<body[^>]*>/gi, '')
           .replace(/<\/body>/gi, '')
           .replace(/<header[^>]*>[\s\S]*?<\/header>/gi, '')
-          .replace(/Camping rule #\d+:.*?-- Volt/gi, '') // Remove Volt's personality additions
+          .replace(/Camping rule #\d+:.*?-- Floe/gi, '') // Remove Floe's personality additions
           .replace(/\n\s*They're.*?\.\s*/gi, '') // Remove personality continuations
-          .replace(/-- Volt.*$/gim, '') // Remove any Volt signatures
+          .replace(/-- Floe.*$/gim, '') // Remove any Floe signatures
           .replace(/\*winks\*/gi, '') // Remove personality actions
           .replace(/\*.*?\*/gi, '') // Remove any action text in asterisks
           .trim();
@@ -857,7 +857,7 @@ function CreateEditPageForm({
             ) : (
               <>
                 <Bot className="w-3 h-3 mr-1" />
-                Generate with Volt AI
+                Generate with Floe AI
               </>
             )}
           </Button>
@@ -867,7 +867,7 @@ function CreateEditPageForm({
           value={formData.content || ""}
           onChange={(e) => onChange('content', e.target.value)}
           className="bg-neutral-700 border-neutral-600 text-white min-h-[200px]"
-          placeholder="Enter page content (HTML supported) or use Volt AI to generate content"
+          placeholder="Enter page content (HTML supported) or use Floe AI to generate content"
         />
       </div>
 

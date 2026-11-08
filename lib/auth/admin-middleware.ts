@@ -25,7 +25,7 @@ export async function checkAdminPermissions(request: NextRequest): Promise<Admin
     // Check for development mode bypass token first
     const devToken = request.headers.get("x-dev-admin");
     
-    if (devToken === "mercora-dev-bypass" && process.env.NODE_ENV === "development") {
+    if (devToken === "melt-party-dev-bypass" && process.env.NODE_ENV === "development") {
       console.log("⚠️ DEV MODE: Admin authentication bypassed with dev token");
       return { success: true, userId: "dev-admin", isDevMode: true };
     }

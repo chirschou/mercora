@@ -5,7 +5,7 @@ import {
   isVariantAvailable,
 } from '@/lib/inventory/availability';
 
-// CAT-04: the Voltique Gift Card's four variants are seeded with the exact
+// CAT-04: the Melt Party Gift Card's four variants are seeded with the exact
 // inventory shape `{"track_inventory": false}` — no `quantity` key at all
 // (data/d1/seed.sql gift-card block, plan 09-01). This file pins that a
 // widened or narrowed `isInventoryAvailable`/`isVariantAvailable` cannot

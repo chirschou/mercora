@@ -11,7 +11,7 @@ beforeEach(async () => {
 });
 
 function request(apiKey: string): import('next/server').NextRequest {
-  return new Request('https://mercora.test/api/mcp', {
+  return new Request('https://melt-party.test/api/mcp', {
     headers: { 'X-Agent-API-Key': apiKey },
   }) as import('next/server').NextRequest;
 }

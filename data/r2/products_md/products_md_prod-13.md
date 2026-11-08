@@ -2,7 +2,7 @@
 id: prod_13
 sku: variant_13
 name: Solar Arc Tool
-brand: Mercora
+brand: Melt Party
 created: 2025-08-23 16:15:37
 updated: 2025-08-23 16:15:37
 price: 49.99
@@ -19,7 +19,7 @@ rating_count: 18
 ## Product Information
 - **SKU**: variant_13
 - **Product ID**: prod_13
-- **Brand**: Mercora
+- **Brand**: Melt Party
 - **Price**: $49.99
 - **Categories**: , 
 - **Tags**: solar, arc, sustainable, ignition

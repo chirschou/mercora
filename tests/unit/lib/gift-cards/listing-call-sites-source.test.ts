@@ -12,8 +12,8 @@ const read = (path: string) => readFileSync(join(root, path), 'utf8');
  *
  * This list is hard-coded, which means it can only ever catch a call site
  * that stops using the predicate, never one that was never added. `app/api/
- * agent-chat/route.ts` was exactly that miss: D-07 names "Volt's product
- * results", and Volt is the drawer a shopper actually talks to, but it
+ * agent-chat/route.ts` was exactly that miss: D-07 names "Floe's product
+ * results", and Floe is the drawer a shopper actually talks to, but it
  * hydrates from Drizzle directly and was not in the original nine.
  * `app/sitemap.ts` was the other: an index that kept advertising a URL the
  * store had started 404ing.

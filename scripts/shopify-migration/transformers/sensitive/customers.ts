@@ -38,7 +38,7 @@ export type CustomerInsertFields = Omit<CustomerInsertRecord, "id">;
 export interface CustomerProvisioningPlan {
   sourceFingerprint: string;
   emailFingerprint: string;
-  /** Stable operator reference only. It is never a Mercora customer ID. */
+  /** Stable operator reference only. It is never a Melt Party customer ID. */
   provisioningReference: string;
   customerFields: CustomerInsertFields;
 }

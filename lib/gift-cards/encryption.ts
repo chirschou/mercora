@@ -1,6 +1,6 @@
 import { normalizeGiftCardCode } from "./code";
 
-const AEAD_PURPOSE = "mercora:gift-card:delivery-code";
+const AEAD_PURPOSE = "melt-party:gift-card:delivery-code";
 const AEAD_CONTRACT_VERSION = 1;
 const AES_KEY_BYTES = 32;
 const NONCE_BYTES = 12;

@@ -3,11 +3,11 @@ import { join } from 'node:path';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 /**
- * D-07 names "Volt's product results and recommendations" as a listing surface.
+ * D-07 names "Floe's product results and recommendations" as a listing surface.
  * The original plan read that as the MCP tools only, so `/api/agent-chat` — the
  * drawer a shopper actually talks to — kept returning the gift card under
  * sell=off, and under both flags off returned a card linking to a page that now
- * 404s. This file covers both readings of "Volt": the MCP search tool
+ * 404s. This file covers both readings of "Floe": the MCP search tool
  * behaviourally, and the chat route's two filters as a source contract, since
  * that route needs AI and Vectorize bindings to run at all.
  */

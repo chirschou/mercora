@@ -16,7 +16,7 @@ function customer(overrides: Partial<Stripe.Customer> = {}): Stripe.Customer {
     id: "cus_one",
     object: "customer",
     livemode: false,
-    metadata: { mercora_customer_id: "user_one" },
+    metadata: { melt_party_customer_id: "user_one" },
     ...overrides,
   });
 }
@@ -29,7 +29,7 @@ function setupIntent(overrides: Partial<Stripe.SetupIntent> = {}): Stripe.SetupI
     created: 1_800_000_000,
     customer: customer(),
     livemode: false,
-    metadata: { mercora_customer_id: "user_one" },
+    metadata: { melt_party_customer_id: "user_one" },
     payment_method: "pm_one",
     status: "succeeded",
     usage: "off_session",
@@ -74,10 +74,10 @@ function subscription(overrides: Partial<Stripe.Subscription> = {}): Stripe.Subs
     ended_at: null,
     items: { object: "list", data: [item], has_more: false, url: "/items" },
     metadata: {
-      mercora_acquisition_id: "acq_one",
-      mercora_plan_id: "plan_one",
-      mercora_binding_version: "2",
-      mercora_shipping_required: "true",
+      melt_party_acquisition_id: "acq_one",
+      melt_party_plan_id: "plan_one",
+      melt_party_binding_version: "2",
+      melt_party_shipping_required: "true",
     },
     pause_collection: null,
     status: "active",
@@ -241,7 +241,7 @@ describe("Stripe subscription adapter", () => {
       idempotencyKey: "customer_user_one",
     })).resolves.toMatchObject({ customerId: "user_one", stripeCustomerId: "cus_one" });
     expect(mocks.customerCreate).toHaveBeenCalledWith({
-      metadata: { mercora_customer_id: "user_one" },
+      metadata: { melt_party_customer_id: "user_one" },
       email: "customer@example.com",
       name: "Customer",
     }, { idempotencyKey: "customer_user_one" });
@@ -266,7 +266,7 @@ describe("Stripe subscription adapter", () => {
     });
     expect(mocks.setupIntentCreate).toHaveBeenCalledWith({
       customer: "cus_one",
-      metadata: { mercora_customer_id: "user_one" },
+      metadata: { melt_party_customer_id: "user_one" },
       payment_method_types: ["card"],
       usage: "off_session",
     }, { idempotencyKey: "setup_user_one" });
@@ -292,10 +292,10 @@ describe("Stripe subscription adapter", () => {
       items: [{ price: "price_monthly", quantity: 2 }],
       payment_behavior: "default_incomplete",
       metadata: expect.objectContaining({
-        mercora_acquisition_id: "acq_one",
-        mercora_plan_id: "plan_one",
-        mercora_binding_version: "2",
-        mercora_shipping_required: "true",
+        melt_party_acquisition_id: "acq_one",
+        melt_party_plan_id: "plan_one",
+        melt_party_binding_version: "2",
+        melt_party_shipping_required: "true",
       }),
     }), { idempotencyKey: "acq_one" });
   });

@@ -36,7 +36,7 @@ describe("cloudflareLoader", () => {
     vi.stubEnv("NEXT_PUBLIC_IMAGE_CDN", "https://images.example.test");
 
     // The bucket holds product media only; rewriting these produces a 404.
-    for (const src of ["/volt.png", "/placeholder.jpg", "/logo.svg"]) {
+    for (const src of ["/placeholder.jpg", "/logo.svg"]) {
       expect(cloudflareLoader({ ...args, src })).toBe(src);
     }
   });
@@ -70,22 +70,22 @@ describe("cloudflareLoader", () => {
     vi.stubEnv("NODE_ENV", "development");
     vi.stubEnv("NEXT_PUBLIC_IMAGE_CDN", undefined);
 
-    for (const src of ["/placeholder.jpg", "/logo.svg", "/volt.png", "https://avatars.example.test/me.png"]) {
+    for (const src of ["/placeholder.jpg", "/logo.svg", "https://avatars.example.test/me.png"]) {
       expect(cloudflareLoader({ ...args, src })).toBe(src);
     }
   });
 
   it("gives a root-relative category image the same URL its old absolute CDN form produced", () => {
     vi.stubEnv("NODE_ENV", "production");
-    vi.stubEnv("NEXT_PUBLIC_IMAGE_CDN", "https://voltique-images.russellkmoore.me");
+    vi.stubEnv("NEXT_PUBLIC_IMAGE_CDN", "https://images.melt.party");
 
     const previous = cloudflareLoader({
       ...args,
-      src: "https://voltique-images.russellkmoore.me/categories/camping.png",
+      src: "https://images.melt.party/categories/camping.png",
     });
     expect(cloudflareLoader({ ...args, src: "/categories/camping.png" })).toBe(previous);
     expect(previous).toBe(
-      "https://voltique-images.russellkmoore.me/cdn-cgi/image/width=640,format=auto,quality=80/categories/camping.png",
+      "https://images.melt.party/cdn-cgi/image/width=640,format=auto,quality=80/categories/camping.png",
     );
   });
 });

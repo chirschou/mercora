@@ -34,7 +34,7 @@ function fakeRepository(initial?: PaymentCustomerBinding): PaymentCustomerReposi
   };
 }
 
-function fakeStripe(customers: Record<string, { id: string; metadata: { mercora_customer_id: string }; deleted?: boolean }>) {
+function fakeStripe(customers: Record<string, { id: string; metadata: { melt_party_customer_id: string }; deleted?: boolean }>) {
   return {
     customers: {
       create: vi.fn(),
@@ -51,7 +51,7 @@ describe("ensureStripeCustomer", () => {
   it("returns the stored id and never creates when the existing binding matches Stripe", async () => {
     const repository = fakeRepository({ customerId: "cust_1", stripeCustomerId: "cus_existing" });
     const stripe = fakeStripe({
-      cus_existing: { id: "cus_existing", metadata: { mercora_customer_id: "cust_1" } },
+      cus_existing: { id: "cus_existing", metadata: { melt_party_customer_id: "cust_1" } },
     });
 
     const result = await ensureStripeCustomer({
@@ -65,7 +65,7 @@ describe("ensureStripeCustomer", () => {
   it("throws PaymentCustomerConflictError and binds nothing when Stripe disagrees with the existing binding", async () => {
     const repository = fakeRepository({ customerId: "cust_1", stripeCustomerId: "cus_existing" });
     const stripe = fakeStripe({
-      cus_existing: { id: "cus_existing", metadata: { mercora_customer_id: "cust_OTHER" } },
+      cus_existing: { id: "cus_existing", metadata: { melt_party_customer_id: "cust_OTHER" } },
     });
 
     await expect(ensureStripeCustomer({
@@ -78,7 +78,7 @@ describe("ensureStripeCustomer", () => {
     const repository = fakeRepository(undefined);
     const stripe = fakeStripe({});
     (stripe.customers.create as ReturnType<typeof vi.fn>).mockResolvedValue({
-      id: "cus_new", metadata: { mercora_customer_id: "cust_1" },
+      id: "cus_new", metadata: { melt_party_customer_id: "cust_1" },
     });
 
     const result = await ensureStripeCustomer({
@@ -88,7 +88,7 @@ describe("ensureStripeCustomer", () => {
     expect(result).toBe("cus_new");
     expect(stripe.customers.create).toHaveBeenCalledTimes(1);
     const [params, options] = (stripe.customers.create as ReturnType<typeof vi.fn>).mock.calls[0];
-    expect(params.metadata.mercora_customer_id).toBe("cust_1");
+    expect(params.metadata.melt_party_customer_id).toBe("cust_1");
     expect(options.idempotencyKey).toEqual(expect.any(String));
   });
 
@@ -97,7 +97,7 @@ describe("ensureStripeCustomer", () => {
       const repository = fakeRepository(undefined);
       const stripe = fakeStripe({});
       (stripe.customers.create as ReturnType<typeof vi.fn>).mockResolvedValue({
-        id: resultId, metadata: { mercora_customer_id: "cust_retry" },
+        id: resultId, metadata: { melt_party_customer_id: "cust_retry" },
       });
       await ensureStripeCustomer({ repository, stripe: stripe as never, customerId: "cust_retry" });
       const [, options] = (stripe.customers.create as ReturnType<typeof vi.fn>).mock.calls[0];
@@ -126,10 +126,10 @@ describe("ensureStripeCustomer", () => {
       return originalBind(args);
     });
     const stripe = fakeStripe({
-      cus_winner: { id: "cus_winner", metadata: { mercora_customer_id: "cust_1" } },
+      cus_winner: { id: "cus_winner", metadata: { melt_party_customer_id: "cust_1" } },
     });
     (stripe.customers.create as ReturnType<typeof vi.fn>).mockResolvedValue({
-      id: "cus_lost_race", metadata: { mercora_customer_id: "cust_1" },
+      id: "cus_lost_race", metadata: { melt_party_customer_id: "cust_1" },
     });
 
     const result = await ensureStripeCustomer({
@@ -145,7 +145,7 @@ describe("ensureStripeCustomer", () => {
     (repository.findPaymentCustomer as ReturnType<typeof vi.fn>).mockResolvedValue(undefined);
     const stripe = fakeStripe({});
     (stripe.customers.create as ReturnType<typeof vi.fn>).mockResolvedValue({
-      id: "cus_dup", metadata: { mercora_customer_id: "cust_1" },
+      id: "cus_dup", metadata: { melt_party_customer_id: "cust_1" },
     });
 
     const result = await ensureStripeCustomer({

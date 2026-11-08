@@ -186,11 +186,11 @@ function mapProviderCustomer(
   customer: Stripe.Customer | Stripe.DeletedCustomer,
   expectedCustomerId: string,
 ): ProviderCustomerBinding {
-  const customerId = boundedString(expectedCustomerId, "Mercora customer id", { maxLength: 128 });
+  const customerId = boundedString(expectedCustomerId, "Melt Party customer id", { maxLength: 128 });
   if ("deleted" in customer) invalid("Stripe customer is deleted");
   const stripeCustomerId = boundedString(customer.id, "Stripe customer id", { prefix: "cus_" });
-  if (customer.metadata.mercora_customer_id !== customerId) {
-    invalid("Stripe customer metadata does not match the Mercora customer");
+  if (customer.metadata.melt_party_customer_id !== customerId) {
+    invalid("Stripe customer metadata does not match the Melt Party customer");
   }
   if (typeof customer.livemode !== "boolean") invalid("Stripe customer livemode is invalid");
   return { customerId, stripeCustomerId, livemode: customer.livemode };
@@ -206,14 +206,14 @@ export class StripeSubscriptionAdapter implements SubscriptionProvider {
   async createProviderCustomer(
     request: CreateProviderCustomerRequest,
   ): Promise<ProviderCustomerBinding> {
-    const customerId = boundedString(request.customerId, "Mercora customer id", { maxLength: 128 });
+    const customerId = boundedString(request.customerId, "Melt Party customer id", { maxLength: 128 });
     const idempotencyKey = boundedString(request.idempotencyKey, "customer idempotency key", {
       maxLength: 255,
     });
     const email = optionalBoundedString(request.email, "customer email", 320);
     const name = optionalBoundedString(request.name, "customer name", 200);
     const customer = await this.#client.customers.create({
-      metadata: { mercora_customer_id: customerId },
+      metadata: { melt_party_customer_id: customerId },
       ...(email === undefined ? {} : { email }),
       ...(name === undefined ? {} : { name }),
     }, { idempotencyKey });
@@ -241,7 +241,7 @@ export class StripeSubscriptionAdapter implements SubscriptionProvider {
   async createSetupIntent(
     request: CreateStripeSetupIntentRequest,
   ): Promise<StripeSetupIntentView> {
-    const customerId = boundedString(request.customerId, "Mercora customer id", { maxLength: 128 });
+    const customerId = boundedString(request.customerId, "Melt Party customer id", { maxLength: 128 });
     const stripeCustomerId = boundedString(request.stripeCustomerId, "Stripe customer id", {
       prefix: "cus_",
     });
@@ -250,7 +250,7 @@ export class StripeSubscriptionAdapter implements SubscriptionProvider {
     });
     const setupIntent = await this.#client.setupIntents.create({
       customer: stripeCustomerId,
-      metadata: { mercora_customer_id: customerId },
+      metadata: { melt_party_customer_id: customerId },
       payment_method_types: ["card"],
       usage: "off_session",
     }, { idempotencyKey });
@@ -293,11 +293,11 @@ export class StripeSubscriptionAdapter implements SubscriptionProvider {
       default_payment_method: setupIntent.paymentMethodId,
       items: [{ price: request.plan.stripePriceId, quantity: request.quantity }],
       metadata: {
-        mercora_acquisition_id: request.id,
-        mercora_plan_id: request.plan.id,
-        mercora_setup_intent_id: request.setupIntentId,
-        mercora_binding_version: "2",
-        mercora_shipping_required: request.plan.shippingRequired ? "true" : "false",
+        melt_party_acquisition_id: request.id,
+        melt_party_plan_id: request.plan.id,
+        melt_party_setup_intent_id: request.setupIntentId,
+        melt_party_binding_version: "2",
+        melt_party_shipping_required: request.plan.shippingRequired ? "true" : "false",
       },
       collection_method: "charge_automatically",
       payment_behavior: "default_incomplete",

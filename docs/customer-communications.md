@@ -2,7 +2,7 @@
 
 **Status:** Current (2026-09-05).
 
-Mercora provides authenticated account navigation, owner-scoped order history,
+Melt Party provides authenticated account navigation, owner-scoped order history,
 saved addresses, and basic profile settings without requiring an email provider.
 The legacy `/orders` URL redirects to `/account/orders` and preserves query
 parameters so existing review links remain compatible.
@@ -18,7 +18,7 @@ All email paths share one provider-neutral sender. Cloudflare Email Sending is
 recommended for Workers: onboard the sender domain, configure an `EMAIL`
 `send_email` binding, and set `EMAIL_PROVIDER=cloudflare`. Existing Resend
 installations remain supported with `EMAIL_PROVIDER=resend` and an encrypted
-`RESEND_API_KEY`. When `EMAIL_PROVIDER` is omitted, Mercora selects a provider
+`RESEND_API_KEY`. When `EMAIL_PROVIDER` is omitted, Melt Party selects a provider
 only if exactly one is configured; both or neither fail clearly. A failed send
 never falls through to the other provider because that could duplicate mail
 during durable retries.

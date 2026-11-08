@@ -34,7 +34,7 @@ describe('checkAdminPermissions credential transport', () => {
     const result = await checkAdminPermissions(
       new NextRequest('http://localhost/api/products', {
         method: 'POST',
-        headers: { 'x-dev-admin': 'mercora-dev-bypass' },
+        headers: { 'x-dev-admin': 'melt-party-dev-bypass' },
       })
     );
 
@@ -44,7 +44,7 @@ describe('checkAdminPermissions credential transport', () => {
 
   it('does not accept development or service credentials from query parameters', async () => {
     const result = await checkAdminPermissions(
-      new NextRequest('http://localhost/api/products?dev=mercora-dev-bypass&token=service-secret')
+      new NextRequest('http://localhost/api/products?dev=melt-party-dev-bypass&token=service-secret')
     );
 
     expect(result.success).toBe(false);
@@ -54,7 +54,7 @@ describe('checkAdminPermissions credential transport', () => {
     const result = await checkAdminPermissions(
       new NextRequest('http://localhost/api/products', {
         method: 'POST',
-        headers: { 'x-dev-admin': 'mercora-dev-bypass' },
+        headers: { 'x-dev-admin': 'melt-party-dev-bypass' },
       })
     );
 
@@ -139,7 +139,7 @@ describe('checkAdminPermissions credential transport', () => {
 
     const result = await checkAdminPermissions(
       new NextRequest('http://localhost/api/products', {
-        headers: { 'x-dev-admin': 'mercora-dev-bypass' },
+        headers: { 'x-dev-admin': 'melt-party-dev-bypass' },
       })
     );
 
@@ -168,7 +168,7 @@ describe('checkAdminPermissions credential transport', () => {
     // navigator left as Node's native value, not stubbed
     const result = await checkAdminPermissions(
       new NextRequest('http://localhost/api/products', {
-        headers: { 'x-dev-admin': 'mercora-dev-bypass' },
+        headers: { 'x-dev-admin': 'melt-party-dev-bypass' },
       })
     );
 

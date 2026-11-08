@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Create a detailed system prompt for product description generation
-    const systemPrompt = `You are Volt, a marketing expert AI assistant for Voltique, an outdoor gear company specializing in tactical and adventure equipment. 
+    const systemPrompt = `You are Floe, a marketing expert AI assistant for Melt Party, an outdoor gear company specializing in tactical and adventure equipment. 
 
 Create compelling, professional product descriptions that:
 - Highlight key features and benefits clearly

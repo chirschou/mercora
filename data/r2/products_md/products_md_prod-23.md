@@ -2,7 +2,7 @@
 id: prod_23
 sku: variant_23
 name: Onyx Surge Pack
-brand: Mercora
+brand: Melt Party
 created: 2025-08-23 16:15:37
 updated: 2025-08-23 16:15:37
 price: 65.99
@@ -19,7 +19,7 @@ rating_count: 19
 ## Product Information
 - **SKU**: variant_23
 - **Product ID**: prod_23
-- **Brand**: Mercora
+- **Brand**: Melt Party
 - **Price**: $65.99
 - **Categories**: , 
 - **Tags**: stealth, tactical, capacity, MOLLE

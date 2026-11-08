@@ -78,7 +78,7 @@ function hex(bytes: Uint8Array): string {
 async function reservationId(requestKey: string): Promise<string> {
   const digest = await crypto.subtle.digest(
     "SHA-256",
-    new TextEncoder().encode(`mercora:gift-card:reservation\u0000v1\u0000${requestKey}`),
+    new TextEncoder().encode(`melt-party:gift-card:reservation\u0000v1\u0000${requestKey}`),
   );
   return `gift_reservation_${hex(new Uint8Array(digest))}`;
 }

@@ -10,7 +10,7 @@ function readRepoFile(relativePath: string): string {
 }
 
 // This article is uploaded verbatim to the public R2 bucket and embedded
-// verbatim (front matter included) into Volt's Vectorize index -- there is
+// verbatim (front matter included) into Floe's Vectorize index -- there is
 // no template layer between what's committed here and what a shopper reads
 // or what the assistant quotes back as fact. So the committed bytes are the
 // contract, and this test reads the real file rather than a fixture.

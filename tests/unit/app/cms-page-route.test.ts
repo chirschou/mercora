@@ -76,6 +76,6 @@ describe("CMS public page control flow", () => {
   it("does not claim a storage failure means Page Not Found in metadata", async () => {
     getPage.mockRejectedValue(new Error("D1 unavailable"));
     await expect(generateMetadata({ params: Promise.resolve({ slug: "about" }) }))
-      .resolves.toEqual({ title: "Mercora" });
+      .resolves.toEqual({ title: "Melt Party" });
   });
 });

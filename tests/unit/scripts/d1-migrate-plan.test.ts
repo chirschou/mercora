@@ -55,7 +55,7 @@ describe("D1 migration plans", () => {
       canApply({
         target: "production",
         flags: ["--confirm-production"],
-        environment: { MERCORA_ALLOW_PRODUCTION_MIGRATIONS: "1" },
+        environment: { MELT_PARTY_ALLOW_PRODUCTION_MIGRATIONS: "1" },
       }).allowed,
     ).toBe(true);
   });

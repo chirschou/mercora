@@ -13,7 +13,7 @@ export default function ProductCard({ product }: { product: any }) {
   const imageUrl = resolveProductImageSrc(product.primary_image, product.media, "/placeholder.jpg");
   
   // Get price from first variant. These arrive as MACH wire money (decimal
-  // major units), not the minor units Mercora stores.
+  // major units), not the minor units Melt Party stores.
   const variant = product.variants?.[0];
   const price = fromWireMoney(variant?.price);
   const compareAtPrice = variant?.compare_at_price

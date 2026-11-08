@@ -2,7 +2,7 @@
 id: prod_12
 sku: variant_12
 name: Nova Flame Device
-brand: Mercora
+brand: Melt Party
 created: 2025-08-23 16:15:37
 updated: 2025-08-23 16:15:37
 price: 44.99
@@ -19,7 +19,7 @@ rating_count: 32
 ## Product Information
 - **SKU**: variant_12
 - **Product ID**: prod_12
-- **Brand**: Mercora
+- **Brand**: Melt Party
 - **Price**: $44.99
 - **Categories**: , 
 - **Tags**: torch, windproof, tactical, ignition

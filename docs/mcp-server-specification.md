@@ -1,6 +1,6 @@
-# Mercora MCP commerce API
+# Melt Party MCP commerce API
 
-Mercora exposes an authenticated HTTP API for agent-assisted catalog discovery,
+Melt Party exposes an authenticated HTTP API for agent-assisted catalog discovery,
 session carts, checkout, and order status. The API is store-neutral: catalog,
 shipping, pricing, tax, promotion, inventory, and payment behavior comes from
 the same configuration and services used by the storefront.
@@ -124,7 +124,7 @@ then creates both:
   allocations.
 
 If Stripe returns a mismatched amount or currency, or pending-order persistence
-fails, Mercora cancels the PaymentIntent. `place_order` verifies that the
+fails, Melt Party cancels the PaymentIntent. `place_order` verifies that the
 pending order, PaymentIntent, agent, and session all match before invoking the
 shared idempotent payment finalizer. That finalizer verifies captured payment
 with Stripe and runs the same durable inventory and post-payment effects as the

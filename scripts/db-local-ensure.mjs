@@ -53,7 +53,7 @@ try {
         .map((entry) => entry.name),
     ]),
   );
-  const manifestDirectory = mkdtempSync(path.join(tmpdir(), "mercora-media-"));
+  const manifestDirectory = mkdtempSync(path.join(tmpdir(), "melt-party-media-"));
   try {
     for (const { contentType, entries } of planSampleMedia(listing)) {
       console.log(`[db:local] Writing ${entries.length} sample image(s) (${contentType}) to local R2 bucket ${bucket}...`);

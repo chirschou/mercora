@@ -20,7 +20,7 @@ export function providerFingerprint(provider: string, entity: string, sourceId: 
   return createHash("sha256").update(material, "utf8").digest("hex");
 }
 
-/** Stable, merchant-neutral Mercora ID derived from a provider identity. */
+/** Stable, merchant-neutral Melt Party ID derived from a provider identity. */
 export function deterministicProviderId(provider: string, entity: string, sourceId: string | number): string {
   const providerName = label(provider, "provider");
   const entityName = label(entity, "entity");

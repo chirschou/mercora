@@ -5,7 +5,7 @@
  * This interface ensures 100% compliance with MACH Alliance standards
  * for interoperability across headless commerce platforms.
  *
- * Mercora - First MACH Alliance Open Data Model Compliant Platform
+ * Melt Party - First MACH Alliance Open Data Model Compliant Platform
  */
 
 import { MACHAddress } from './Address';

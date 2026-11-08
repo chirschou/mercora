@@ -2,7 +2,7 @@
 id: prod_11
 sku: variant_11
 name: Noble Field Pack
-brand: Mercora
+brand: Melt Party
 created: 2025-08-23 16:15:37
 updated: 2025-08-23 16:15:37
 price: 68.99
@@ -19,7 +19,7 @@ rating_count: 25
 ## Product Information
 - **SKU**: variant_11
 - **Product ID**: prod_11
-- **Brand**: Mercora
+- **Brand**: Melt Party
 - **Price**: $68.99
 - **Categories**: 
 - **Tags**: vintage, canvas, field, utility

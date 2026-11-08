@@ -2,7 +2,7 @@
 id: prod_30
 sku: variant_30
 name: Volcanic Ridge Tool
-brand: Mercora
+brand: Melt Party
 created: 2025-08-23 16:15:37
 updated: 2025-08-23 16:15:37
 price: 35.99
@@ -19,7 +19,7 @@ rating_count: 20
 ## Product Information
 - **SKU**: variant_30
 - **Product ID**: prod_30
-- **Brand**: Mercora
+- **Brand**: Melt Party
 - **Price**: $35.99
 - **Categories**: 
 - **Tags**: fire, utility, flame, compact

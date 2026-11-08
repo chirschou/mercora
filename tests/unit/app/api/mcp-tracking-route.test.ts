@@ -48,7 +48,7 @@ beforeEach(() => {
 describe('MCP tracking route', () => {
   it('projects configured carrier data and real fulfillment history without invented location', async () => {
     const response = await GET(getRequest(
-      'https://mercora.test/api/mcp/tools/order/track?orderId=MCP-AGENT1-1-A1B2C3D4',
+      'https://melt-party.test/api/mcp/tools/order/track?orderId=MCP-AGENT1-1-A1B2C3D4',
     ));
     expect(response.status).toBe(200);
     const body = await response.json() as { data: Record<string, unknown> };
@@ -65,7 +65,7 @@ describe('MCP tracking route', () => {
   });
 
   it('authenticates a POST only once and requires an order ID', async () => {
-    const response = await POST(new Request('https://mercora.test/api/mcp/tools/order/track', {
+    const response = await POST(new Request('https://melt-party.test/api/mcp/tools/order/track', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ orderId: 'MCP-AGENT1-1-A1B2C3D4' }),
@@ -75,7 +75,7 @@ describe('MCP tracking route', () => {
   });
 
   it('rejects an oversized POST before reading order state', async () => {
-    const response = await POST(new Request('https://mercora.test/api/mcp/tools/order/track', {
+    const response = await POST(new Request('https://melt-party.test/api/mcp/tools/order/track', {
       method: 'POST',
       body: JSON.stringify({ orderId: 'MCP-OK', pad: 'x'.repeat(1_100) }),
     }) as import('next/server').NextRequest);
@@ -87,9 +87,9 @@ describe('MCP tracking route', () => {
     mocks.getOrderStatus.mockRejectedValue(new Error('private database detail'));
     const response = method === 'GET'
       ? await GET(getRequest(
-        'https://mercora.test/api/mcp/tools/order/track?orderId=MCP-AGENT1-1-A1B2C3D4',
+        'https://melt-party.test/api/mcp/tools/order/track?orderId=MCP-AGENT1-1-A1B2C3D4',
       ))
-      : await POST(new Request('https://mercora.test/api/mcp/tools/order/track', {
+      : await POST(new Request('https://melt-party.test/api/mcp/tools/order/track', {
         method: 'POST',
         body: JSON.stringify({ orderId: 'MCP-AGENT1-1-A1B2C3D4' }),
       }) as import('next/server').NextRequest);

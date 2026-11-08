@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 
 /**
  * Stripe Link is hidden in the Payment Element. Its "Save my information for
- * faster checkout" box saves to Link, not to Mercora. Now that this store
+ * faster checkout" box saves to Link, not to Melt Party. Now that this store
  * saves payment methods itself through the Payment Element's Customer
  * Session (D-06, PAY-03), the Link box would offer a second, parallel place
  * a card can live — so Link stays off deliberately (D-12). Re-enabling Link

@@ -1,0 +1,74 @@
+/**
+ * glacier-night 主题 —— 23-token 契约（05-TOKEN-MAP.md §1）。
+ *
+ * 设计意图：深色科技户外运动风格，是新设计的默认预设，不是从旧方向文档转换来的。
+ * 底色用偏夜空蓝的深石墨，而不是 volt-dark 的纯黑；主色是冰川青，营造低温、精密
+ * 仪器的观感；圆角整体比 volt-dark 小一档，线条更利落。字体沿用 Geist，不新增
+ * 字体加载器。
+ *
+ * 信号荧光绿强调色：23-token 契约冻结、没有 accent token，所以荧光绿只落在
+ *   - --store-ring：焦点环（focus-visible 的 ring），
+ *   - --store-success：「In Stock」等 text-success 文字，
+ * 两处。CTA 按钮、链接等仍走主色冰川青。
+ *
+ * WCAG 2.x 相对亮度对比度（人工计算，仓库没有自动化对比度门禁）：
+ *
+ *   配对                                         门槛    实测
+ *   primary / on-primary                         ≥4.5   11.07
+ *   foreground / surface                         ≥4.5   16.16
+ *   foreground / surface-elevated                ≥4.5   14.50
+ *   muted-foreground / surface                   ≥4.5    7.27
+ *   muted-foreground / surface-elevated          ≥4.5    6.52
+ *   primary / surface（链接、强调文字）           ≥4.5   10.95
+ *   success / surface（In Stock）                ≥4.5   12.58
+ *   warning / surface                            ≥4.5    5.96
+ *   danger / surface                             ≥4.5    4.64
+ *   foreground / info（用户聊天气泡）             ≥4.5    5.32
+ *   ring / surface                               ≥3     16.11
+ *   on-inverse / surface-inverse                 ≥4.5   17.60
+ *   on-inverse / surface-inverse-elevated        ≥4.5   15.73
+ *   muted-on-inverse / surface-inverse           ≥4.5    6.60
+ *   muted-on-inverse / surface-inverse-elevated  ≥4.5    5.89
+ *   border-inverse / surface-inverse             ≥3      8.33
+ *   danger / surface-inverse                     ≥3.69   3.79   （不低于 volt-dark 同位值）
+ *   warning / surface-inverse                    ≥2.11   2.96   （不低于 volt-dark 同位值）
+ *
+ * 已知限制：success / surface-inverse 只有 1.40。购物车、助手抽屉这些浅色面板
+ * 没有使用 text-success，所以不影响现有界面。
+ *
+ * Per D-02, every token is required and declares a literal value. No token
+ * resolves through a second token as a fallback default.
+ */
+/* @theme label: Glacier Night | industry: technical outdoor & performance sports gear | synopsis: Deep graphite and night-sky surfaces, a glacier-cyan primary and a signal-lime accent — a precision-instrument feel for gear built for the cold. */
+[data-theme="glacier-night"] {
+  /* Main colours */
+  --store-primary: #4fd6e8;
+  --store-on-primary: #071016;
+  --store-surface: #0b1117;
+  --store-surface-elevated: #141d26;
+  --store-foreground: #e6eef3;
+  --store-muted-foreground: #8fa3b1;
+  --store-border: #26333f;
+  --store-ring: #c8ff3d;
+  --store-success: #a3e635;
+  --store-warning: #d97706;
+  --store-danger: #e04646;
+  --store-info: #1d5bc6;
+
+  /* Inverse colours (light panels on a dark app: drawers, Stripe, emails) */
+  --store-surface-inverse: #f3f7f9;
+  --store-surface-inverse-elevated: #e3ebf0;
+  --store-on-inverse: #0b1117;
+  --store-muted-on-inverse: #4b5a66;
+  --store-border-inverse: #3d4b56;
+
+  /* Shape — one step sharper than volt-dark */
+  --store-radius-sm: 0.125rem;
+  --store-radius-md: 0.25rem;
+  --store-radius-lg: 0.375rem;
+  --store-radius-xl: 0.5rem;
+
+  /* Type */
+  --store-font-sans: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --store-font-display: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}

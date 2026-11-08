@@ -30,7 +30,7 @@
     "EMAIL_PROVIDER": "cloudflare",
     "ALERT_EMAIL_TO": "russell@russellkmoore.me",
     "ALERT_EMAIL_FROM": "russell@russellkmoore.me",
-    "ALERT_SUBJECT_PREFIX": "[voltique]",
+    "ALERT_SUBJECT_PREFIX": "[melt-party]",
     "OPERATOR_IDENTITY": "Russell K. Moore",
     "ENVIRONMENT": "production",
     "ALERT_COOLDOWN_SECONDS": "900",

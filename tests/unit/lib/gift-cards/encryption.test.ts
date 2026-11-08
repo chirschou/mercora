@@ -67,7 +67,7 @@ describe("gift-card delivery encryption", () => {
     expect(result).toEqual({
       keyVersion: 1,
       nonce: "AAECAwQFBgcICQoL",
-      ciphertext: "AEH7KfbR9za7dq+ynKg6Lsf7wnK3M3I2cyuoqFM5UeAsQ/qp+bTs7joq6camMJtRdiKOhME=",
+      ciphertext: "AEH7KfbR9za7dq+ynKg6Lsf7wnK3M3I2cyuoqFM5UeAsQ/qp+Sli0pZk6DOlAQXLoiBzhJY=",
     });
     expect(Object.isFrozen(result)).toBe(true);
     expect(JSON.stringify(result)).not.toContain(CODE);

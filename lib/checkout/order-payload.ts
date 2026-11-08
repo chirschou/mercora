@@ -1,6 +1,6 @@
 'use client';
 
-const PREFIX = 'mercora:pending-checkout:';
+const PREFIX = 'melt-party:pending-checkout:';
 
 export interface PendingCheckout {
   orderId: string;

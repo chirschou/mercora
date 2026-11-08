@@ -82,7 +82,7 @@ export function signedInvoiceSubscriptionId(invoice: Stripe.Invoice): string | u
 /** Signed subscription-parent metadata distinguishes an owned persistence race. */
 function signedInvoiceAcquisitionId(invoice: Stripe.Invoice): string | undefined {
   if (invoice.parent?.type !== 'subscription_details') return undefined;
-  const value = invoice.parent.subscription_details?.metadata?.mercora_acquisition_id;
+  const value = invoice.parent.subscription_details?.metadata?.melt_party_acquisition_id;
   return typeof value === 'string' && /^acq_[a-f0-9]{48}$/.test(value)
     ? value
     : undefined;

@@ -2,7 +2,7 @@
 id: prod_4
 sku: variant_4
 name: Lunar Signal Pack
-brand: Mercora
+brand: Melt Party
 created: 2025-08-23 16:15:37
 updated: 2025-08-23 16:15:37
 price: 79.99
@@ -19,7 +19,7 @@ rating_count: 12
 ## Product Information
 - **SKU**: variant_4
 - **Product ID**: prod_4
-- **Brand**: Mercora
+- **Brand**: Melt Party
 - **Price**: $79.99
 - **Categories**: , 
 - **Tags**: gear, rugged, tactical

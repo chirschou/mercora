@@ -3,7 +3,7 @@ import { getPrecision } from './currencies';
 
 /** Decimal major-unit representation used only at MACH/HTTP boundaries. */
 export interface MachMoney { amount: number; currency: string; precision: number; }
-/** Integer minor-unit representation stored by Mercora. */
+/** Integer minor-unit representation stored by Melt Party. */
 export interface StoredMoney { amount: number; currency: string; }
 
 function assertSafeMinorUnits(amount: number): void {
@@ -53,7 +53,7 @@ export class Money {
 
   static zero(currency = 'USD'): Money { return new Money(0, currency); }
 
-  /** Parse Mercora's persisted minor-unit shape, including legacy JSON columns. */
+  /** Parse Melt Party's persisted minor-unit shape, including legacy JSON columns. */
   static fromStored(value: unknown, defaultCurrency = 'USD'): Money {
     if (typeof value === 'string') {
       const trimmed = value.trim();

@@ -86,7 +86,7 @@ describe("Shopify migration CLI", () => {
   });
 
   it("extracts every public file collection and keeps sensitive files gated", async () => {
-    const root = await mkdtemp(join(tmpdir(), "mercora-shopify-cli-"));
+    const root = await mkdtemp(join(tmpdir(), "melt-party-shopify-cli-"));
     temporaryDirectories.push(root);
     const records: Record<string, unknown[]> = {
       custom_collections: [{ id: 1, title: "Custom", handle: "custom" }],
@@ -223,9 +223,9 @@ describe("Shopify migration CLI", () => {
   });
 
   it("requires canonical migration roots outside the repository", async () => {
-    const createdProjectRoot = await mkdtemp(join(tmpdir(), "mercora-project-"));
-    const createdOutsideInput = await mkdtemp(join(tmpdir(), "mercora-private-input-"));
-    const createdOutsideOutput = await mkdtemp(join(tmpdir(), "mercora-private-output-"));
+    const createdProjectRoot = await mkdtemp(join(tmpdir(), "melt-party-project-"));
+    const createdOutsideInput = await mkdtemp(join(tmpdir(), "melt-party-private-input-"));
+    const createdOutsideOutput = await mkdtemp(join(tmpdir(), "melt-party-private-output-"));
     temporaryDirectories.push(createdProjectRoot, createdOutsideInput, createdOutsideOutput);
     const projectRoot = await realpath(createdProjectRoot);
     const outsideInput = await realpath(createdOutsideInput);

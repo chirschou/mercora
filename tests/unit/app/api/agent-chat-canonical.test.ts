@@ -159,7 +159,7 @@ describe("agent-chat guarded customer exits", () => {
       expect(response.status).toBe(200);
       if (scenario !== "malformed output") expect(body.answer).toContain("Aster");
       expect(body.answer).toContain("help@shop.example.test");
-      expect(body.answer).not.toMatch(/Volt|outdoor|gear/i);
+      expect(body.answer).not.toMatch(/Floe|Melt Party|outdoor|gear/i);
       expectAnswerMatchesHistory(body);
     },
   );

@@ -24,6 +24,6 @@ describe("public Blog UI contracts", () => {
     expect(existsSync(join(process.cwd(), "public/sitemap.xml"))).toBe(false);
     const dynamic = source("app/sitemap.ts");
     expect(dynamic).toContain("getStoreConfig()");
-    expect(dynamic).not.toMatch(/voltique\.russellkmoore|\/api\/mcp/i);
+    expect(dynamic).not.toMatch(/melt\.party|\/api\/mcp/i);
   });
 });

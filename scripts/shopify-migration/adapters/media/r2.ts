@@ -11,12 +11,12 @@ import type { MediaContentType } from "./security.js";
 
 /** Position-derived media keys are overwriteable only with confirmation, so clients must revalidate them. */
 export const REVALIDATING_MEDIA_CACHE_CONTROL = "public, max-age=0, must-revalidate";
-export const MEDIA_IMPORTER_VERSION = "mercora-shopify-migration-v1";
+export const MEDIA_IMPORTER_VERSION = "melt-party-shopify-migration-v1";
 
-const METADATA_IMPORTER = "mercora-importer";
-const METADATA_SOURCE_FINGERPRINT = "mercora-source-sha256";
-const METADATA_CONTENT_SHA256 = "mercora-content-sha256";
-const METADATA_BYTE_LENGTH = "mercora-byte-length";
+const METADATA_IMPORTER = "melt-party-importer";
+const METADATA_SOURCE_FINGERPRINT = "melt-party-source-sha256";
+const METADATA_CONTENT_SHA256 = "melt-party-content-sha256";
+const METADATA_BYTE_LENGTH = "melt-party-byte-length";
 
 export interface ExpectedMediaObject {
   contentType: MediaContentType;

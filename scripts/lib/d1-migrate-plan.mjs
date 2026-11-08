@@ -134,11 +134,11 @@ export function canApply({ target, flags, environment }) {
       ? { allowed: true }
       : { allowed: false, reason: "Preview apply requires --confirm-preview." };
   }
-  return flags.includes("--confirm-production") && environment.MERCORA_ALLOW_PRODUCTION_MIGRATIONS === "1"
+  return flags.includes("--confirm-production") && environment.MELT_PARTY_ALLOW_PRODUCTION_MIGRATIONS === "1"
     ? { allowed: true }
     : {
         allowed: false,
         reason:
-          "Production apply requires --confirm-production and MERCORA_ALLOW_PRODUCTION_MIGRATIONS=1. It is never run by deploy.",
+          "Production apply requires --confirm-production and MELT_PARTY_ALLOW_PRODUCTION_MIGRATIONS=1. It is never run by deploy.",
       };
 }

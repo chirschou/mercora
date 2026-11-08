@@ -201,13 +201,13 @@ export async function generateBusinessInsights(
 
   // --- AI analysis ---
   const question = "Analyze current business performance and trends";
-  const systemPrompt = `You are a business intelligence analyst specializing in eCommerce analytics for an outdoor gear store called Voltique.
+  const systemPrompt = `You are a business intelligence analyst specializing in eCommerce analytics for an outdoor gear store called Melt Party.
 
 === YOUR ROLE ===
 Analyze the provided business data and generate actionable insights, trend analysis, and strategic recommendations. Focus on practical, data-driven advice that helps improve business performance.
 
 === BUSINESS CONTEXT ===
-- Store: Voltique (Outdoor gear eCommerce)
+- Store: Melt Party (Outdoor gear eCommerce)
 - Analysis Timeframe: ${rangeLabel}
 - Current Date: ${now.toISOString().split("T")[0]}
 

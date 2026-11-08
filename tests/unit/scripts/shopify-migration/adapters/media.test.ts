@@ -492,8 +492,8 @@ describe("R2 adapters and command construction", () => {
       onlyIf: { etagDoesNotMatch: "*" },
       httpMetadata: { contentType: "image/jpeg", cacheControl: "public, max-age=1" },
       customMetadata: expect.objectContaining({
-        "mercora-importer": MEDIA_IMPORTER_VERSION,
-        "mercora-content-sha256": expectedMedia().sha256,
+        "melt-party-importer": MEDIA_IMPORTER_VERSION,
+        "melt-party-content-sha256": expectedMedia().sha256,
       }),
       sha256: expect.any(Uint8Array),
     }));
@@ -507,10 +507,10 @@ describe("R2 adapters and command construction", () => {
         checksums: { sha256: Uint8Array.from(Buffer.from(expected.sha256, "hex")).buffer },
         httpMetadata: { contentType: expected.contentType, cacheControl: expected.cacheControl },
         customMetadata: {
-          "mercora-importer": MEDIA_IMPORTER_VERSION,
-          "mercora-source-sha256": expected.sourceFingerprint,
-          "mercora-content-sha256": expected.sha256,
-          "mercora-byte-length": String(expected.byteLength),
+          "melt-party-importer": MEDIA_IMPORTER_VERSION,
+          "melt-party-source-sha256": expected.sourceFingerprint,
+          "melt-party-content-sha256": expected.sha256,
+          "melt-party-byte-length": String(expected.byteLength),
         },
       })),
     } as unknown as R2Bucket;
@@ -538,8 +538,8 @@ describe("R2 adapters and command construction", () => {
       ChecksumSHA256: expectedMedia().sha256Base64,
       IfNoneMatch: "*",
       Metadata: expect.objectContaining({
-        "mercora-importer": MEDIA_IMPORTER_VERSION,
-        "mercora-source-sha256": expectedMedia().sourceFingerprint,
+        "melt-party-importer": MEDIA_IMPORTER_VERSION,
+        "melt-party-source-sha256": expectedMedia().sourceFingerprint,
       }),
     });
   });
@@ -559,10 +559,10 @@ describe("R2 adapters and command construction", () => {
         CacheControl: expected.cacheControl,
         ChecksumSHA256: expected.sha256Base64,
         Metadata: {
-          "mercora-importer": MEDIA_IMPORTER_VERSION,
-          "mercora-source-sha256": expected.sourceFingerprint,
-          "mercora-content-sha256": expected.sha256,
-          "mercora-byte-length": String(expected.byteLength),
+          "melt-party-importer": MEDIA_IMPORTER_VERSION,
+          "melt-party-source-sha256": expected.sourceFingerprint,
+          "melt-party-content-sha256": expected.sha256,
+          "melt-party-byte-length": String(expected.byteLength),
         },
       } as unknown as HeadObjectCommandOutput;
     });

@@ -19,7 +19,7 @@ describe("MCP order lookup input", () => {
   });
 
   it("bounds the encoded body before parsing JSON", async () => {
-    const oversized = new Request("https://mercora.test/order", {
+    const oversized = new Request("https://melt-party.test/order", {
       method: "POST",
       body: JSON.stringify({ orderId: "MCP-OK", pad: "é".repeat(600) }),
     });
@@ -67,11 +67,11 @@ describe("MCP order lookup input", () => {
   });
 
   it("rejects malformed JSON and non-string order IDs", async () => {
-    await expect(readMcpOrderLookup(new Request("https://mercora.test/order", {
+    await expect(readMcpOrderLookup(new Request("https://melt-party.test/order", {
       method: "POST",
       body: "{",
     }))).resolves.toMatchObject({ ok: false, code: "INVALID_REQUEST" });
-    await expect(readMcpOrderLookup(new Request("https://mercora.test/order", {
+    await expect(readMcpOrderLookup(new Request("https://melt-party.test/order", {
       method: "POST",
       body: JSON.stringify({ orderId: 42 }),
     }))).resolves.toMatchObject({ ok: false, code: "INVALID_ORDER_ID" });

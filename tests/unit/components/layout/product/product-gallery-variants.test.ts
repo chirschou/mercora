@@ -134,7 +134,7 @@ function renderLeft(props: {
       allImages: props.allImages,
       selectedImage: props.selectedImage,
       onSelect,
-      productName: props.productName ?? "Volt Field Kit",
+      productName: props.productName ?? "Melt Field Kit",
     }),
   );
   return { html, onSelect };
@@ -207,7 +207,7 @@ function renderTop(props: {
       allImages: props.allImages,
       selectedImage: props.selectedImage,
       onSelect,
-      productName: props.productName ?? "Volt Field Kit",
+      productName: props.productName ?? "Melt Field Kit",
     }),
   );
   return { html, onSelect };
@@ -282,7 +282,7 @@ describe("PRODUCT_GALLERY_MAP (held inside ProductDisplay)", () => {
           allImages: ["a.jpg"],
           selectedImage: "a.jpg",
           onSelect: vi.fn(),
-          productName: "Volt Field Kit",
+          productName: "Melt Field Kit",
         }),
       );
       expect(html.length).toBeGreaterThan(0);
