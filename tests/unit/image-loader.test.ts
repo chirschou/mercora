@@ -58,4 +58,34 @@ describe("cloudflareLoader", () => {
       "https://avatars.example.test/me.png",
     );
   });
+
+  it("maps product media to the local R2 route during development", () => {
+    vi.stubEnv("NODE_ENV", "development");
+    vi.stubEnv("NEXT_PUBLIC_IMAGE_CDN", undefined);
+
+    expect(cloudflareLoader(args)).toBe("/media/products/example.png");
+  });
+
+  it("leaves public/ assets and unrelated external images alone during development", () => {
+    vi.stubEnv("NODE_ENV", "development");
+    vi.stubEnv("NEXT_PUBLIC_IMAGE_CDN", undefined);
+
+    for (const src of ["/placeholder.jpg", "/logo.svg", "https://avatars.example.test/me.png"]) {
+      expect(cloudflareLoader({ ...args, src })).toBe(src);
+    }
+  });
+
+  it("gives a root-relative category image the same URL its old absolute CDN form produced", () => {
+    vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("NEXT_PUBLIC_IMAGE_CDN", "https://images.melt.party");
+
+    const previous = cloudflareLoader({
+      ...args,
+      src: "https://images.melt.party/categories/camping.png",
+    });
+    expect(cloudflareLoader({ ...args, src: "/categories/camping.png" })).toBe(previous);
+    expect(previous).toBe(
+      "https://images.melt.party/cdn-cgi/image/width=640,format=auto,quality=80/categories/camping.png",
+    );
+  });
 });

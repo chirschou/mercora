@@ -30,8 +30,10 @@ storefront can render, chosen by an admin without touching component code.
    ```bash
    npm run dev
    ```
-   This runs a `predev` hook automatically: it builds the theme CSS and applies local D1 migrations
-   and the development seed. There is no separate seed step.
+   This runs a `predev` hook automatically: it builds the theme CSS, applies local D1 migrations,
+   imports the sample catalogue when the local `products` table is empty, applies the development
+   seed, and writes the sample product and category images to local R2. There is no separate seed
+   step.
 
 Prefer to have a coding assistant do this for you? Hand it [AGENTS.md](AGENTS.md) and ask it to set
 the project up end to end.

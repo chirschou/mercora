@@ -277,10 +277,9 @@ MELT_PARTY_ALLOW_PRODUCTION_MIGRATIONS=1 npm run db:migrate:apply:production
 See `docs/database-migrations.md` for the binding migration policy.
 
 ### **Step 2: Seed Data (Optional)**
-```bash
-# Local: apply the full sample catalogue to a local D1 database
-npx wrangler d1 execute melt-party-db --local --file=data/d1/seed.sql
-```
+Local development needs no seed command: `npm run dev` imports the full sample
+catalogue into an empty local D1 database and writes the sample images to local
+R2 (see `docs/database-migrations.md`).
 
 **Applying one catalogue addition to production.** `data/d1/seed.sql`'s
 earlier bulk inserts are plain `INSERT` statements, not `INSERT OR IGNORE` —

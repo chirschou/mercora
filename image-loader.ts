@@ -7,14 +7,15 @@
  *
  * === Features ===
  * - **Cloudflare Integration**: Uses Cloudflare's image transformation API
- * - **Development Mode**: Bypasses optimization during local development
+ * - **Development Mode**: Same mapping as production; without an image CDN,
+ *   bucket media resolves to the same-origin `/media/<key>` route (local R2)
  * - **Auto Format**: Automatically serves WebP/AVIF when supported
  * - **Quality Control**: Configurable image quality with intelligent defaults
  * - **Path Normalization**: Handles relative and absolute path formats
  * - **CDN Optimization**: Leverages Cloudflare's global edge network
  *
  * === Technical Implementation ===
- * - **Environment Detection**: Different behavior for dev vs production
+ * - **Environment Detection**: Reads the image CDN and transform flag per call
  * - **URL Construction**: Builds Cloudflare image transformation URLs
  * - **Parameter Encoding**: Properly formats width, quality, and format params
  * - **Source Handling**: Normalizes image paths for consistent processing
@@ -85,7 +86,7 @@ function toObjectKey(src: string, cdn: string | undefined) {
  * @param src - Image source URL or path
  * @param width - Target width for responsive images
  * @param quality - Optional image quality (1-100)
- * @returns Optimized Cloudflare image URL or original src in development
+ * @returns Cloudflare image URL, same-origin media URL, or the original src
  */
 export default function cloudflareLoader({
   src,
@@ -94,10 +95,6 @@ export default function cloudflareLoader({
 }: ImageLoaderProps) {
   // Read public configuration at invocation time. Import-time environment reads
   // can capture a different build's configuration.
-  if (process.env.NODE_ENV === "development") {
-    return src;
-  }
-
   if (isLocalAsset(src)) return src;
   const cdn = imageCdn();
   const key = toObjectKey(src, cdn);

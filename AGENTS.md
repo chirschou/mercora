@@ -50,8 +50,10 @@ Read this file end to end before changing anything.
    ```
 
 `npm run dev` runs a `predev` hook automatically: it builds the theme CSS barrel and manifest, then
-prepares the local D1 database, applying local migrations and the development seed. There is no
-separate seed command for local development — do not add one or tell someone to run one.
+prepares local state only: it applies local migrations, imports the sample catalogue
+(`data/d1/seed.sql`) when the local `products` table is empty, applies the development seed, and
+writes the sample images under `data/r2/products` and `data/r2/categories` to the local R2 bucket.
+There is no separate seed command for local development — do not add one or tell someone to run one.
 
 ## Gates
 

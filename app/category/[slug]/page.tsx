@@ -101,9 +101,9 @@ export default async function CategoryPage({
     if (typeof category.primary_image === "object") {
       const imageUrl = (category.primary_image as any).url || category.primary_image.file?.url || null;
       
-      // Construct full R2 URL for relative paths
+      // Root-relative bucket key; the image loader maps it to the CDN or /media.
       if (imageUrl && !imageUrl.startsWith('http')) {
-        return `https://images.melt.party/${imageUrl}`;
+        return imageUrl.startsWith('/') ? imageUrl : `/${imageUrl}`;
       }
       return imageUrl;
     }

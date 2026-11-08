@@ -8,9 +8,15 @@ cannot silently mutate production data.
 
 ## Local development
 
-`npm run dev` first runs `npm run db:prepare:local`. It applies tracked
-migrations only to the local Wrangler state; it does not access Cloudflare and
-does not seed or erase data.
+`npm run dev` first runs `npm run db:prepare:local`. It works only on the local
+Wrangler state and never accesses Cloudflare. It applies tracked migrations,
+imports the sample catalogue from `data/d1/seed.sql` only when the local
+`products` table is empty, applies the development-only seed
+`data/d1/seed-dev.sql`, and writes the sample images under `data/r2/products`
+and `data/r2/categories` to the local `MEDIA` bucket with their Content-Type.
+It never erases data. A non-empty local catalogue is left as it is; delete
+`.wrangler/state` and run `npm run dev` again to get the complete sample
+catalogue.
 
 ## Remote plan and apply
 
