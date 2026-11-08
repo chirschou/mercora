@@ -108,8 +108,9 @@
    * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
    */
   "vars": {
-    "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_live_Y2xlcmsubWVsdC5wYXJ0eSQ",
-    "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "pk_test_51Rwyc6LL7e1EcFUl2kqrcgWa8KDNzC9m4lc38wQQKiKVmekTxi3q6R6R2nohizFzRNNw9bHTeN8mripgZzgUYUDd00nlOhCWEs",
+    // NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY and NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY are
+    // deliberately absent: they come from the Workers Builds Build variables (or the
+    // local shell when deploying by hand) and are inlined at build time.
     "NEXT_PUBLIC_IMAGE_CDN": "https://images.melt.party",
     "NEXT_PUBLIC_SITE_URL": "https://melt.party",
     // Deploy-time fallback for getActiveTheme() (D-10). Must also be added
