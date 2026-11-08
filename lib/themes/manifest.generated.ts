@@ -104,6 +104,36 @@ export const THEME_MANIFEST: ThemeManifestEntry[] = [
     },
   },
   {
+    name: "glacier-night",
+    label: "Glacier Night",
+    meta: { industry: "technical outdoor & performance sports gear", synopsis: "Deep graphite and night-sky surfaces, a glacier-cyan primary and a signal-lime accent — a precision-instrument feel for gear built for the cold." },
+    tokens: {
+      primary: "#4fd6e8",
+      onPrimary: "#071016",
+      surface: "#0b1117",
+      surfaceElevated: "#141d26",
+      foreground: "#e6eef3",
+      mutedForeground: "#8fa3b1",
+      border: "#26333f",
+      ring: "#c8ff3d",
+      success: "#a3e635",
+      warning: "#d97706",
+      danger: "#e04646",
+      info: "#1d5bc6",
+      surfaceInverse: "#f3f7f9",
+      surfaceInverseElevated: "#e3ebf0",
+      onInverse: "#0b1117",
+      mutedOnInverse: "#4b5a66",
+      borderInverse: "#3d4b56",
+      radiusSm: "0.125rem",
+      radiusMd: "0.25rem",
+      radiusLg: "0.375rem",
+      radiusXl: "0.5rem",
+      fontSans: "var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+      fontDisplay: "var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    },
+  },
+  {
     name: "luxe",
     label: "Luxe",
     meta: { industry: "fashion, jewelry, watches, fragrance", synopsis: "A small luxury house that wants the site to feel like a printed lookbook — ivory paper, a single champagne-gold accent, serif headlines." },
@@ -255,4 +285,4 @@ export const THEME_MANIFEST: ThemeManifestEntry[] = [
   },
 ];
 
-export const DEFAULT_THEME_NAME = "volt-dark";
+export const DEFAULT_THEME_NAME = "glacier-night";
