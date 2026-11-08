@@ -182,3 +182,10 @@ Robots defaults to `noindex`. Production must opt in with
 When `NEXT_PUBLIC_IMAGE_CDN` is absent, store-object images use the same-origin
 `/media/` route. Set `NEXT_PUBLIC_IMAGE_TRANSFORMS=false` to bypass Cloudflare
 Image Transformations and serve raw CDN objects during an outage.
+
+The production `wrangler.jsonc` sets `NEXT_PUBLIC_IMAGE_TRANSFORMS=false`
+because the `melt.party` zone has Image Transformations off, so
+`/cdn-cgi/image/` URLs return 404; set it back to `true` once the zone enables
+them. It also sets `NEXT_PUBLIC_CLERK_HOST=https://clerk.melt.party`, the Clerk
+production frontend domain, which `next.config.ts` bakes into the CSP at build
+time; without it clerk-js is blocked.

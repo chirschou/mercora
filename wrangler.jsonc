@@ -111,7 +111,11 @@
     // NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY and NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY are
     // deliberately absent: they come from the Workers Builds Build variables (or the
     // local shell when deploying by hand) and are inlined at build time.
+    // Clerk 生产前端域；写入构建期 CSP 的 script-src/connect-src/frame-src，缺失则 clerk-js 被拦截。
+    "NEXT_PUBLIC_CLERK_HOST": "https://clerk.melt.party",
     "NEXT_PUBLIC_IMAGE_CDN": "https://images.melt.party",
+    // zone melt.party 未开启 Image Transformations，/cdn-cgi/image/ 返回 404；关闭后直出原图。开启后再改回 true。
+    "NEXT_PUBLIC_IMAGE_TRANSFORMS": "false",
     "NEXT_PUBLIC_SITE_URL": "https://melt.party",
     // Deploy-time fallback for getActiveTheme() (D-10). Must also be added
     // as a Workers Build variable in the Cloudflare Dashboard per the
