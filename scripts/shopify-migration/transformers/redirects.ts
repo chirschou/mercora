@@ -17,9 +17,9 @@ export interface RedirectCandidate {
 }
 
 export interface PublicEntityRoute {
-  /** The exact historical Shopify path segment, never a provider or Mercora ID. */
+  /** The exact historical Shopify path segment, never a provider or Melt Party ID. */
   legacyHandle: string;
-  /** The verified public Mercora slug, never inferred from a generated entity ID. */
+  /** The verified public Melt Party slug, never inferred from a generated entity ID. */
   publicSlug: string;
 }
 

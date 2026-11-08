@@ -137,21 +137,21 @@ export interface SetupIntentOwnershipExpectation {
   expectedLivemode?: boolean;
 }
 
-/** Map an authoritative SetupIntent while proving both provider and Mercora ownership. */
+/** Map an authoritative SetupIntent while proving both provider and Melt Party ownership. */
 export function mapSetupIntentView(
   setupIntent: Stripe.SetupIntent,
   expectation: SetupIntentOwnershipExpectation,
 ): StripeSetupIntentView {
   assertBoundedString(setupIntent.id, "SetupIntent id", { prefix: "seti_" });
   assertBoundedString(expectation.expectedStripeCustomerId, "expected customer id", { prefix: "cus_" });
-  assertBoundedString(expectation.expectedCustomerId, "expected Mercora customer id", { maxLength: 128 });
+  assertBoundedString(expectation.expectedCustomerId, "expected Melt Party customer id", { maxLength: 128 });
 
   const stripeCustomerId = expandableId(setupIntent.customer, "SetupIntent customer", "cus_");
   if (stripeCustomerId !== expectation.expectedStripeCustomerId) {
     fail("SetupIntent customer does not match the authenticated provider customer");
   }
-  if (setupIntent.metadata?.mercora_customer_id !== expectation.expectedCustomerId) {
-    fail("SetupIntent metadata does not match the authenticated Mercora customer");
+  if (setupIntent.metadata?.melt_party_customer_id !== expectation.expectedCustomerId) {
+    fail("SetupIntent metadata does not match the authenticated Melt Party customer");
   }
   if (!SETUP_INTENT_STATUSES.has(setupIntent.status)) fail("SetupIntent status is unsupported");
   if (setupIntent.usage !== "off_session") fail("SetupIntent is not authorized for off-session use");
@@ -190,8 +190,8 @@ export function mapVerifiedSetupIntent(
     fail("verified SetupIntent customer must be authoritatively expanded");
   }
   if ("deleted" in setupIntent.customer) fail("verified SetupIntent customer is deleted");
-  if (setupIntent.customer.metadata.mercora_customer_id !== expectation.expectedCustomerId) {
-    fail("expanded Stripe customer metadata does not match the authenticated Mercora customer");
+  if (setupIntent.customer.metadata.melt_party_customer_id !== expectation.expectedCustomerId) {
+    fail("expanded Stripe customer metadata does not match the authenticated Melt Party customer");
   }
   const mapped = mapSetupIntentView(setupIntent, expectation);
   if (mapped.status !== "succeeded") fail("SetupIntent has not succeeded");
@@ -248,10 +248,10 @@ export function mapProviderSubscriptionBinding(
   assertSafePositiveInteger(item.quantity, "subscription quantity");
   if (item.quantity > 1000) fail("subscription quantity exceeds the supported bound");
 
-  const acquisitionId = subscription.metadata?.mercora_acquisition_id;
-  const planId = subscription.metadata?.mercora_plan_id;
-  const bindingVersion = subscription.metadata?.mercora_binding_version;
-  const shippingRequiredValue = subscription.metadata?.mercora_shipping_required;
+  const acquisitionId = subscription.metadata?.melt_party_acquisition_id;
+  const planId = subscription.metadata?.melt_party_plan_id;
+  const bindingVersion = subscription.metadata?.melt_party_binding_version;
+  const shippingRequiredValue = subscription.metadata?.melt_party_shipping_required;
   assertBoundedString(acquisitionId, "subscription acquisition metadata", { maxLength: 128 });
   assertBoundedString(planId, "subscription plan metadata", { maxLength: 128 });
   let shippingRequired: boolean | undefined;

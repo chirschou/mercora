@@ -18,9 +18,9 @@ const { default: ProductCard } = await import("@/components/ProductCard");
 function product(): Product {
   return {
     id: "product-1",
-    name: "Volt Field Kit",
+    name: "Melt Field Kit",
     description: "A compact demo product.",
-    slug: "volt-field-kit",
+    slug: "melt-field-kit",
     default_variant_id: "variant-1",
     variants: [
       {

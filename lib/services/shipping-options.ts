@@ -9,7 +9,7 @@ import { getSettings } from '@/lib/utils/settings';
 export interface ResolvedShippingOption {
   id: string;
   label: string;
-  /** Mercora's persisted integer-minor-unit money shape. */
+  /** Melt Party's persisted integer-minor-unit money shape. */
   cost: StoredMoney;
   estimatedDays: number;
 }
@@ -50,7 +50,7 @@ function configuredThreshold(settings: Record<string, unknown>): number {
 /**
  * Resolve the configured storefront shipping policy without importing checkout
  * or provider SDKs. Admin settings remain decimal major units; returned prices
- * use Mercora's canonical integer-minor-unit StoredMoney representation.
+ * use Melt Party's canonical integer-minor-unit StoredMoney representation.
  */
 export async function resolveShippingOptions(
   goodsCents: number,

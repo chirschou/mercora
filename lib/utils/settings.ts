@@ -90,7 +90,7 @@ export async function getStoreSettings() {
   const storeSettings = await getSettings('store');
   
   return {
-    name: storeSettings['store.name'] || 'Voltique',
+    name: storeSettings['store.name'] || 'Melt Party',
     currency: storeSettings['store.currency'] || 'USD',
     taxRate: storeSettings['store.tax_rate'] || 8.25,
     // Add more store settings as needed

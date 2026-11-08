@@ -118,7 +118,7 @@ function PlanForm(props: {
       </div>
 
       <div className="mt-5 grid gap-4 md:grid-cols-2">
-        {textField("Plan id", "id", { disabled: editing, hint: "Stable Mercora identifier; cannot be changed later." })}
+        {textField("Plan id", "id", { disabled: editing, hint: "Stable Melt Party identifier; cannot be changed later." })}
         {textField("Existing Stripe Price id", "stripePriceId", { hint: "Must start with price_. Stripe verifies the exact binding before save." })}
         {textField("Product id", "productId")}
         {textField("Variant id", "variantId")}

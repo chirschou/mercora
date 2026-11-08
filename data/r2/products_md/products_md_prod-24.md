@@ -2,7 +2,7 @@
 id: prod_24
 sku: variant_24
 name: Bright Echo Kit
-brand: Mercora
+brand: Melt Party
 created: 2025-08-23 16:15:37
 updated: 2025-08-23 16:15:37
 price: 34.99
@@ -19,7 +19,7 @@ rating_count: 31
 ## Product Information
 - **SKU**: variant_24
 - **Product ID**: prod_24
-- **Brand**: Mercora
+- **Brand**: Melt Party
 - **Price**: $34.99
 - **Categories**: , , 
 - **Tags**: medical, utility, MOLLE, compact

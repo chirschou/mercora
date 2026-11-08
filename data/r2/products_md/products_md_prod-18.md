@@ -2,7 +2,7 @@
 id: prod_18
 sku: variant_18
 name: Crimson Path Pack
-brand: Mercora
+brand: Melt Party
 created: 2025-08-23 16:15:37
 updated: 2025-08-23 16:15:37
 price: 58.99
@@ -19,7 +19,7 @@ rating_count: 20
 ## Product Information
 - **SKU**: variant_18
 - **Product ID**: prod_18
-- **Brand**: Mercora
+- **Brand**: Melt Party
 - **Price**: $58.99
 - **Categories**: , 
 - **Tags**: bold, adventure, MOLLE, commuter

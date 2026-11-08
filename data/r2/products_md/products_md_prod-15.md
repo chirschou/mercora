@@ -2,7 +2,7 @@
 id: prod_15
 sku: variant_15
 name: Wild Harbor Kit
-brand: Mercora
+brand: Melt Party
 created: 2025-08-23 16:15:37
 updated: 2025-08-23 16:15:37
 price: 34.99
@@ -19,7 +19,7 @@ rating_count: 29
 ## Product Information
 - **SKU**: variant_15
 - **Product ID**: prod_15
-- **Brand**: Mercora
+- **Brand**: Melt Party
 - **Price**: $34.99
 - **Categories**: 
 - **Tags**: pouch, utility, modular, field

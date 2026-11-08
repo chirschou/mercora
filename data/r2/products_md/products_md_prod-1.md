@@ -2,7 +2,7 @@
 id: prod_1
 sku: variant_1
 name: Vivid Mission Pack
-brand: Mercora
+brand: Melt Party
 created: 2025-08-23 16:15:37
 updated: 2025-08-23 16:15:37
 price: 79.99
@@ -19,7 +19,7 @@ rating_count: 23
 ## Product Information
 - **SKU**: variant_1
 - **Product ID**: prod_1
-- **Brand**: Mercora
+- **Brand**: Melt Party
 - **Price**: $79.99
 - **Categories**: , , 
 - **Tags**: EDC, compact, military, tactical

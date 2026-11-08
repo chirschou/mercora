@@ -1,6 +1,6 @@
 # Shopify migration toolkit
 
-The operator-only Shopify migration toolkit imports catalog, content, media, customers, historical orders, and optionally Judge.me reviews into Mercora. It defaults to a local dry run. A dry run extracts and transforms data, resolves the named Wrangler targets, and builds the complete D1 plan without constructing R2, Clerk, or D1 write adapters.
+The operator-only Shopify migration toolkit imports catalog, content, media, customers, historical orders, and optionally Judge.me reviews into Melt Party. It defaults to a local dry run. A dry run extracts and transforms data, resolves the named Wrangler targets, and builds the complete D1 plan without constructing R2, Clerk, or D1 write adapters.
 
 The toolkit is deliberately fail-fast between phases. An apply validates and transforms the complete source before it obtains write adapters, then executes in this order.
 
@@ -10,21 +10,21 @@ The toolkit is deliberately fail-fast between phases. An apply validates and tra
 4. resolve existing Clerk identities and, only when separately authorized, create source-verified customer identities;
 5. rebuild the identity-dependent order/review plan, revalidate D1 to prevent target/config drift, apply dependency-ordered chunks, and validate the result.
 
-It does not deploy Mercora, create Cloudflare resources, migrate schemas, obtain credentials, send email, or change Shopify/Judge.me.
+It does not deploy Melt Party, create Cloudflare resources, migrate schemas, obtain credentials, send email, or change Shopify/Judge.me.
 
 **Status:** Active
 
 ## Prerequisites
 
 - Node 24 and the repository dependencies installed locally.
-- Mercora database migrations `0001` through `0020` already applied to the selected D1 database.
+- Melt Party database migrations `0001` through `0020` already applied to the selected D1 database.
 - A reviewed `wrangler.jsonc` with exactly one canonical `DB` binding and one canonical `MEDIA` binding for the selected environment. Remote targets must also declare the selected Cloudflare `account_id` and `vars.CLERK_INSTANCE_ID`. Use `MIGRATION_DATABASE_NAME` or `--expected-database-name` to pin the expected D1 name.
 - A stable inventory location ID, page/blog actor ID, fallback blog author, ISO-4217 currency, fulfillment type, and unresolved-customer policy chosen by the merchant.
 - Operator-created input and output directories that already exist, resolve canonically, are separate, and are outside the repository. Never place exports in a web-served directory.
 - For API extraction, an exact `https://{shop}.myshopify.com` origin, a pinned quarterly Admin API version, and a read-only Shopify access token scoped only to the resources being migrated. Historical orders require Shopify approval for `read_all_orders` in addition to `read_orders`; without it Shopify limits order access to the recent window.
 - For apply, Cloudflare R2 S3 credentials limited to the target bucket and the existing local Wrangler authentication/configuration needed by the D1 runner.
 
-Run Mercora's normal tests and deployment preflight before beginning. Confirm the selected Wrangler environment and binding names independently; the migration refuses ambiguous or mismatched targets, but an operator is still responsible for selecting the intended account.
+Run Melt Party's normal tests and deployment preflight before beginning. Confirm the selected Wrangler environment and binding names independently; the migration refuses ambiguous or mismatched targets, but an operator is still responsible for selecting the intended account.
 
 ## Private input layout
 
@@ -48,7 +48,7 @@ and API mode read the same resources.
 
 API mode reads collections, collects, products, pages, blogs/articles, redirects, and—when confirmed—customers and all order statuses. Article endpoints are read sequentially with per-blog and total bounds. For historical orders, obtain an independent exact source count, pass `--confirm-shopify-read-all-orders --expected-shopify-order-count=<count>`, and require the extracted count to match before transformation. Judge.me remains a bounded local CSV input, so API mode also needs `MIGRATION_INPUT_ROOT` when `JUDGE_ME_FILE` is set.
 
-Review attribution files are JSON arrays. Every item contains a `reviewFingerprint` plus the final Mercora `productId`, historical `orderId`, Clerk `customerId`, and optional `orderItemId`. Verified-purchase rows contain the same identifiers and `verified: true`. The toolkit rejects missing, duplicate, synthetic, or contradictory attribution rather than inventing purchase history.
+Review attribution files are JSON arrays. Every item contains a `reviewFingerprint` plus the final Melt Party `productId`, historical `orderId`, Clerk `customerId`, and optional `orderItemId`. Verified-purchase rows contain the same identifiers and `verified: true`. The toolkit rejects missing, duplicate, synthetic, or contradictory attribution rather than inventing purchase history.
 
 ## Required configuration
 
@@ -63,10 +63,10 @@ MIGRATION_ACTOR_ID=user_operator
 MIGRATION_FALLBACK_AUTHOR=Store team
 MIGRATION_MEDIA_HOSTS=cdn.shopify.com,store.myshopify.com
 MIGRATION_UNRESOLVED_CUSTOMER=reject
-MIGRATION_DATABASE_NAME=mercora-db
+MIGRATION_DATABASE_NAME=melt-party-db
 ```
 
-Every configured input/output root must be an absolute canonical path to an existing directory outside the Mercora repository. The repository ignore rules are defense in depth for accidental artifacts; they do not make an in-repository export safe, and the CLI rejects such roots.
+Every configured input/output root must be an absolute canonical path to an existing directory outside the Melt Party repository. The repository ignore rules are defense in depth for accidental artifacts; they do not make an in-repository export safe, and the CLI rejects such roots.
 
 Allowed fulfillment values are `physical`, `digital`, and `service`. The unresolved-customer policy must explicitly be `reject` or `guest`; `reject` is the safer default for historical orders.
 
@@ -128,7 +128,7 @@ Clerk's backend `createUser` operation treats supplied email addresses as verifi
 
 Even then, the toolkit creates an identity only when Shopify marked the source email verified. It does not send an invitation, create a password, or auto-link by email. The operator must review Clerk reconciliation counts before treating the migration as complete.
 
-Judge.me is enabled with `--judge-me-file=judge-me-reviews.csv`. Add `--review-attributions=review-attributions.json` and, if available, `--verified-purchases=verified-purchases.json`. A review without real matching product, order, Clerk customer, and optional line-item attribution is skipped. Historical Shopify payments remain non-authoritative and are never imported as Mercora-paid effects.
+Judge.me is enabled with `--judge-me-file=judge-me-reviews.csv`. Add `--review-attributions=review-attributions.json` and, if available, `--verified-purchases=verified-purchases.json`. A review without real matching product, order, Clerk customer, and optional line-item attribution is skipped. Historical Shopify payments remain non-authoritative and are never imported as Melt Party-paid effects.
 
 ## Apply targets
 
@@ -137,7 +137,7 @@ Local apply requires `--apply`. Remote targets also require an explicit target a
 ```sh
 npm run migrate:shopify -- --apply --target=local
 npm run migrate:shopify -- --apply --target=preview --confirm-preview
-MERCORA_ALLOW_PRODUCTION_IMPORTS=1 npm run migrate:shopify -- --apply --target=production --confirm-production
+MELT_PARTY_ALLOW_PRODUCTION_IMPORTS=1 npm run migrate:shopify -- --apply --target=production --confirm-production
 ```
 
 Local apply never constructs remote R2 or Clerk clients. It therefore accepts only plans with no media uploads and no customer identity work. Use local dry run for the full dataset, and a confirmed preview target for an end-to-end apply.
@@ -150,15 +150,15 @@ For an apply report written as a private atomic `0600` file, set `MIGRATION_OUTP
 
 ## Deployment order
 
-1. Merge and deploy a Mercora release that includes migration `0020`, `/media/*` object serving, and exact legacy redirect lookup.
-2. Apply all Mercora migrations to the chosen D1 target and verify the normal deployment preflight.
+1. Merge and deploy a Melt Party release that includes migration `0020`, `/media/*` object serving, and exact legacy redirect lookup.
+2. Apply all Melt Party migrations to the chosen D1 target and verify the normal deployment preflight.
 3. Take and verify an independent D1 backup using the current Wrangler D1 export workflow. Record the target database and bucket outside the repository.
 4. Run the complete migration as a dry run against the same target selection.
 5. Apply to local or preview, verify catalog/content pages, media headers, customer/order visibility, and exact legacy URLs.
 6. Repeat the dry run immediately before production, then run the separately confirmed production apply.
 7. Retain the private source exports, reviewed report, backup, and reconciliation list according to the merchant's data-retention policy.
 
-The read-only D1 preflight happens before R2 or Clerk mutation, and D1 is revalidated immediately before its write phase. R2 is applied before D1 so imported rows never intentionally reference media that has not been cryptographically verified as written or already identical. Clerk identity work precedes customer/order D1 rows because Mercora customer primary keys must be final `user_*` IDs.
+The read-only D1 preflight happens before R2 or Clerk mutation, and D1 is revalidated immediately before its write phase. R2 is applied before D1 so imported rows never intentionally reference media that has not been cryptographically verified as written or already identical. Clerk identity work precedes customer/order D1 rows because Melt Party customer primary keys must be final `user_*` IDs.
 
 ## Resuming and rerunning
 

@@ -10,7 +10,7 @@ describe('auth crypto helpers', () => {
   });
 
   it('produces a stable SHA-256 hex digest', async () => {
-    await expect(sha256Hex('mercora')).resolves.toMatch(/^[a-f0-9]{64}$/);
-    await expect(sha256Hex('mercora')).resolves.toBe(await sha256Hex('mercora'));
+    await expect(sha256Hex('melt-party')).resolves.toMatch(/^[a-f0-9]{64}$/);
+    await expect(sha256Hex('melt-party')).resolves.toBe(await sha256Hex('melt-party'));
   });
 });

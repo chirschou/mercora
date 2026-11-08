@@ -2,7 +2,7 @@
 id: prod_27
 sku: variant_27
 name: Ember Crest Pack
-brand: Mercora
+brand: Melt Party
 created: 2025-08-23 16:15:37
 updated: 2025-08-23 16:15:37
 price: 54.99
@@ -19,7 +19,7 @@ rating_count: 22
 ## Product Information
 - **SKU**: variant_27
 - **Product ID**: prod_27
-- **Brand**: Mercora
+- **Brand**: Melt Party
 - **Price**: $54.99
 - **Categories**: , 
 - **Tags**: adventure, dual-tone, tactical, flair

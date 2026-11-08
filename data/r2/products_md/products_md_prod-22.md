@@ -2,7 +2,7 @@
 id: prod_22
 sku: variant_22
 name: Comet Trace Tool
-brand: Mercora
+brand: Melt Party
 created: 2025-08-23 16:15:37
 updated: 2025-08-23 16:15:37
 price: 38.99
@@ -19,7 +19,7 @@ rating_count: 26
 ## Product Information
 - **SKU**: variant_22
 - **Product ID**: prod_22
-- **Brand**: Mercora
+- **Brand**: Melt Party
 - **Price**: $38.99
 - **Categories**: 
 - **Tags**: utility, multitool, maintenance, compact

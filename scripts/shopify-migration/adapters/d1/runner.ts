@@ -468,7 +468,7 @@ export function createNodeCommandRunner(options: NodeCommandRunnerOptions = {}):
 
 export function createPrivateSqlFiles(): PrivateSqlFiles {
   return {
-    createDirectory: () => mkdtemp(join(tmpdir(), "mercora-shopify-d1-")),
+    createDirectory: () => mkdtemp(join(tmpdir(), "melt-party-shopify-d1-")),
     async write(directory, filename, contents) {
       if (!isAbsolute(directory) || !/^\d{4}-(?:chunk|validation)\.sql$/.test(filename)) {
         throw new Error("Private SQL file target is invalid");

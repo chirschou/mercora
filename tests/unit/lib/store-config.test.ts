@@ -31,7 +31,7 @@ describe("resolveStoreConfig", () => {
       .toBe(storeDefaults.commerce.locale);
   });
 
-  it("accepts only currencies supported by Mercora Money precision", () => {
+  it("accepts only currencies supported by Melt Party Money precision", () => {
     expect(resolveStoreConfig({ STORE_CURRENCY: "eur" }).commerce.currency).toBe("EUR");
     expect(resolveStoreConfig({ STORE_CURRENCY: "JOD" }).commerce.currency)
       .toBe(storeDefaults.commerce.currency);

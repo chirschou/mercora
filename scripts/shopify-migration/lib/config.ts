@@ -148,8 +148,8 @@ export function parseMigrationConfig(
   if (apply && target === "production" && !confirmedProduction) {
     throw new Error("Production apply requires --confirm-production");
   }
-  if (apply && target === "production" && env.MERCORA_ALLOW_PRODUCTION_IMPORTS !== "1") {
-    throw new Error("Production apply requires MERCORA_ALLOW_PRODUCTION_IMPORTS=1");
+  if (apply && target === "production" && env.MELT_PARTY_ALLOW_PRODUCTION_IMPORTS !== "1") {
+    throw new Error("Production apply requires MELT_PARTY_ALLOW_PRODUCTION_IMPORTS=1");
   }
   if (confirmedPreview && target !== "preview") {
     throw new Error("--confirm-preview may only be used with --target=preview");

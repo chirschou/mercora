@@ -1,4 +1,4 @@
-# Mercora — AI Assistant Context
+# Melt Party — AI Assistant Context
 
 **Purpose:** Architectural, structural, and stylistic context for an AI assistant working in this
 repository. It does not cover setup.
@@ -9,13 +9,13 @@ you've already read it.
 
 ## Project Overview
 
-Mercora is a themeable commerce platform on Cloudflare's edge, fronted by **Volt**, an AI shopping
+Melt Party is a themeable commerce platform on Cloudflare's edge, fronted by **Floe**, an AI shopping
 assistant, and an MCP server that exposes commerce operations to external AI agents. The default
 storefront ships an outdoor-gear sample catalogue rendered through one of seven visual presets — see
 `docs/theming.md` for the token contract that makes that possible.
 
 **Key features:**
-- AI shopping assistant (Volt) with semantic search and anti-hallucination validation
+- AI shopping assistant (Floe) with semantic search and anti-hallucination validation
 - Checkout via Stripe, behind one idempotent payment finalizer shared by the storefront and MCP
 - Admin dashboard with AI-powered analytics
 - MCP server: 19 tools for external AI agents (search, cart, checkout, orders, agent management)
@@ -168,7 +168,7 @@ remote database by the normal deploy.
 generated API documentation). See `docs/mcp-server-specification.md` for the full tool list,
 discovery mechanism, and authentication model.
 
-## AI System (Volt Assistant)
+## AI System (Floe Assistant)
 
 ```
 User Query → BGE Embeddings → Vector Search → Context → @cf/openai/gpt-oss-20b → Response + Products
@@ -228,7 +228,7 @@ See `AGENTS.md` for the full gate order these run inside.
 
 **Debug commands:**
 ```bash
-npx wrangler d1 execute mercora-db --command "SELECT * FROM products LIMIT 5"
+npx wrangler d1 execute melt-party-db --command "SELECT * FROM products LIMIT 5"
 npx wrangler tail
 ```
 

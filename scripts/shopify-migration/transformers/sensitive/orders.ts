@@ -95,7 +95,7 @@ function conservativeOrderStatus(order: ShopifyOrder): OrderStatus {
   return "pending";
 }
 
-/** Never mark external history paid: paid is Mercora's Stripe/effect authority. */
+/** Never mark external history paid: paid is Melt Party's Stripe/effect authority. */
 function nonAuthoritativePaymentStatus(order: ShopifyOrder): PaymentStatus {
   const financial = order.financial_status?.trim().toLowerCase();
   if (financial === "refunded") return "refunded";

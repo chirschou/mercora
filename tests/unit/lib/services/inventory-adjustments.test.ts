@@ -92,7 +92,7 @@ describe('paid-order gift-card skip', () => {
       quantity: 1,
       unit_price: { amount: 2500, currency: 'USD' },
       total_price: { amount: 2500, currency: 'USD' },
-      product_name: 'Voltique Gift Card',
+      product_name: 'Melt Party Gift Card',
       fulfillment_type: 'digital',
       gift_card: {
         recipientEmail: 'recipient@example.com',

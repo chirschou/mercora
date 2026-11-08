@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Create a detailed system prompt for knowledge article generation
-    const systemPrompt = `You are Volt, an AI assistant helping create comprehensive knowledge base articles for an outdoor gear company called Voltique. 
+    const systemPrompt = `You are Floe, an AI assistant helping create comprehensive knowledge base articles for an outdoor gear company called Melt Party. 
 
 Create a well-structured markdown article with the following guidelines:
 - Start with the provided title as an H1 header

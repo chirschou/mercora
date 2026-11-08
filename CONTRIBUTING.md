@@ -1,6 +1,6 @@
-# Contributing to Mercora
+# Contributing to Melt Party
 
-Thank you for helping improve Mercora. Contributions that make the platform
+Thank you for helping improve Melt Party. Contributions that make the platform
 safer, more reusable, easier to operate, or useful to a broader range of
 merchants are welcome.
 
@@ -40,12 +40,12 @@ merchants are welcome.
 
 A pull request should:
 
-- Preserve Mercora's merchant-neutral configuration and default demo behavior.
+- Preserve Melt Party's merchant-neutral configuration and default demo behavior.
 - Describe deployment, environment, or migration impact.
 - Avoid mixing unrelated refactors with functional changes.
 - Pass the repository's required CI checks.
 
 ## License
 
-By contributing to Mercora, you agree that your contributions will be licensed
+By contributing to Melt Party, you agree that your contributions will be licensed
 under the project's [MIT License](LICENSE).

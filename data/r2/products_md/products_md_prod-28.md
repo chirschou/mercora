@@ -2,7 +2,7 @@
 id: prod_28
 sku: variant_28
 name: Sunbeam Range Kit
-brand: Mercora
+brand: Melt Party
 created: 2025-08-23 16:15:37
 updated: 2025-08-23 16:15:37
 price: 32.99
@@ -19,7 +19,7 @@ rating_count: 28
 ## Product Information
 - **SKU**: variant_28
 - **Product ID**: prod_28
-- **Brand**: Mercora
+- **Brand**: Melt Party
 - **Price**: $32.99
 - **Categories**: , 
 - **Tags**: utility, mustard, canvas, style

@@ -2,7 +2,7 @@
 id: prod_17
 sku: variant_17
 name: Prism Blaze Device
-brand: Mercora
+brand: Melt Party
 created: 2025-08-23 16:15:37
 updated: 2025-08-23 16:15:37
 price: 36.99
@@ -19,7 +19,7 @@ rating_count: 24
 ## Product Information
 - **SKU**: variant_17
 - **Product ID**: prod_17
-- **Brand**: Mercora
+- **Brand**: Melt Party
 - **Price**: $36.99
 - **Categories**: 
 - **Tags**: flashlight, tactical, high-lumen, search

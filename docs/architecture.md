@@ -1,6 +1,6 @@
-# Mercora Architecture Documentation
+# Melt Party Architecture Documentation
 
-System design diagrams for the Mercora AI-powered eCommerce platform: request flow, the AI assistant pipeline, component structure, and the deployment pipeline.
+System design diagrams for the Melt Party AI-powered eCommerce platform: request flow, the AI assistant pipeline, component structure, and the deployment pipeline.
 
 **Status:** Active — descriptive, not decisional; binding rules live in the ADRs it links.
 
@@ -406,5 +406,5 @@ payment finalization are documented in `docs/checkout-trust-boundary.md`.
 
 ---
 
-*Generated for Mercora AI-Powered eCommerce Platform*
+*Generated for Melt Party AI-Powered eCommerce Platform*
 *Architecture documentation maintained in `/docs/architecture.md`*

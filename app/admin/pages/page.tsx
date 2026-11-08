@@ -9,7 +9,7 @@ import { Metadata } from "next";
 import PageManagement from "./PageManagement";
 
 export const metadata: Metadata = {
-  title: "Pages Management | Admin - Mercora",
+  title: "Pages Management | Admin - Melt Party",
   description: "Manage content pages, privacy policy, terms of service, and other static content.",
 };
 

@@ -4,7 +4,7 @@
  */
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "mercora",
+  "name": "melt-party",
   "main": "worker.ts",
   "triggers": {
     // Recovery queues: every 5m; Admin BI: every 6h; recommendations: daily at 08:15 UTC.
@@ -35,30 +35,30 @@
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "mercora-db",
+      "database_name": "melt-party-db",
       "database_id": "a27c0044-672d-4355-aa47-4410746f45f9"
     }
   ],
   "r2_buckets": [
     {
       "binding": "MEDIA",
-      "bucket_name": "voltique-images"
+      "bucket_name": "melt-party-images"
     },
     {
       "binding": "NEXT_INC_CACHE_R2_BUCKET",
-      "bucket_name": "voltique-images"
+      "bucket_name": "melt-party-images"
     }
   ],
   "vectorize": [
     {
       "binding": "VECTORIZE",
-      "index_name": "voltique-index"
+      "index_name": "melt-party-index"
     }
   ],
   "analytics_engine_datasets": [
     {
       "binding": "WEB_VITALS",
-      "dataset": "mercora_web_vitals"
+      "dataset": "melt_party_web_vitals"
     }
   ],
   "ai": {
@@ -110,8 +110,8 @@
   "vars": {
     "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_bGVhcm5pbmctbGlnZXItMTAuY2xlcmsuYWNjb3VudHMuZGV2JA",
     "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "pk_test_51Rwyc6LL7e1EcFUl2kqrcgWa8KDNzC9m4lc38wQQKiKVmekTxi3q6R6R2nohizFzRNNw9bHTeN8mripgZzgUYUDd00nlOhCWEs",
-    "NEXT_PUBLIC_IMAGE_CDN": "https://voltique-images.russellkmoore.me",
-    "NEXT_PUBLIC_SITE_URL": "https://voltique.russellkmoore.me",
+    "NEXT_PUBLIC_IMAGE_CDN": "https://images.melt.party",
+    "NEXT_PUBLIC_SITE_URL": "https://melt.party",
     // Deploy-time fallback for getActiveTheme() (D-10). Must also be added
     // as a Workers Build variable in the Cloudflare Dashboard per the
     // project rule for NEXT_PUBLIC_* vars (see 06-02 user setup).
@@ -132,8 +132,8 @@
     "STORE_FEATURE_GIFT_CARD_ACQUISITION": "true",
     "EMAIL_PROVIDER": "cloudflare",
     // Sender must be on a domain onboarded to Cloudflare Email Sending in this account.
-    "STORE_SENDER_EMAIL": "Voltique <orders@russellkmoore.me>",
-    "STORE_SUPPORT_EMAIL": "support@russellkmoore.me"
+    "STORE_SENDER_EMAIL": "Melt Party <orders@melt.party>",
+    "STORE_SUPPORT_EMAIL": "support@melt.party"
   },
   /**
    * Note: Use secrets to store sensitive data.

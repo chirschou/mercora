@@ -2,7 +2,7 @@
 
 **Status:** Current (2026-09-05).
 
-Volt, Mercora's AI shopping assistant, turns a customer question into a grounded response through
+Floe, Melt Party's AI shopping assistant, turns a customer question into a grounded response through
 embeddings, vector search, and text generation. The prompts, products, and questions in the
 diagrams below are sample-catalogue examples — the pipeline itself does not depend on outdoor gear.
 

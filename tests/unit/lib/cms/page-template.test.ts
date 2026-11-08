@@ -40,7 +40,7 @@ describe("page template registry", () => {
 
   it("contains no inherited demo-store product/category copy", () => {
     const serialized = JSON.stringify(["guide", "faq", "legal", "contact", "story"].map((name) => resolveTemplate(name, context)));
-    expect(serialized).not.toMatch(/Volt|Chai|tea|Calendula|outdoor/i);
+    expect(serialized).not.toMatch(/Floe|Melt Party|Chai|tea|Calendula|outdoor/i);
   });
 
   it("freezes the returned registry and only shows useful rails", () => {

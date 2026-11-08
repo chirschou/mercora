@@ -2,7 +2,7 @@
 
 **Status:** Current (2026-09-05).
 
-Mercora provides store-neutral CMS pages and Blog publishing. Migration `0019`
+Melt Party provides store-neutral CMS pages and Blog publishing. Migration `0019`
 adds the Blog tables and neutral page-template registrations without seeding
 merchant posts, pages, images, or copy.
 

@@ -49,7 +49,7 @@ describe("gift-card bearer-code generation", () => {
     expect(GIFT_CARD_CODE_ENTROPY_BITS).toBe(140);
     expect(GIFT_CARD_CODE_ENTROPY_BITS).toBeGreaterThanOrEqual(128);
     expect(randomFill).toHaveBeenCalledOnce();
-    expect(code).not.toMatch(/MERCORA|BEAUTEAS|TEA|STORE/);
+    expect(code).not.toMatch(/MELT|PARTY|BEAUTEAS|TEA|STORE/);
   });
 
   it("rejects out-of-range random bytes instead of reducing them modulo the alphabet", () => {
@@ -117,7 +117,7 @@ describe("gift-card HMAC lookup identities", () => {
     expect(GIFT_CARD_CODE_DIGEST_CONTRACT_VERSION).toBe(1);
     await expect(digestGiftCardCode(CODE, keyRing())).resolves.toEqual({
       keyVersion: 2,
-      digest: "df3906d559ae28e67336f983afbb989f974974d3a5bf2f006e30719de68fc566",
+      digest: "60509389d1fe48ecf35b644dd9c2ab2bba74d00247d409d64fb63f002b8e4e18",
     });
   });
 

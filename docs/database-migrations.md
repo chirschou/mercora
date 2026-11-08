@@ -2,7 +2,7 @@
 
 **Status:** Accepted (2026-08-03)
 
-Mercora does not apply remote D1 migrations as part of `npm run deploy`.
+Melt Party does not apply remote D1 migrations as part of `npm run deploy`.
 Schema changes are an explicit operator action so a preview or a failed build
 cannot silently mutate production data.
 
@@ -22,7 +22,7 @@ npm run db:migrate:status:production
 ```
 
 Preview commands require a `preview_database_id` on the selected D1 binding.
-If it is absent, Mercora aborts rather than falling back to production. Apply a
+If it is absent, Melt Party aborts rather than falling back to production. Apply a
 preview only after reviewing the plan:
 
 ```bash
@@ -32,7 +32,7 @@ npm run db:migrate:apply:preview
 Production requires both a command confirmation and an environment guard:
 
 ```bash
-MERCORA_ALLOW_PRODUCTION_MIGRATIONS=1 npm run db:migrate:apply:production
+MELT_PARTY_ALLOW_PRODUCTION_MIGRATIONS=1 npm run db:migrate:apply:production
 ```
 
 The script verifies migration status after apply and aborts a failed/unknown

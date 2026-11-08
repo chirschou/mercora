@@ -1,12 +1,12 @@
-# Mercora Production Deployment Guide
+# Melt Party Production Deployment Guide
 
 The complete setup-and-deploy runbook: Cloudflare, Clerk, and Stripe accounts, resource creation, environment configuration, migrations, build variables, and going live.
 
-**Status:** Active — this is Mercora's single deployment runbook; the former Stripe setup guide is retired into it.
+**Status:** Active — this is Melt Party's single deployment runbook; the former Stripe setup guide is retired into it.
 
 ## Infrastructure Overview
 
-Mercora runs on Cloudflare's edge infrastructure with integrated services:
+Melt Party runs on Cloudflare's edge infrastructure with integrated services:
 
 - **Hosting**: Cloudflare Workers + Next.js 15 with App Router
 - **Database**: Cloudflare D1 (distributed SQLite with Drizzle ORM)
@@ -49,7 +49,7 @@ Mercora runs on Cloudflare's edge infrastructure with integrated services:
 #### **D1 Database**
 ```bash
 # Create production database
-npx wrangler d1 create mercora-db
+npx wrangler d1 create melt-party-db
 
 # Note the database ID from output
 # Example: your-d1-database-id-here
@@ -58,10 +58,10 @@ npx wrangler d1 create mercora-db
 #### **R2 Bucket**
 ```bash
 # Create storage bucket
-npx wrangler r2 bucket create voltique-images
+npx wrangler r2 bucket create melt-party-images
 
 # Configure public access for images (optional)
-npx wrangler r2 bucket notification create voltique-images \
+npx wrangler r2 bucket notification create melt-party-images \
   --event-type object-create \
   --prefix images/
 ```
@@ -69,7 +69,7 @@ npx wrangler r2 bucket notification create voltique-images \
 #### **Vectorize Index**
 ```bash
 # Create vector database for AI
-npx wrangler vectorize create voltique-index \
+npx wrangler vectorize create melt-party-index \
   --dimensions=768 \
   --metric=cosine
 ```
@@ -82,26 +82,26 @@ Update your `wrangler.jsonc` with the created resource IDs:
 
 ```json
 {
-  "name": "mercora-production",
+  "name": "melt-party-production",
   "compatibility_date": "2026-08-01",
   "compatibility_flags": ["nodejs_compat"],
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "mercora-db",
+      "database_name": "melt-party-db",
       "database_id": "your-d1-database-id-here"
     }
   ],
   "r2_buckets": [
     {
       "binding": "MEDIA",
-      "bucket_name": "voltique-images"
+      "bucket_name": "melt-party-images"
     }
   ],
   "vectorize": [
     {
       "binding": "VECTORIZE",
-      "index_name": "voltique-index"
+      "index_name": "melt-party-index"
     }
   ],
   "ai": {
@@ -180,7 +180,7 @@ provider, gift cards, subscriptions, and the rest — is documented once in
 ### **Step 4: Configure Domains**
 In Clerk Dashboard:
 1. Go to **Domains**
-2. Add your production domain (e.g., `voltique.russellkmoore.me`)
+2. Add your production domain (e.g., `melt.party`)
 3. Configure redirect URLs for authentication
 
 ---
@@ -258,13 +258,13 @@ values, not credentials.
 ## 4. Database Setup
 
 ### **Step 1: Run Migrations**
-Mercora never applies remote migrations as part of a deploy — every remote
+Melt Party never applies remote migrations as part of a deploy — every remote
 schema change is an explicit, gated operator action. See
 `docs/database-migrations.md` for the binding policy.
 
 ```bash
 # Local (development)
-npx wrangler d1 migrations apply mercora-db --local
+npx wrangler d1 migrations apply melt-party-db --local
 
 # Preview - check, then apply
 npm run db:migrate:status:preview
@@ -272,14 +272,14 @@ npm run db:migrate:apply:preview
 
 # Production - check, then apply behind the gate
 npm run db:migrate:status:production
-MERCORA_ALLOW_PRODUCTION_MIGRATIONS=1 npm run db:migrate:apply:production
+MELT_PARTY_ALLOW_PRODUCTION_MIGRATIONS=1 npm run db:migrate:apply:production
 ```
 See `docs/database-migrations.md` for the binding migration policy.
 
 ### **Step 2: Seed Data (Optional)**
 ```bash
 # Local: apply the full sample catalogue to a local D1 database
-npx wrangler d1 execute mercora-db --local --file=data/d1/seed.sql
+npx wrangler d1 execute melt-party-db --local --file=data/d1/seed.sql
 ```
 
 **Applying one catalogue addition to production.** `data/d1/seed.sql`'s
@@ -295,7 +295,7 @@ sed -n '/^-- BEGIN gift-card-block (Phase 9)$/,/^-- END gift-card-block (Phase 9
   data/d1/seed.sql > /tmp/gift-card-block.sql
 
 # Apply only that slice to production
-npx wrangler d1 execute mercora-db --remote --file=/tmp/gift-card-block.sql
+npx wrangler d1 execute melt-party-db --remote --file=/tmp/gift-card-block.sql
 ```
 
 Each catalogue addition since Phase 9 is wrapped in its own
@@ -306,10 +306,10 @@ sentinel comment, never by line number.
 ### **Step 3: Verify Database**
 ```bash
 # Check tables were created
-npx wrangler d1 execute mercora-db --command="SELECT name FROM sqlite_master WHERE type='table';"
+npx wrangler d1 execute melt-party-db --command="SELECT name FROM sqlite_master WHERE type='table';"
 
 # Check product count
-npx wrangler d1 execute mercora-db --command="SELECT COUNT(*) FROM products;"
+npx wrangler d1 execute melt-party-db --command="SELECT COUNT(*) FROM products;"
 ```
 
 ---
@@ -375,7 +375,7 @@ Two kinds of values matter at **build** time, and they are resolved differently:
 | Variable | Where it must live | Why |
 |---|---|---|
 | `NEXT_PUBLIC_*` (e.g. `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_THEME_DEFAULT`, `NEXT_PUBLIC_IMAGE_CDN`) | `wrangler.jsonc` → `vars` (source of truth). Optionally also as a Dashboard Build variable. | Next.js inlines `NEXT_PUBLIC_*` when the bundle is built. `build:worker` runs `scripts/build-with-public-env.mjs`, which copies every `NEXT_PUBLIC_*` key from `wrangler.jsonc` into the build environment and **overrides** any Dashboard Build variable with the same name. A Dashboard value is only used if the key is absent from `wrangler.jsonc`, or if a build command bypasses `build:worker`. |
-| `MERCORA_ALLOW_PRODUCTION_MIGRATIONS=1` | Dashboard Build variable only | `npm run deploy:ci` (the Workers Builds deploy command) applies production D1 migrations before upload and refuses without this gate (ADR-DBM-04). Never put it in `wrangler.jsonc`. |
+| `MELT_PARTY_ALLOW_PRODUCTION_MIGRATIONS=1` | Dashboard Build variable only | `npm run deploy:ci` (the Workers Builds deploy command) applies production D1 migrations before upload and refuses without this gate (ADR-DBM-04). Never put it in `wrangler.jsonc`. |
 
 Checklist when adding or changing a public value:
 
@@ -406,7 +406,7 @@ npm run deploy
 3. Test core functionality:
    - User registration/login
    - Product browsing and filtering
-   - AI chat with Volt assistant
+   - AI chat with Floe assistant
    - Shopping cart and checkout flow (with test cards)
 4. Test admin dashboard:
    - Access admin dashboard at `/admin`
@@ -611,4 +611,4 @@ pointer. Never remove a key version that has issued cards under it.
 
 ---
 
-**Your Mercora platform is now ready for production.**
+**Your Melt Party platform is now ready for production.**

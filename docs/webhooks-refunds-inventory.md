@@ -2,7 +2,7 @@
 
 **Status:** Accepted (2026-08-06)
 
-Mercora treats Stripe, order state, and variant inventory as a set of durable,
+Melt Party treats Stripe, order state, and variant inventory as a set of durable,
 retryable transitions. A successful HTTP request is not the recovery mechanism;
 the D1 ledgers and scheduled worker are.
 
@@ -124,12 +124,12 @@ versioned operation-id contract.
 
 ### Stripe Dashboard refunds
 
-`charge.refunded` is the only event allowed to append a refund that Mercora did
+`charge.refunded` is the only event allowed to append a refund that Melt Party did
 not originate. The handler lists the bounded Stripe refund collection, validates
 PaymentIntent/currency/amount bindings, and records the charge's cumulative
 `amount_refunded` as `stripe_amount_refunded`.
 
-Mercora never guesses which goods were returned for a Dashboard partial refund,
+Melt Party never guesses which goods were returned for a Dashboard partial refund,
 so it does not restock one. A cumulative full Dashboard refund can restock every
 outstanding line only when the operator enables:
 
@@ -151,7 +151,7 @@ provider idempotency key.
 
 ## Fulfillment hold contract
 
-Mercora does not yet contain the shipment command; that arrives in U13. That
+Melt Party does not yet contain the shipment command; that arrives in U13. That
 command must reject a transition while any refund has status `pending` or
 `requires_action`.
 

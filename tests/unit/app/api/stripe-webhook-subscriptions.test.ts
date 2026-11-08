@@ -52,11 +52,11 @@ function event(type: Stripe.Event.Type, id: string, invoiceId = 'in_ordering'): 
   } as unknown as Stripe.Event;
 }
 
-function markInvoiceAsMercoraOwned(value: Stripe.Event): Stripe.Event {
+function markInvoiceAsMeltPartyOwned(value: Stripe.Event): Stripe.Event {
   const invoice = value.data.object as Stripe.Invoice;
   if (invoice.parent?.type === 'subscription_details' && invoice.parent.subscription_details) {
     invoice.parent.subscription_details.metadata = {
-      mercora_acquisition_id: `acq_${'a'.repeat(48)}`,
+      melt_party_acquisition_id: `acq_${'a'.repeat(48)}`,
     };
   }
   return value;
@@ -130,8 +130,8 @@ function lifecycleEvent(
           url: '/v1/subscription_items?subscription=sub_ordering',
         },
         metadata: {
-          mercora_acquisition_id: 'acq-ordering',
-          mercora_plan_id: 'plan-ordering',
+          melt_party_acquisition_id: 'acq-ordering',
+          melt_party_plan_id: 'plan-ordering',
         },
         pause_collection: pauseCollection
           ? { behavior: 'void', resumes_at: null }
@@ -339,7 +339,7 @@ describe('subscription Stripe webhook classification', () => {
     dependencies.repository.findAcquisitionByStripeSubscription.mockResolvedValue(undefined);
     const unrelated = event('invoice.paid', 'evt_untrusted_invoice_metadata');
     (unrelated.data.object as Stripe.Invoice).metadata = {
-      mercora_acquisition_id: `acq_${'a'.repeat(48)}`,
+      melt_party_acquisition_id: `acq_${'a'.repeat(48)}`,
     };
 
     await expect(handleSubscriptionStripeEvent(unrelated, dependencies))
@@ -367,7 +367,7 @@ describe('subscription Stripe webhook classification', () => {
         status: 'pending',
         stripeSubscriptionId: undefined,
       });
-      const owned = markInvoiceAsMercoraOwned(event(type, `evt_early_${type}`));
+      const owned = markInvoiceAsMeltPartyOwned(event(type, `evt_early_${type}`));
 
       await expect(handleSubscriptionStripeEvent(owned, dependencies))
         .rejects.toBeInstanceOf(SubscriptionWebhookRetryError);
@@ -392,7 +392,7 @@ describe('subscription Stripe webhook classification', () => {
     const dependencies = runtime();
     dependencies.repository.findAcquisitionByStripeSubscription.mockResolvedValue(undefined);
     dependencies.repository.findAcquisitionById.mockResolvedValue(undefined);
-    const unrelated = markInvoiceAsMercoraOwned(event(
+    const unrelated = markInvoiceAsMeltPartyOwned(event(
       'invoice.payment_failed',
       'evt_unrelated_well_formed_marker',
     ));
@@ -427,7 +427,7 @@ describe('subscription Stripe webhook classification', () => {
         },
         ...durable,
       });
-      const owned = markInvoiceAsMercoraOwned(event(
+      const owned = markInvoiceAsMeltPartyOwned(event(
         'invoice.paid',
         `evt_terminal_early_${durable.status}_${durable.stripeSubscriptionId ?? 'none'}`,
       ));

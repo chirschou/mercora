@@ -57,7 +57,7 @@ export const OrderConfirmationEmail: React.FC<OrderConfirmationEmailProps> = ({
         <Container style={container}>
           {/* Header */}
           <Section style={header}>
-            <Heading style={h1}>Voltique</Heading>
+            <Heading style={h1}>Melt Party</Heading>
             <Text style={tagline}>Premium Outdoor Gear</Text>
           </Section>
 
@@ -170,7 +170,7 @@ export const OrderConfirmationEmail: React.FC<OrderConfirmationEmailProps> = ({
               Questions about your order? Reply to this email or contact our support team.
             </Text>
             <Text style={footerText}>
-              Thank you for choosing Voltique!
+              Thank you for choosing Melt Party!
             </Text>
           </Section>
         </Container>

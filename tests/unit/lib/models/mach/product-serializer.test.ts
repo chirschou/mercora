@@ -50,7 +50,7 @@ function productFixture(): Product {
   };
 }
 
-// CAT-02: the Voltique Gift Card (prod_33, variant_33..36 — data/d1/seed.sql
+// CAT-02: the Melt Party Gift Card (prod_33, variant_33..36 — data/d1/seed.sql
 // gift-card block, plan 09-01) must project through toPublicProduct as four
 // available, correctly priced denominations. This fixture mirrors the seeded
 // shape exactly rather than a convenient variant of it.
@@ -64,7 +64,7 @@ function giftCardFixture(): Product {
 
   return {
     id: 'prod_33',
-    name: 'Voltique Gift Card',
+    name: 'Melt Party Gift Card',
     slug: 'gift-card',
     status: 'active',
     type: 'gift_card',

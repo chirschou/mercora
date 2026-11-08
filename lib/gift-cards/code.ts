@@ -23,7 +23,7 @@ const MAX_RANDOM_BATCHES = 128;
 // making the absence of modulo bias explicit and adversarially testable.
 const RANDOM_ACCEPTANCE_LIMIT = CODE_ALPHABET.length * 7;
 
-const HMAC_PURPOSE = "mercora:gift-card:bearer-code";
+const HMAC_PURPOSE = "melt-party:gift-card:bearer-code";
 const DIGEST_CONTRACT_VERSION = 1;
 const MIN_KEY_BYTES = 32;
 const MAX_KEY_BYTES = 4_096;

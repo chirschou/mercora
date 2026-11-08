@@ -22,7 +22,7 @@ describe("migration identity and artifacts", () => {
   });
 
   it("persists only non-authoritative fingerprints and safe target IDs", () => {
-    const output = mkdtempSync(join(tmpdir(), "mercora-shopify-map-"));
+    const output = mkdtempSync(join(tmpdir(), "melt-party-shopify-map-"));
     roots.push(output);
     const map = new IdMap("shopify");
     map.register("customer", "customer@example.test", "customer_123");
@@ -35,13 +35,13 @@ describe("migration identity and artifacts", () => {
   });
 
   it("rejects output traversal", () => {
-    const output = mkdtempSync(join(tmpdir(), "mercora-shopify-map-"));
+    const output = mkdtempSync(join(tmpdir(), "melt-party-shopify-map-"));
     roots.push(output);
     expect(() => new IdMap("shopify").save(output, "../map.json")).toThrow(/escapes/);
   });
 
   it("atomically replaces permissive artifacts with mode 0600", () => {
-    const output = mkdtempSync(join(tmpdir(), "mercora-shopify-map-"));
+    const output = mkdtempSync(join(tmpdir(), "melt-party-shopify-map-"));
     roots.push(output);
     mkdirSync(join(output, "state"));
     const path = join(output, "state/id-map.json");
@@ -57,7 +57,7 @@ describe("migration identity and artifacts", () => {
   });
 
   it.each(["write", "rename"] as const)("preserves the prior artifact when atomic %s fails", (failure) => {
-    const output = mkdtempSync(join(tmpdir(), "mercora-shopify-map-"));
+    const output = mkdtempSync(join(tmpdir(), "melt-party-shopify-map-"));
     roots.push(output);
     const path = join(output, "manifest.json");
     writeFileSync(path, "prior-valid\n", { mode: 0o600 });
@@ -73,7 +73,7 @@ describe("migration identity and artifacts", () => {
   });
 
   it("fsyncs the parent directory after the atomic rename", () => {
-    const output = mkdtempSync(join(tmpdir(), "mercora-shopify-map-"));
+    const output = mkdtempSync(join(tmpdir(), "melt-party-shopify-map-"));
     roots.push(output);
     const path = join(output, "manifest.json");
     const events: string[] = [];
@@ -92,7 +92,7 @@ describe("migration identity and artifacts", () => {
   });
 
   it("rejects non-regular, symlinked, and oversized ID-map inputs before parsing", () => {
-    const output = mkdtempSync(join(tmpdir(), "mercora-shopify-map-"));
+    const output = mkdtempSync(join(tmpdir(), "melt-party-shopify-map-"));
     roots.push(output);
     mkdirSync(join(output, "directory-map"));
     expect(() => IdMap.load(output, "directory-map")).toThrow(/regular non-symlink/);

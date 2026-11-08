@@ -19,12 +19,12 @@ export function categoryProductsFixture(): Product[] {
   return [
     {
       id: "product-rated-sale",
-      name: "Volt Trail Jacket",
+      name: "Melt Trail Jacket",
       description: "A weatherproof jacket built for the trail.",
-      slug: "volt-trail-jacket",
+      slug: "melt-trail-jacket",
       status: "active",
       default_variant_id: "variant-rated-sale",
-      primary_image: { url: "products/volt-trail-jacket.jpg" },
+      primary_image: { url: "products/melt-trail-jacket.jpg" },
       rating: {
         average: 4.5,
         count: 12,
@@ -45,9 +45,9 @@ export function categoryProductsFixture(): Product[] {
     },
     {
       id: "product-no-rating-no-price",
-      name: "Volt Base Layer",
+      name: "Melt Base Layer",
       description: "A simple, packable base layer.",
-      slug: "volt-base-layer",
+      slug: "melt-base-layer",
       status: "active",
       default_variant_id: "variant-no-price",
       variants: [
@@ -61,9 +61,9 @@ export function categoryProductsFixture(): Product[] {
     },
     {
       id: "product-unavailable",
-      name: "Volt Expedition Pack",
+      name: "Melt Expedition Pack",
       description: "A large-capacity pack for multi-day trips.",
-      slug: "volt-expedition-pack",
+      slug: "melt-expedition-pack",
       status: "active",
       default_variant_id: "variant-unavailable",
       variants: [

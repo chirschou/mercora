@@ -36,7 +36,7 @@ describe("cloudflareLoader", () => {
     vi.stubEnv("NEXT_PUBLIC_IMAGE_CDN", "https://images.example.test");
 
     // The bucket holds product media only; rewriting these produces a 404.
-    for (const src of ["/volt.png", "/placeholder.jpg", "/logo.svg"]) {
+    for (const src of ["/placeholder.jpg", "/logo.svg"]) {
       expect(cloudflareLoader({ ...args, src })).toBe(src);
     }
   });

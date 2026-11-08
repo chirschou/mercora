@@ -115,7 +115,7 @@ interface PromptOrder {
   /**
    * Decimal major units. Order bodies arrive from the orders API, which
    * serializes Money in major units at the HTTP boundary — not the integer
-   * minor units Mercora stores.
+   * minor units Melt Party stores.
    */
   totalMajor: number;
   /** Validated currency from the MACH order boundary, when present. */
@@ -647,7 +647,7 @@ export async function POST(req: NextRequest) {
     }
 
     // === GIFT-CARD VISIBILITY (D-07, D-14) ===
-    // Volt is a listing surface, and Vectorize is not. Semantic search returns
+    // Floe is a listing surface, and Vectorize is not. Semantic search returns
     // ids and catalogue copy with no idea what the store is currently selling,
     // so with sell off a shopper can ask "what should I get someone as a gift?"
     // and be handed the gift card — under both flags off, a card whose product

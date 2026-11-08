@@ -1,6 +1,6 @@
-# Mercora
+# Melt Party
 
-Mercora is a themeable reference storefront on Cloudflare — Next.js on Workers, D1, R2, Vectorize,
+Melt Party is a themeable reference storefront on Cloudflare — Next.js on Workers, D1, R2, Vectorize,
 Workers AI, Clerk, and Stripe — built to render any catalogue. The outdoor-gear catalogue shipped in
 this repository is sample data, not the product; the default look is one of seven presets the
 storefront can render, chosen by an admin without touching component code.
@@ -75,7 +75,7 @@ Browser
         ├─▶ D1 database (binding: DB) — products, orders, appearance, subscriptions, gift cards
         ├─▶ R2 buckets (bindings: MEDIA, NEXT_INC_CACHE_R2_BUCKET) — product, category and CMS media
         ├─▶ Vectorize index (binding: VECTORIZE) — semantic product and knowledge search
-        ├─▶ Workers AI (binding: AI) — Volt chat and embeddings
+        ├─▶ Workers AI (binding: AI) — Floe chat and embeddings
         ├─▶ Analytics Engine (binding: WEB_VITALS) — observability
         ├─▶ Clerk — authentication and admin role
         ├─▶ Stripe — payments, tax, webhooks, subscriptions

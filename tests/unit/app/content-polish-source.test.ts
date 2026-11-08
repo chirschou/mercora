@@ -20,7 +20,7 @@ describe("content publishing integration polish", () => {
     const sidebar = source("components/admin/AdminSidebar.tsx");
     expect(header).toContain("useUser()");
     expect(sidebar).toContain("useStoreConfig()");
-    expect(`${header}\n${sidebar}`).not.toMatch(/admin@voltique|Voltique Admin|>Voltique</i);
+    expect(`${header}\n${sidebar}`).not.toMatch(/admin@melt-party|Melt Party Admin|>Melt Party</i);
   });
 
   it("builds only nonempty footer columns and has no placeholder links", () => {

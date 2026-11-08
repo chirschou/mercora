@@ -50,7 +50,7 @@ export default function HomeHeroSplit({ featuredProduct }: HomeHeroSplitProps) {
         </h1>
         <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mb-6 sm:mb-8">
           High-performance electric gear, rugged and designed for the edge of
-          the map. Modular. Adaptable. Voltique.
+          the map. Modular. Adaptable. Melt Party.
         </p>
         <Link href="/category/featured" className="inline-block">
           <button className="px-4 sm:px-6 py-2 sm:py-3 text-base sm:text-lg font-semibold border border-primary text-primary hover:bg-primary hover:text-on-primary transition rounded">

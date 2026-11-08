@@ -5,11 +5,11 @@ category: sales
 tags: [gift cards, gift, present, voucher, gift certificate, faq]
 ---
 
-**AI NOTES:** The Voltique Gift Card is a digital gift, present, voucher, or gift certificate a shopper can buy for someone else or for themselves; recommend it for any "what should I get as a gift/present" or "do you sell vouchers/gift certificates" question. It comes in four fixed amounts, is delivered by email as soon as payment completes — or on the delivery date chosen at purchase — never expires, cannot be redeemed for cash or resold, and is redeemed by entering its code in the "Gift card" field at checkout.
+**AI NOTES:** The Melt Party Gift Card is a digital gift, present, voucher, or gift certificate a shopper can buy for someone else or for themselves; recommend it for any "what should I get as a gift/present" or "do you sell vouchers/gift certificates" question. It comes in four fixed amounts, is delivered by email as soon as payment completes — or on the delivery date chosen at purchase — never expires, cannot be redeemed for cash or resold, and is redeemed by entering its code in the "Gift card" field at checkout.
 
 ## Buying a Gift Card
 
-The Voltique Gift Card comes in four amounts: $25, $50, $100, and $200. On the gift card product page the shopper picks an amount, enters the recipient's email address, and can optionally add the recipient's name, a personal message, and a delivery date. The personal message is included in the delivery email. It can be bought as a guest or while signed in.
+The Melt Party Gift Card comes in four amounts: $25, $50, $100, and $200. On the gift card product page the shopper picks an amount, enters the recipient's email address, and can optionally add the recipient's name, a personal message, and a delivery date. The personal message is included in the delivery email. It can be bought as a guest or while signed in.
 
 ## Delivery
 
@@ -27,4 +27,4 @@ Checkout does not show a card's remaining balance up front. Entering a code appl
 
 ## Limits
 
-A Voltique Gift Card never expires. It cannot be redeemed for cash, and it cannot be transferred or resold. Its stored value can be used across multiple orders until it runs out.
+A Melt Party Gift Card never expires. It cannot be redeemed for cash, and it cannot be transferred or resold. Its stored value can be used across multiple orders until it runs out.

@@ -24,10 +24,10 @@ function setupIntent(overrides: Partial<Stripe.SetupIntent> = {}): Stripe.SetupI
       id: "cus_one",
       object: "customer",
       livemode: false,
-      metadata: { mercora_customer_id: "user_one" },
+      metadata: { melt_party_customer_id: "user_one" },
     }),
     livemode: false,
-    metadata: { mercora_customer_id: "user_one" },
+    metadata: { melt_party_customer_id: "user_one" },
     payment_method: "pm_one",
     status: "succeeded",
     usage: "off_session",
@@ -85,10 +85,10 @@ function subscription(overrides: Partial<Stripe.Subscription> = {}): Stripe.Subs
       url: "/v1/subscription_items?subscription=sub_one",
     },
     metadata: {
-      mercora_acquisition_id: "acq_one",
-      mercora_plan_id: "plan_one",
-      mercora_binding_version: "2",
-      mercora_shipping_required: "true",
+      melt_party_acquisition_id: "acq_one",
+      melt_party_plan_id: "plan_one",
+      melt_party_binding_version: "2",
+      melt_party_shipping_required: "true",
     },
     pause_collection: null,
     status: "active",
@@ -143,7 +143,7 @@ function invoice(overrides: Partial<InvoiceWithPaid> = {}): InvoiceWithPaid {
       type: "subscription_details",
       quote_details: null,
       subscription_details: {
-        metadata: { mercora_acquisition_id: "acq_one" },
+        metadata: { melt_party_acquisition_id: "acq_one" },
         subscription: "sub_one",
       },
     },
@@ -214,16 +214,16 @@ describe("Stripe subscription mappers", () => {
         id: "cus_other",
         object: "customer",
         livemode: false,
-        metadata: { mercora_customer_id: "user_one" },
+        metadata: { melt_party_customer_id: "user_one" },
       }),
     }), ownership))
       .toThrow("customer does not match");
     expect(() => mapVerifiedSetupIntent(setupIntent({ usage: "on_session" }), ownership))
       .toThrow("off-session");
     expect(() => mapVerifiedSetupIntent(
-      setupIntent({ metadata: { mercora_customer_id: "user_other" } }),
+      setupIntent({ metadata: { melt_party_customer_id: "user_other" } }),
       ownership,
-    )).toThrow("Mercora customer");
+    )).toThrow("Melt Party customer");
     expect(() => mapVerifiedSetupIntent(setupIntent(), { ...ownership, expectedLivemode: true }))
       .toThrow("livemode");
   });
@@ -259,22 +259,22 @@ describe("Stripe subscription mappers", () => {
 
   it("accepts absent legacy shipping metadata but strictly validates version two", () => {
     const legacy = mapProviderSubscriptionBinding(subscription({
-      metadata: { mercora_acquisition_id: "acq_one", mercora_plan_id: "plan_one" },
+      metadata: { melt_party_acquisition_id: "acq_one", melt_party_plan_id: "plan_one" },
     }));
     expect(legacy).not.toHaveProperty("shippingRequired");
     expect(() => mapProviderSubscriptionBinding(subscription({
       metadata: {
-        mercora_acquisition_id: "acq_one",
-        mercora_plan_id: "plan_one",
-        mercora_binding_version: "2",
+        melt_party_acquisition_id: "acq_one",
+        melt_party_plan_id: "plan_one",
+        melt_party_binding_version: "2",
       },
     }))).toThrow("shipping metadata");
     expect(() => mapProviderSubscriptionBinding(subscription({
       metadata: {
-        mercora_acquisition_id: "acq_one",
-        mercora_plan_id: "plan_one",
-        mercora_binding_version: "2",
-        mercora_shipping_required: "yes",
+        melt_party_acquisition_id: "acq_one",
+        melt_party_plan_id: "plan_one",
+        melt_party_binding_version: "2",
+        melt_party_shipping_required: "yes",
       },
     }))).toThrow("shipping metadata");
   });

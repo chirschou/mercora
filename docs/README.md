@@ -15,7 +15,7 @@ through 03.
 
 ## Architecture
 
-- [ai-pipeline.md](ai-pipeline.md) - Volt's AI request flow: embeddings, vector search, and response generation.
+- [ai-pipeline.md](ai-pipeline.md) - Floe's AI request flow: embeddings, vector search, and response generation.
 - [architecture.md](architecture.md) - System diagrams for request flow, the AI pipeline, and deployment.
 - [content-publishing.md](content-publishing.md) - Store-neutral CMS pages and blog publishing.
 - [mcp-server-specification.md](mcp-server-specification.md) - The authenticated MCP HTTP API an external agent uses to shop.

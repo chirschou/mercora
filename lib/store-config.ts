@@ -82,36 +82,36 @@ export type StoreConfig = {
 /** Neutral demo defaults. Store operators override only the public values they need. */
 export const storeDefaults: StoreConfig = {
   identity: {
-    name: "Mercora",
+    name: "Melt Party",
     tagline: "Commerce on the edge",
     description: "An extensible commerce storefront powered by open knowledge.",
-    assistantName: "Volt",
+    assistantName: "Floe",
   },
   contact: {
-    supportEmail: "support@mercora.example.com",
-    senderEmail: "Mercora <support@mercora.example.com>",
+    supportEmail: "support@melt-party.example.com",
+    senderEmail: "Melt Party <support@melt-party.example.com>",
     postalAddress: "Replace with your business postal address before launch.",
     supportHours: "Monday–Friday, 9:00–17:00 local time",
   },
   urls: {
-    site: "https://mercora.example.com",
+    site: "https://melt-party.example.com",
     privacy: "/privacy-policy",
     terms: "/terms-of-service",
     returns: "/returns",
     returnsConfigured: false,
   },
   persistence: {
-    namespace: "mercora",
-    cartKey: "mercora.cart",
-    chatKey: "mercora.chat",
+    namespace: "melt-party",
+    cartKey: "melt-party.cart",
+    chatKey: "melt-party.chat",
   },
   theme: {
-    logoPath: "/volt.png",
+    logoPath: "/logo.svg",
   },
   social: { instagram: "", facebook: "", x: "", youtube: "", linkedin: "" },
   mcp: {
     capabilities: "commerce,multi-agent,e-commerce",
-    description: "Mercora MCP Server for commerce workflows.",
+    description: "Melt Party MCP Server for commerce workflows.",
   },
   commerce: {
     locale: "en-US",

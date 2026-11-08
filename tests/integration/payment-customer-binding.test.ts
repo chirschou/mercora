@@ -7,11 +7,11 @@ import {
 } from "@/lib/payments/customer-binding";
 
 function fakeStripe() {
-  const customers: Record<string, { id: string; metadata: { mercora_customer_id: string } }> = {};
+  const customers: Record<string, { id: string; metadata: { melt_party_customer_id: string } }> = {};
   return {
     customers: {
-      create: vi.fn(async (params: { metadata: { mercora_customer_id: string } }) => {
-        const id = `cus_${Object.keys(customers).length + 1}_${params.metadata.mercora_customer_id}`;
+      create: vi.fn(async (params: { metadata: { melt_party_customer_id: string } }) => {
+        const id = `cus_${Object.keys(customers).length + 1}_${params.metadata.melt_party_customer_id}`;
         const customer = { id, metadata: params.metadata };
         customers[id] = customer;
         return customer;

@@ -42,7 +42,7 @@ function boundedOptional(value: string | undefined, maxLength: number): string |
   return value;
 }
 
-/** Verify a Stripe customer belongs to the expected Mercora shopper. Throws
+/** Verify a Stripe customer belongs to the expected Melt Party shopper. Throws
  * PaymentCustomerConflictError on a deleted customer or mismatched
  * ownership metadata; never returns for those cases. */
 function verifyOwnership(
@@ -53,9 +53,9 @@ function verifyOwnership(
     throw new PaymentCustomerConflictError("Stripe customer is deleted");
   }
   const metadata = (customer as Stripe.Customer).metadata;
-  if (metadata?.mercora_customer_id !== customerId) {
+  if (metadata?.melt_party_customer_id !== customerId) {
     throw new PaymentCustomerConflictError(
-      "Stripe customer metadata does not match the Mercora customer",
+      "Stripe customer metadata does not match the Melt Party customer",
     );
   }
 }
@@ -85,7 +85,7 @@ export function createPaymentCustomerRepository(database: D1Database) {
   return repository;
 }
 
-/** Injectable core: find-or-create a Stripe customer for a Mercora shopper,
+/** Injectable core: find-or-create a Stripe customer for a Melt Party shopper,
  * reconciling a concurrent bind race against the winning row. Throws
  * PaymentCustomerConflictError if Stripe's own record disagrees with the
  * stored binding at any point. */
@@ -109,7 +109,7 @@ export async function ensureStripeCustomer(args: {
   const name = boundedOptional(args.name, 200);
   const idempotencyKey = await stableId("payment-customer", customerId);
   const created = await stripe.customers.create({
-    metadata: { mercora_customer_id: customerId },
+    metadata: { melt_party_customer_id: customerId },
     ...(email ? { email } : {}),
     ...(name ? { name } : {}),
   }, { idempotencyKey });

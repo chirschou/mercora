@@ -83,7 +83,7 @@ const PRODUCT_MEMBERS: ReadonlyArray<readonly [ProductGallery, React.ComponentTy
 function featuredProductWithImage() {
   return {
     id: "contract-featured",
-    name: "Volt Contract Jacket",
+    name: "Melt Contract Jacket",
     primary_image: { url: "products/contract-jacket.jpg" },
     media: [],
   } as never;
@@ -94,7 +94,7 @@ function galleryFixtureProps() {
     allImages: ["a.jpg"],
     selectedImage: "a.jpg",
     onSelect: vi.fn(),
-    productName: "Volt Contract Kit",
+    productName: "Melt Contract Kit",
   };
 }
 

@@ -2,7 +2,7 @@
 id: prod_19
 sku: variant_19
 name: Arctic Pulse Tool
-brand: Mercora
+brand: Melt Party
 created: 2025-08-23 16:15:37
 updated: 2025-08-23 16:15:37
 price: 63.99
@@ -19,7 +19,7 @@ rating_count: 14
 ## Product Information
 - **SKU**: variant_19
 - **Product ID**: prod_19
-- **Brand**: Mercora
+- **Brand**: Melt Party
 - **Price**: $63.99
 - **Categories**: 
 - **Tags**: pulse, sensor, arctic, extreme

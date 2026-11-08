@@ -3,9 +3,9 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function GET(request: NextRequest) {
   // MCP Server Schema Documentation
   const schema = {
-    name: "mercora-mcp-server",
+    name: "melt-party-mcp-server",
     version: "1.0.0",
-    description: "Mercora MCP server for agent-assisted commerce",
+    description: "Melt Party MCP server for agent-assisted commerce",
     capabilities: {
       tools: true,
       resources: false,

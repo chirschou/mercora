@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-Mercora is under active development. Security fixes are applied to the latest
+Melt Party is under active development. Security fixes are applied to the latest
 commit on the `main` branch. Older commits and deployments may not receive
 backported fixes.
 

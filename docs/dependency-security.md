@@ -13,7 +13,7 @@
 
 ## Scope
 
-This baseline separates the dependencies deployed with Mercora from packages
+This baseline separates the dependencies deployed with Melt Party from packages
 used only to build, lint, migrate, preview, or deploy it. Reproduce the checks
 with:
 
@@ -78,7 +78,7 @@ entries closed when Next 16.3.1 was installed; see below.
 - **Why it remained:** Next 15.5.22 pinned PostCSS 8.4.31. npm's supported fix
   was a breaking upgrade to Next 16.
 - **Exposure:** PostCSS runs against repository-controlled CSS during the
-  trusted build. Mercora does not accept customer CSS or compile CMS content
+  trusted build. Melt Party does not accept customer CSS or compile CMS content
   as CSS, so an unauthenticated user could not supply the malicious
   source-map input.
 - **Compensating controls (while open):** Builds ran from reviewed repository
@@ -98,7 +98,7 @@ entries closed when Next 16.3.1 was installed; see below.
 - **Package path:** `next > sharp`
 - **Why it remained:** Next 15.5.22 allowed the 0.34 line. npm's supported fix
   was a breaking upgrade to Next 16.
-- **Exposure:** Mercora configures a custom image loader instead of Next's
+- **Exposure:** Melt Party configures a custom image loader instead of Next's
   server-side native image optimizer, so requests did not invoke Sharp on
   attacker-supplied image data in the deployed Cloudflare application.
 - **Compensating controls (while open):** The custom loader remained

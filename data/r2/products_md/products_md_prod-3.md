@@ -2,7 +2,7 @@
 id: prod_3
 sku: variant_3
 name: Echo Sky Kit
-brand: Mercora
+brand: Melt Party
 created: 2025-08-23 16:15:37
 updated: 2025-08-23 16:15:37
 price: 49.99
@@ -19,7 +19,7 @@ rating_count: 19
 ## Product Information
 - **SKU**: variant_3
 - **Product ID**: prod_3
-- **Brand**: Mercora
+- **Brand**: Melt Party
 - **Price**: $49.99
 - **Categories**: , , , 
 - **Tags**: communication, emergency, radio

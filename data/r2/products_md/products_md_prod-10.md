@@ -2,7 +2,7 @@
 id: prod_10
 sku: variant_10
 name: Coastal Track Pack
-brand: Mercora
+brand: Melt Party
 created: 2025-08-23 16:15:37
 updated: 2025-08-23 16:15:37
 price: 74.99
@@ -19,7 +19,7 @@ rating_count: 18
 ## Product Information
 - **SKU**: variant_10
 - **Product ID**: prod_10
-- **Brand**: Mercora
+- **Brand**: Melt Party
 - **Price**: $74.99
 - **Categories**: 
 - **Tags**: roll-top, waterproof, tactical

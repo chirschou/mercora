@@ -60,18 +60,18 @@ describe("Shopify migration config", () => {
     expect(() => parseMigrationConfig(
       { MIGRATION_INPUT_ROOT: "input" },
       ["--apply", "--target=production", "--confirm-production"],
-    )).toThrow("MERCORA_ALLOW_PRODUCTION_IMPORTS=1");
+    )).toThrow("MELT_PARTY_ALLOW_PRODUCTION_IMPORTS=1");
     expect(() => parseMigrationConfig(
       { MIGRATION_INPUT_ROOT: "input" },
       ["--apply", "--target=preview"],
     )).toThrow("--confirm-preview");
     expect(() => parseMigrationConfig(
-      { MIGRATION_INPUT_ROOT: "input", MIGRATION_TARGET: "production", MERCORA_ALLOW_PRODUCTION_IMPORTS: "1" },
+      { MIGRATION_INPUT_ROOT: "input", MIGRATION_TARGET: "production", MELT_PARTY_ALLOW_PRODUCTION_IMPORTS: "1" },
       ["--apply", "--confirm-production"],
     )).toThrow("explicit --target=preview or --target=production");
 
     const config = parseMigrationConfig(
-      { MIGRATION_INPUT_ROOT: "input", MERCORA_ALLOW_PRODUCTION_IMPORTS: "1" },
+      { MIGRATION_INPUT_ROOT: "input", MELT_PARTY_ALLOW_PRODUCTION_IMPORTS: "1" },
       ["--apply", "--target=production", "--confirm-production", "--include-sensitive", "--confirm-sensitive-data"],
     );
     expect(config.execution).toMatchObject({

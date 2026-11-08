@@ -103,7 +103,7 @@ export default async function CategoryPage({
       
       // Construct full R2 URL for relative paths
       if (imageUrl && !imageUrl.startsWith('http')) {
-        return `https://voltique-images.russellkmoore.me/${imageUrl}`;
+        return `https://images.melt.party/${imageUrl}`;
       }
       return imageUrl;
     }

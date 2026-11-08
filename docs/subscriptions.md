@@ -15,7 +15,7 @@ subscription acquisition route may interpret a plan selection as recurring.
 ## Acquisition and initial order
 
 Subscription acquisition is not an ordinary paid-order effect. The customer
-first completes a server-owned Stripe SetupIntent. Mercora verifies that the
+first completes a server-owned Stripe SetupIntent. Melt Party verifies that the
 SetupIntent belongs to the authenticated customer, then reserves a bounded
 `subscription_acquisitions` row before asking Stripe to create a subscription.
 The row id is also the Stripe idempotency key. It stores only the immutable
@@ -37,7 +37,7 @@ opening audit event, and completes the acquisition linked from trusted provider
 metadata. Completion compares the provider customer, plan/price identity,
 currency and amount, cadence, and quantity against the full canonical reserved
 acquisition. A repeated SetupIntent converges only when plan, customer,
-quantity, normalized address, and consent all still match. No Mercora order
+quantity, normalized address, and consent all still match. No Melt Party order
 exists yet. The first
 verified paid invoice creates the first order; subsequent paid invoices create
 renewal orders. `subscription_invoice_orders.stripe_invoice_id` guarantees one

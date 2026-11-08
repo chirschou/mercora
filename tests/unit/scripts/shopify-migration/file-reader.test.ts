@@ -7,7 +7,7 @@ import { readCsvFile, readJsonFile, resolveInputFile } from "@/scripts/shopify-m
 
 const roots: string[] = [];
 function root(): string {
-  const value = mkdtempSync(join(tmpdir(), "mercora-shopify-reader-"));
+  const value = mkdtempSync(join(tmpdir(), "melt-party-shopify-reader-"));
   roots.push(value);
   return value;
 }

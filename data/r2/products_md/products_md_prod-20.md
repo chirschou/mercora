@@ -2,7 +2,7 @@
 id: prod_20
 sku: variant_20
 name: Zenith Rock Kit
-brand: Mercora
+brand: Melt Party
 created: 2025-08-23 16:15:37
 updated: 2025-08-23 16:15:37
 price: 54.99
@@ -19,7 +19,7 @@ rating_count: 17
 ## Product Information
 - **SKU**: variant_20
 - **Product ID**: prod_20
-- **Brand**: Mercora
+- **Brand**: Melt Party
 - **Price**: $54.99
 - **Categories**: , , 
 - **Tags**: geology, sampling, fieldwork, research
