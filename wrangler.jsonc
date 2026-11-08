@@ -36,7 +36,7 @@
     {
       "binding": "DB",
       "database_name": "melt-party-db",
-      "database_id": "a27c0044-672d-4355-aa47-4410746f45f9"
+      "database_id": "1060d1e5-3b7f-4ef1-90aa-3c7a6a0d64a8"
     }
   ],
   "r2_buckets": [
@@ -132,7 +132,7 @@
     "STORE_FEATURE_GIFT_CARD_ACQUISITION": "true",
     "EMAIL_PROVIDER": "cloudflare",
     // Sender must be on a domain onboarded to Cloudflare Email Sending in this account.
-    "STORE_SENDER_EMAIL": "Melt Party <orders@melt.party>",
+    "STORE_SENDER_EMAIL": "Melt Party <orders@mail.melt.party>",
     "STORE_SUPPORT_EMAIL": "support@melt.party"
   },
   /**
