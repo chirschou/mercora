@@ -27,7 +27,7 @@ To access, correct, export or delete your personal information, email support@me
 
 ## Company Details
 
-Melt Party is operated by DONG LU LIMITED (Hong Kong Company Registration No. 3293783), Unit 1523A, 15/F, Star House, 3 Salisbury Road, Tsim Sha Tsui, Kowloon, Hong Kong. This address is for official correspondence only. It is not open to visitors and does not accept returns; return instructions are sent by email.
+Melt Party is operated by DONG LU LIMITED (Hong Kong Company Registration No. 3293783), whose mailing address is 1521 Blake St Ste 47009, Denver, Colorado 80202, United States. This address is for official correspondence only. It is not open to visitors and does not accept returns; return instructions are sent by email.
 
 ## When to Escalate
 
