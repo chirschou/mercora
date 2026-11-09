@@ -147,7 +147,8 @@ export async function resolveDeterministicAnswer(
 function contactAnswer(facts: CanonicalFacts): string | null {
   if (!facts.supportEmail) return null;
   const hours = facts.supportHours ? ` Support hours are ${facts.supportHours}.` : '';
-  return `You can reach ${facts.storeName} support at ${facts.supportEmail}.${hours}`;
+  const phone = facts.supportPhone ? ` or by phone at ${facts.supportPhone}` : '';
+  return `You can reach ${facts.storeName} support at ${facts.supportEmail}${phone}.${hours}`;
 }
 
 function orderStatusAnswer(facts: CanonicalFacts): string | null {

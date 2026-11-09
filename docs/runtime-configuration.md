@@ -1,6 +1,6 @@
 # Runtime configuration
 
-**Status:** Current (2026-09-09).
+**Status:** Current (2026-11-09).
 
 Melt Party has neutral demo defaults in `lib/store-config.ts`. A storefront can
 override public, non-secret values without editing components. The configuration
@@ -15,7 +15,7 @@ time.
 | Images | `NEXT_PUBLIC_IMAGE_CDN`, `NEXT_PUBLIC_IMAGE_TRANSFORMS=false` |
 | Browser persistence | `NEXT_PUBLIC_STORAGE_NAMESPACE`, `NEXT_PUBLIC_CART_STORAGE_KEY`, `NEXT_PUBLIC_CHAT_STORAGE_KEY` |
 | Theme | `NEXT_PUBLIC_STORE_LOGO_PATH`, `NEXT_PUBLIC_THEME_DEFAULT` (deploy-time theme fallback; see `docs/theming.md`) |
-| Contact and legal links | `STORE_SUPPORT_EMAIL`, `STORE_SENDER_EMAIL`, `STORE_REPLY_TO_EMAIL`, `STORE_MERCHANT_NOTIFICATION_EMAIL`, `STORE_POSTAL_ADDRESS`, `STORE_SUPPORT_HOURS`, `NEXT_PUBLIC_PRIVACY_URL`, `NEXT_PUBLIC_TERMS_URL`, `NEXT_PUBLIC_RETURNS_URL` |
+| Contact and legal links | `STORE_SUPPORT_EMAIL`, `STORE_SENDER_EMAIL`, `STORE_REPLY_TO_EMAIL`, `STORE_MERCHANT_NOTIFICATION_EMAIL`, `STORE_SUPPORT_PHONE` (optional display number such as `+1 (929) 206-2531`; must reduce to an E.164 number when only `+` and digits are kept, otherwise it is ignored), `STORE_POSTAL_ADDRESS`, `STORE_SUPPORT_HOURS`, `NEXT_PUBLIC_PRIVACY_URL`, `NEXT_PUBLIC_TERMS_URL`, `NEXT_PUBLIC_RETURNS_URL` |
 | Commerce formatting | `STORE_LOCALE` (canonical BCP 47 locale, defaults to `en-US`), `STORE_CURRENCY` (must match active catalog variant currency; Melt Party checkout is single-currency per cart) |
 | Gift-card honor (redeem, settle, refund existing cards) | `STORE_FEATURE_GIFT_CARD_RECONCILIATION=true` (defaults off; keep enabled while any card balance or reservation exists — see the four-state table below) |
 | Gift-card sell (new purchases) | `STORE_FEATURE_GIFT_CARD_ACQUISITION=true` (defaults off; requires honor enabled — see the four-state table below) |

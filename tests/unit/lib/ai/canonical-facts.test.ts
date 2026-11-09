@@ -62,6 +62,7 @@ describe("canonicalFactsFromConfig", () => {
       identity: { name: 42, assistantName: "" },
       contact: {
         supportEmail: "not-an-email",
+        supportPhone: "javascript:alert(1)",
         supportHours: "x".repeat(301),
         postalAddress: storeDefaults.contact.postalAddress,
       },
@@ -77,6 +78,18 @@ describe("canonicalFactsFromConfig", () => {
       allowedHosts: [],
       allowedEmails: [],
     });
+  });
+
+  it("should_include_support_phone_only_when_configured_and_valid", () => {
+    expect(canonicalFactsFromConfig(resolveStoreConfig({ STORE_SUPPORT_PHONE: "+1 (929) 206-2531" })).supportPhone)
+      .toBe("+1 (929) 206-2531");
+    expect(canonicalFactsFromConfig(resolveStoreConfig({}))).not.toHaveProperty("supportPhone");
+    expect(canonicalFactsFromConfig(resolveStoreConfig({ STORE_SUPPORT_PHONE: "call us" })))
+      .not.toHaveProperty("supportPhone");
+
+    const cast = structuredClone(resolveStoreConfig({}));
+    cast.contact.supportPhone = "+1 (929) 206-2531\n+1 555";
+    expect(canonicalFactsFromConfig(cast)).not.toHaveProperty("supportPhone");
   });
 
   it("omits placeholder and malformed contact facts and rejects unknown currencies", () => {
