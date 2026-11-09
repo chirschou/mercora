@@ -11,3 +11,7 @@
 | FEAT-20261109-01 | Floe 知识库 | 知识库仍有 `support@example.com`、虚构电话、不存在的退货门户，与新条款不一致；修改需写生产 R2/Vectorize，待用户确认 | Floe 知识库（R2/Vectorize） |
 | FEAT-20261109-01 | 运行时配置 | `STORE_POSTAL_ADDRESS` 未配置，邮件页脚显示占位句；`STORE_SUPPORT_HOURS` 建议与 Contact 页一致 | lib/store-config.ts:93；lib/email/footer.ts:15,25 |
 | FEAT-20261109-01 | 法务 | 隐私政策与服务条款按通行电商做法起草，未经律师审阅 | about / privacy-policy / terms-of-service 页面 |
+| PR #14 / FEAT-20261109-06 | 迁移 / 页面 | 0029 第四条 REPLACE（Mailing address: 前缀）不在 WHERE 内，后台已手改为新地址但无前缀的页面不补前缀 | migrations/0029_update_company_mailing_address.sql:24 |
+| PR #14 / FEAT-20261109-06 | SEO / 部署 | 未设 workers_dev:false，workers.dev 域同样可索引；首页等无 canonical，存在重复收录风险 | wrangler.jsonc |
+| PR #14 / FEAT-20261109-06 | 文档 | runtime-configuration.md 英文文档内插入中文段落，风格不一致 | docs/runtime-configuration.md:178 |
+| PR #14 / FEAT-20261109-06 | Floe 知识库 | 向量 metadata 只存前 1000 字，support.md 公司地址段在截断之后，检索上下文看不到 | app/api/admin/vectorize/route.ts:290 |
