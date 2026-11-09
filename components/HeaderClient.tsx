@@ -50,6 +50,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import {
   DropdownMenu,
@@ -354,10 +355,11 @@ export default function HeaderClient({
     <div className="flex w-full min-w-0 items-center justify-between gap-1 bg-surface px-4 py-4 text-foreground sm:gap-2 sm:px-6">
       <Link
         href="/"
-        className="min-w-0 flex-1 truncate text-lg font-bold sm:text-xl md:flex-none"
+        className="flex min-w-0 flex-1 truncate items-center gap-2 text-lg font-bold sm:text-xl md:flex-none"
         title={store.identity.name}
       >
-        <span className="block truncate">{store.identity.name}</span>
+        <Image src={store.theme.logoPath} alt="" width={32} height={32} className="h-8 w-8 shrink-0" priority />
+        <span className="block min-w-0 truncate">{store.identity.name}</span>
       </Link>
 
       {/* Desktop Navigation */}
