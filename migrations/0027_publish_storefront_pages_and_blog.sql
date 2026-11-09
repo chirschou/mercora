@@ -41,7 +41,7 @@ VALUES (
 <li><strong>Navigation and communication devices</strong>: GPS, a digital compass, a weather-alert radio and signaling units. Browse <a href="/category/navigation">Navigation</a> and <a href="/category/tech">Tech</a>.</li>
 <li><strong>Emergency kits</strong> and organizer pouches such as the <a href="/product/wild-harbor-kit">Wild Harbor Kit</a>.</li>
 <li><strong>Provisions</strong>, including shelf-stable rations in the <a href="/product/field-ration-resupply">Field Ration Resupply</a> box. See <a href="/category/provisions">Provisions</a>.</li>
-<li><strong>Digital gift cards</strong> in $25, $50, $100 and $200 amounts, delivered by email. See the <a href="/product/gift-card">Melt Party Gift Card</a>.</li>
+<li><strong>Digital gift cards</strong> in $25, $50, $100 and $200 amounts, delivered by email.</li>
 </ul>
 <h2>How we help you choose</h2>
 <p>Every product page describes what the item is designed for and what it includes. If you still have a question, ask Floe, our shopping assistant. Floe answers from our product catalog and store policies and can suggest products that match what you describe. Like any automated assistant, Floe can make mistakes, so the product page and our published policies are always the final word.</p>
