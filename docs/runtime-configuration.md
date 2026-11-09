@@ -175,9 +175,15 @@ investigation, and turn it back off when the investigation is done.
 
 ## Search indexing and images
 
-Robots defaults to `noindex`. Production must opt in with
-`NEXT_PUBLIC_ROBOTS_INDEX=true`; previews remain safe even though Workers sets
-`NODE_ENV=production` during a production-mode build.
+索引默认关闭。生产 `wrangler.jsonc` 通过 `NEXT_PUBLIC_ROBOTS_INDEX=true`
+显式允许抓取，站点地址为 `NEXT_PUBLIC_SITE_URL=https://melt.party`。
+构建脚本将该公开变量注入构建环境，robots.txt 允许公开页面并提供 sitemap。
+
+版本预览的保护依赖顶层 `preview_urls=false`：关闭 Workers 版本预览 URL，
+使未部署版本不能通过该入口公开访问。代码没有依据请求域名或构建分支自动关闭索引；
+`NODE_ENV=production` 和索引开关本身不能区分生产与预览。
+若以后启用版本预览或为非生产环境配置其他公开路由，须另行配置索引保护。
+`workers_dev` 保持原状，不属于版本预览开关的控制范围。
 
 When `NEXT_PUBLIC_IMAGE_CDN` is absent, store-object images use the same-origin
 `/media/` route. Set `NEXT_PUBLIC_IMAGE_TRANSFORMS=false` to bypass Cloudflare
