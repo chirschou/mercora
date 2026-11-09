@@ -9,7 +9,7 @@ tags: [warranty, faq]
 
 ## Warranty Overview
 
-We offer a 1-year limited warranty on all gear against manufacturing defects.
+We offer a one-year limited warranty, starting on the date of delivery, against manufacturing defects in the gear we sell.
 
 This warranty does not cover:
 
@@ -17,6 +17,8 @@ This warranty does not cover:
 - Damage from misuse or accidents
 - Cosmetic imperfections
 
+This warranty is in addition to any rights you have under consumer law and does not limit them.
+
 ## How to Submit a Claim
 
-Email photos and your order number to support@example.com. Our team will assess the issue and respond within 3 business days.
+Email photos of the issue and your order number to support@melt.party. Our team will assess the issue and respond within 3 business days.

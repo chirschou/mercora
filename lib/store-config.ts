@@ -31,6 +31,7 @@ export type StoreConfig = {
   };
   contact: {
     supportEmail: string;
+    supportPhone?: string;
     senderEmail: string;
     replyToEmail?: string;
     merchantNotificationEmail?: string;
@@ -189,6 +190,21 @@ function optionalEmail(env: Environment, key: string): string | undefined {
   return value && value.length <= 254 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
     ? value
     : undefined;
+}
+
+const SUPPORT_PHONE_DISPLAY_PATTERN = /^\+?[0-9 ().-]{1,40}$/;
+const E164_PATTERN = /^\+[1-9][0-9]{6,14}$/;
+
+/** E.164 form of a displayed phone number (only `+` and digits kept), or undefined when invalid. */
+export function supportPhoneTel(display: string): string | undefined {
+  if (!SUPPORT_PHONE_DISPLAY_PATTERN.test(display)) return undefined;
+  const tel = display.replace(/[^+0-9]/g, "");
+  return E164_PATTERN.test(tel) ? tel : undefined;
+}
+
+function optionalPhone(env: Environment, key: string): string | undefined {
+  const value = env[key]?.trim();
+  return value && supportPhoneTel(value) ? value : undefined;
 }
 
 const EMAIL_ADDRESS_PATTERN = /^[^\s<>@]+@[^\s<>@]+\.[^\s<>@]+$/;
@@ -383,6 +399,7 @@ export function resolveStoreConfig(env: Environment = {}): StoreConfig {
     contact: {
       ...storeDefaults.contact,
       supportEmail,
+      supportPhone: optionalPhone(env, "STORE_SUPPORT_PHONE"),
       senderEmail: safeSender(env.STORE_SENDER_EMAIL, name, supportEmail),
       replyToEmail: optionalEmail(env, "STORE_REPLY_TO_EMAIL") ?? optionalEmail(env, "STORE_SUPPORT_EMAIL"),
       merchantNotificationEmail: optionalEmail(env, "STORE_MERCHANT_NOTIFICATION_EMAIL"),

@@ -7,14 +7,14 @@ tags: [faq]
 
 **AI NOTES:** Use this for all general info not covered elsewhere.
 
-## Sales Tax
+## Prices and Sales Tax
 
-We collect sales tax where required by law. You’ll see this at checkout.
+Prices are shown in U.S. dollars. Taxes and shipping charges are calculated at checkout and shown before you pay.
 
-## Backorders
+## Out-of-Stock Items
 
-If an item is on backorder, we’ll email you with expected delivery dates and options.
+If an item turns out to be out of stock after you order, we may cancel the order and refund it in full.
 
 ## Order Changes
 
-Orders cannot be modified once submitted. If you need to cancel, contact support immediately.
+To change or cancel an order, email support@melt.party with your order number as soon as possible. We can change or cancel an order only before it ships. Once it has shipped, it can be returned under our return policy.

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { resolveStoreConfig, storeDefaults } from "@/lib/store-config";
+import { resolveStoreConfig, storeDefaults, supportPhoneTel } from "@/lib/store-config";
 
 describe("resolveStoreConfig", () => {
   it("uses neutral defaults without requiring process environment at import time", () => {
@@ -92,6 +92,31 @@ describe("resolveStoreConfig", () => {
     expect(config.contact.merchantNotificationEmail).toBeUndefined();
     expect(config.urls.terms).toBe(storeDefaults.urls.terms);
     expect(config.urls.privacy).toBe("https://policies.example.com/privacy");
+  });
+
+  it("should_keep_support_phone_unset_when_not_configured_or_invalid", () => {
+    expect(resolveStoreConfig({}).contact.supportPhone).toBeUndefined();
+    expect(resolveStoreConfig({ STORE_SUPPORT_PHONE: "   " }).contact.supportPhone).toBeUndefined();
+    for (const invalid of [
+      "call us",
+      "9292062531",
+      "+0 929 206 2531",
+      "+1 929",
+      "+1 (929) 206-2531 ext 5",
+      "1+ 929 206 2531",
+      "+1 929 206 2531 1234 5678",
+      `+1 ${"9".repeat(40)}`,
+    ]) {
+      expect(resolveStoreConfig({ STORE_SUPPORT_PHONE: invalid }).contact.supportPhone).toBeUndefined();
+    }
+  });
+
+  it("should_expose_trimmed_display_phone_and_e164_tel_when_configured", () => {
+    const config = resolveStoreConfig({ STORE_SUPPORT_PHONE: "  +1 (929) 206-2531 " });
+    expect(config.contact.supportPhone).toBe("+1 (929) 206-2531");
+    expect(supportPhoneTel("+1 (929) 206-2531")).toBe("+19292062531");
+    expect(supportPhoneTel("+852 1234.5678")).toBe("+85212345678");
+    expect(supportPhoneTel("929-206-2531")).toBeUndefined();
   });
 
   it("distinguishes the unresolved default returns route from configured policies", () => {
