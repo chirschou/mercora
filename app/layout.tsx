@@ -23,7 +23,8 @@
  *   server-side (D1 -> env default -> manifest default, see
  *   lib/themes/active-theme.ts) and stamps it on the html element before
  *   any HTML is returned — never behind a Suspense boundary
- * - **Font Optimization**: Google Fonts with variable font loading; the
+ * - **Font Optimization**: self-hosted woff2 files in app/fonts via
+ *   next/font/local (no network at build time); the
  *   display face never preloads, so only a page actually rendering it pays
  *   for the fetch
  * - **CSS Variables**: Custom properties for consistent design system
@@ -51,7 +52,7 @@
 export const dynamic = "force-dynamic";
 
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Fraunces, Geist, Geist_Mono, Nunito, Orbitron } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -70,24 +71,33 @@ import {
   ClerkProvider,
 } from "@clerk/nextjs";
 
+// Font files are the exact latin-subset woff2 files Google Fonts serves (see
+// doc/requirements/FIX-20261109-02.md); unicode-range mirrors Google's latin
+// block so glyphs outside it keep falling back exactly as before.
 // Configure primary font family with CSS variables
-const geistSans = Geist({
+const geistSans = localFont({
+  src: [
+    { path: "./fonts/geist-latin.woff2", weight: "400" },
+    { path: "./fonts/geist-latin.woff2", weight: "500" },
+    { path: "./fonts/geist-latin.woff2", weight: "600" },
+  ],
   variable: "--font-geist-sans",
-  subsets: ["latin"],
   display: "swap",
   preload: false, // Reduce initial preload burden
-  weight: ["400", "500", "600"], // Only load weights we actually use
   fallback: ["system-ui", "arial"], // Better fallback strategy
+  declarations: [{ prop: "unicode-range", value: "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD" }],
 });
 
 // Configure monospace font for code and technical content
-const geistMono = Geist_Mono({
+const geistMono = localFont({
+  src: [
+    { path: "./fonts/geist-mono-latin.woff2", weight: "400" },
+  ],
   variable: "--font-geist-mono",
-  subsets: ["latin"],
   display: "swap",
   preload: false, // Load on demand only
-  weight: ["400"], // Single weight to minimize preload
   fallback: ["ui-monospace", "SFMono-Regular"],
+  declarations: [{ prop: "unicode-range", value: "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD" }],
 });
 
 // Display face for themes whose --store-font-display references it (e.g.
@@ -101,12 +111,18 @@ const geistMono = Geist_Mono({
 // (font-synthesis: none in app/globals.css). font-extrabold requests still
 // resolve to 700 rather than a true 800 — an acceptable nearest-match, unlike
 // the previous 500 ceiling.
-const cormorantGaramond = Cormorant_Garamond({
+const cormorantGaramond = localFont({
+  src: [
+    { path: "./fonts/cormorant-garamond-latin.woff2", weight: "400" },
+    { path: "./fonts/cormorant-garamond-latin.woff2", weight: "500" },
+    { path: "./fonts/cormorant-garamond-latin.woff2", weight: "600" },
+    { path: "./fonts/cormorant-garamond-latin.woff2", weight: "700" },
+  ],
   variable: "--font-cormorant-garamond",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
   display: "swap",
   preload: false,
+  adjustFontFallback: "Times New Roman",
+  declarations: [{ prop: "unicode-range", value: "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD" }],
 });
 
 // Display face for themes whose --store-font-display references it (retro).
@@ -117,12 +133,16 @@ const cormorantGaramond = Cormorant_Garamond({
 // extend the UI-SPEC floor (600, 700) with 800 so the storefront's
 // font-extrabold headings render at a loaded weight instead of a
 // synthesized one (font-synthesis: none in app/globals.css).
-const orbitron = Orbitron({
+const orbitron = localFont({
+  src: [
+    { path: "./fonts/orbitron-latin.woff2", weight: "600" },
+    { path: "./fonts/orbitron-latin.woff2", weight: "700" },
+    { path: "./fonts/orbitron-latin.woff2", weight: "800" },
+  ],
   variable: "--font-orbitron",
-  subsets: ["latin"],
-  weight: ["600", "700", "800"],
   display: "swap",
   preload: false,
+  declarations: [{ prop: "unicode-range", value: "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD" }],
 });
 
 // Display face for themes whose --store-font-display references it
@@ -133,12 +153,18 @@ const orbitron = Orbitron({
 // Weights extend the UI-SPEC floor (500) with 600, 700 and 800 so the
 // storefront's font-semibold/font-bold/font-extrabold headings all
 // render at a loaded weight instead of a synthesized one.
-const fraunces = Fraunces({
+const fraunces = localFont({
+  src: [
+    { path: "./fonts/fraunces-latin.woff2", weight: "500" },
+    { path: "./fonts/fraunces-latin.woff2", weight: "600" },
+    { path: "./fonts/fraunces-latin.woff2", weight: "700" },
+    { path: "./fonts/fraunces-latin.woff2", weight: "800" },
+  ],
   variable: "--font-fraunces",
-  subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
   display: "swap",
   preload: false,
+  adjustFontFallback: "Times New Roman",
+  declarations: [{ prop: "unicode-range", value: "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD" }],
 });
 
 // Display face for themes whose --store-font-display references it
@@ -149,12 +175,16 @@ const fraunces = Fraunces({
 // Weights extend the UI-SPEC floor (700) with 600 and 800 so the
 // storefront's font-semibold/font-extrabold headings render at a loaded
 // weight instead of a synthesized one.
-const nunito = Nunito({
+const nunito = localFont({
+  src: [
+    { path: "./fonts/nunito-latin.woff2", weight: "600" },
+    { path: "./fonts/nunito-latin.woff2", weight: "700" },
+    { path: "./fonts/nunito-latin.woff2", weight: "800" },
+  ],
   variable: "--font-nunito",
-  subsets: ["latin"],
-  weight: ["600", "700", "800"],
   display: "swap",
   preload: false,
+  declarations: [{ prop: "unicode-range", value: "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD" }],
 });
 
 // SEO metadata for the application

@@ -114,8 +114,11 @@ hex-checked; a radius is a CSS length (`0.375rem`) and a font is a full font-fam
 
 **How a display font actually reaches a heading.** A theme's `--store-font-display` value doesn't
 load a font by itself — it only *names* a CSS variable, e.g. `var(--font-cormorant-garamond), ...`.
-That variable is defined once, in `app/layout.tsx`, by a `next/font/google` loader
-(`Cormorant_Garamond`, `Orbitron`, `Fraunces`, `Nunito`, one per non-Geist display face). The root
+That variable is defined once, in `app/layout.tsx`, by a `next/font/local` loader that reads a
+woff2 file committed under `app/fonts/` (Cormorant Garamond, Orbitron, Fraunces, Nunito, one per
+non-Geist display face; each file ships with its SIL OFL licence text), so the build never fetches
+fonts over the network. Adding a new display face means committing its woff2 file and licence there
+and adding a `localFont()` call — never a `next/font/google` import. The root
 layout applies every one of these font-loader variable classes to **both** the `<html>` element and
 the `<body>` element. This is load-bearing, not redundant: `--store-font-display` is declared by the
 `[data-theme="..."]` rule, which matches `<html>`, and a custom property whose value nests another
