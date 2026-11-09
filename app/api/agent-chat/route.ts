@@ -434,6 +434,7 @@ function verifiedFactsBlock(facts: CanonicalFacts): string {
     `Locale: ${verified(facts.locale, 100)}`,
     `Currency: ${verified(facts.currency, 3)}`,
     facts.supportEmail ? `Public support email: ${verified(facts.supportEmail, 254)}` : "Public support email: unavailable",
+    ...(facts.supportPhone ? [`Public support phone: ${verified(facts.supportPhone, 40)}`] : []),
     facts.supportHours ? `Support hours: ${verified(facts.supportHours, 300)}` : "Support hours: unavailable",
     facts.businessAddress ? `Business address: ${verified(facts.businessAddress, 500)}` : "Business address: unavailable",
     facts.orderHistoryUrl ? `Order history: ${verified(facts.orderHistoryUrl, 2_048)}` : "Order history: unavailable",

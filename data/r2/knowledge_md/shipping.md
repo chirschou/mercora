@@ -5,28 +5,22 @@ category: support
 tags: [shipping, delivery, faq]
 ---
 
-**AI NOTES:** This is the official shipping policy. Use this to answer all delivery-related questions. Do not guess about delivery times or offer expedited shipping unless listed here.
+**AI NOTES:** This is the official shipping policy. Use this to answer all delivery-related questions. Shipping methods, prices, delivery estimates and the free-shipping threshold are configured in the store and shown at checkout: do not quote fixed rates or delivery times from memory.
 
-## Standard Shipping
+## Where We Ship
 
-We ship Monday through Friday from our fulfillment center in Oregon. Orders placed before 2 PM Pacific Time typically ship within 1–2 business days.
+We ship only to the countries offered at checkout. Currently this is the United States unless checkout shows otherwise.
 
-Shipping methods include USPS Priority, UPS Ground, and FedEx Home Delivery.
+## Methods, Costs and Delivery Times
 
-## Estimated Delivery Times
+The available shipping methods, their prices, estimated delivery times and any free-shipping threshold are shown at checkout before you pay.
 
-- West Coast: 1–3 business days
-- Midwest: 3–5 business days
-- East Coast: 4–7 business days
+Delivery times are estimates, not guarantees, and carrier delays or weather can affect them.
 
-Please note that delivery times are estimates and may vary due to carrier delays or weather.
+## Shipping Address
 
-## Shipping Costs
-
-- Orders under $75: $7.95 flat rate
-- Orders $75 and over: Free standard shipping
-- We do not currently offer expedited or international shipping.
+Please check your shipping address carefully. We are not responsible for delays or losses caused by an incorrect address. If you notice a mistake, email support@melt.party as soon as possible; an order can be changed only before it ships.
 
 ## Tracking
 
-Once your order ships, you’ll receive an email with a tracking number. You can also find this in your order history if you’ve created an account.
+When your order ships, we email you tracking information. If you have an account, you can also find your orders at https://melt.party/account/orders; guests can use the order status link in their confirmation email.

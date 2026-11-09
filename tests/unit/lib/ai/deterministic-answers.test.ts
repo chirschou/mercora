@@ -108,6 +108,14 @@ describe('resolveDeterministicAnswer', () => {
       .toContain('1 Example Way');
   });
 
+  it('should_add_configured_support_phone_to_contact_answer', async () => {
+    const withPhone = { ...facts, supportPhone: '+1 (929) 206-2531' };
+    expect(await resolveDeterministicAnswer('contact_email', withPhone, dependencies()))
+      .toBe('You can reach Example Store support at help@example.test or by phone at +1 (929) 206-2531. Support hours are weekdays, 9–5.');
+    expect(await resolveDeterministicAnswer('contact_email', facts, dependencies()))
+      .not.toMatch(/phone/i);
+  });
+
   it('returns null when a config-backed value is unavailable', async () => {
     const partial = { ...facts, supportEmail: undefined, businessAddress: undefined };
     expect(await resolveDeterministicAnswer('contact_email', partial, dependencies())).toBeNull();

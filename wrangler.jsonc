@@ -138,7 +138,10 @@
     "EMAIL_PROVIDER": "cloudflare",
     // Sender must be on a domain onboarded to Cloudflare Email Sending in this account.
     "STORE_SENDER_EMAIL": "Melt Party <orders@mail.melt.party>",
-    "STORE_SUPPORT_EMAIL": "support@melt.party"
+    "STORE_SUPPORT_EMAIL": "support@melt.party",
+    // 公开展示值；tel 链接按 E.164 取其中的 + 与数字，非法值视为未配置。
+    "STORE_SUPPORT_PHONE": "+1 (929) 206-2531",
+    "STORE_POSTAL_ADDRESS": "Unit 1523A, 15/F, Star House, 3 Salisbury Road, Tsim Sha Tsui, Kowloon, Hong Kong"
   },
   /**
    * Note: Use secrets to store sensitive data.

@@ -120,9 +120,15 @@ afterEach(() => {
 });
 
 // 测试池按文件隔离存储：本文件各用例共享同一个全新库，按声明顺序执行，会改动文章的用例放在最后。
+// 0028 会改写这些页面的占位符，本文件只验证 0027 自身的结果。
+const THROUGH_0027 = env.TEST_MIGRATIONS.slice(
+  0,
+  env.TEST_MIGRATIONS.findIndex(({ name }) => name === "0027_publish_storefront_pages_and_blog.sql") + 1,
+);
+
 describe("0027 storefront pages and Blog content migration", () => {
   it("(a) writes the specified page content on a fresh database, with version history", async () => {
-    await applyD1Migrations(env.DB, env.TEST_MIGRATIONS);
+    await applyD1Migrations(env.DB, THROUGH_0027);
     const rows = await pageRows();
     const literals = await migrationPageLiterals();
     expect(Object.keys(rows)).toEqual([...SLUGS]);
@@ -195,7 +201,7 @@ describe("0027 storefront pages and Blog content migration", () => {
   });
 
   it("(a) publishes five editable Blog posts across distinct dates", async () => {
-    await applyD1Migrations(env.DB, env.TEST_MIGRATIONS);
+    await applyD1Migrations(env.DB, THROUGH_0027);
     const categories = await env.DB.prepare("SELECT name, slug FROM blog_categories ORDER BY slug")
       .all<{ name: string; slug: string }>();
     expect(categories.results).toEqual([
@@ -242,7 +248,7 @@ describe("0027 storefront pages and Blog content migration", () => {
   });
 
   it("(c) is a no-op when its statements run again", async () => {
-    await applyD1Migrations(env.DB, env.TEST_MIGRATIONS);
+    await applyD1Migrations(env.DB, THROUGH_0027);
     const pagesBefore = JSON.stringify(await pageRows());
     const postsBefore = JSON.stringify(await postRows());
     const counts = async () => Promise.all([
@@ -258,7 +264,7 @@ describe("0027 storefront pages and Blog content migration", () => {
   });
 
   it("survives an unchanged admin page save without a new version", async () => {
-    await applyD1Migrations(env.DB, env.TEST_MIGRATIONS);
+    await applyD1Migrations(env.DB, THROUGH_0027);
     const versionCount = await tableCount("page_versions");
 
     for (const slug of SLUGS) {
@@ -271,7 +277,7 @@ describe("0027 storefront pages and Blog content migration", () => {
   });
 
   it("survives an unchanged admin Blog publish and shows an edited body immediately", async () => {
-    await applyD1Migrations(env.DB, env.TEST_MIGRATIONS);
+    await applyD1Migrations(env.DB, THROUGH_0027);
     const saveTime = Date.UTC(2026, 10, 10, 8, 30, 0);
     vi.setSystemTime(new Date(saveTime));
 

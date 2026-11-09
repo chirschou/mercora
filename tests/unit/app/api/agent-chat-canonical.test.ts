@@ -267,12 +267,49 @@ describe("agent-chat prompt trust boundaries", () => {
     const prompt = options.messages[0].content;
     expect(prompt).toContain("=== VERIFIED STORE FACTS ===");
     expect(prompt).toContain("Store name: Example Shop");
+    expect(prompt).not.toMatch(/phone/i);
     expect(prompt.indexOf("=== VERIFIED STORE FACTS ==="))
       .toBeLessThan(prompt.indexOf("BEGIN UNTRUSTED CUSTOMER PROFILE"));
     expect(prompt).toContain("BEGIN UNTRUSTED CUSTOMER PROFILE");
     expect(options.messages[1].content).toContain("BEGIN UNTRUSTED CONVERSATION MESSAGE 1");
     expect(prompt).toContain("12,34 $");
     expect(prompt).not.toContain("private address");
+  });
+});
+
+describe("agent-chat verified support phone", () => {
+  it("should_list_configured_support_phone_in_verified_facts", async () => {
+    const store = configuredStore();
+    getStoreConfig.mockReturnValue({
+      ...store,
+      contact: { ...store.contact, supportPhone: "+1 (929) 206-2531" },
+    });
+    getCloudflareContext.mockResolvedValue(aiContext());
+    runAI.mockResolvedValue({});
+    extractAIResponse.mockReturnValue("Call +1 (929) 206-2531 or email help@shop.example.test.");
+
+    const response = await post({ question: "Recommend a product" });
+    const body = await response.json() as ChatBody;
+
+    const options = runAI.mock.calls[0][2] as {
+      messages: Array<{ role: string; content: string }>;
+    };
+    expect(options.messages[0].content).toContain("Public support phone: +1 (929) 206-2531");
+    expect(body.answer).toBe("Call +1 (929) 206-2531 or email help@shop.example.test.");
+  });
+  it("should_answer_contact_question_with_email_and_configured_phone", async () => {
+    const store = configuredStore();
+    getStoreConfig.mockReturnValue({
+      ...store,
+      contact: { ...store.contact, supportPhone: "+1 (929) 206-2531" },
+    });
+
+    const response = await post({ question: "How do I contact support?" });
+    const body = await response.json() as ChatBody;
+
+    expect(body.answer).toContain("help@shop.example.test");
+    expect(body.answer).toContain("+1 (929) 206-2531");
+    expect(runAI).not.toHaveBeenCalled();
   });
 });
 

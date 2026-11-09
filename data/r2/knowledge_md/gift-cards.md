@@ -28,3 +28,5 @@ Checkout does not show a card's remaining balance up front. Entering a code appl
 ## Limits
 
 A Melt Party Gift Card never expires. It cannot be redeemed for cash, and it cannot be transferred or resold. Its stored value can be used across multiple orders until it runs out.
+
+Gift cards cannot be returned. Treat the code like cash: we cannot replace a lost or stolen code or a balance used by someone else, except where the law requires it. If an order paid partly or fully with a gift card is refunded, the gift-card amount goes back to that gift card.

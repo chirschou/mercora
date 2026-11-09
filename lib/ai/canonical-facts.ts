@@ -1,4 +1,4 @@
-import { storeDefaults, type StoreConfig } from "@/lib/store-config";
+import { storeDefaults, supportPhoneTel, type StoreConfig } from "@/lib/store-config";
 import { CURRENCY_PRECISION } from "@/lib/money/currencies";
 
 const MAX_IDENTITY_LENGTH = 200;
@@ -11,6 +11,7 @@ export interface CanonicalFacts {
   storeName: string;
   assistantName: string;
   supportEmail?: string;
+  supportPhone?: string;
   supportHours?: string;
   businessAddress?: string;
   siteUrl?: string;
@@ -61,6 +62,11 @@ function safeEmail(value: unknown): string | undefined {
     return undefined;
   }
   return candidate;
+}
+
+function safePhone(value: unknown): string | undefined {
+  const candidate = boundedText(value, 40);
+  return candidate && supportPhoneTel(candidate) ? candidate : undefined;
 }
 
 function safeLocale(value: unknown): string {
@@ -135,6 +141,7 @@ export function canonicalFactsFromConfig(config: StoreConfig): CanonicalFacts {
       ? httpsUrl(configuredReturns, siteUrl)?.href
       : undefined);
   const supportEmail = safeEmail(nestedValue(rawConfig, "contact", "supportEmail"));
+  const supportPhone = safePhone(nestedValue(rawConfig, "contact", "supportPhone"));
   const supportHours = boundedText(
     nestedValue(rawConfig, "contact", "supportHours"),
     MAX_SUPPORT_HOURS_LENGTH,
@@ -167,6 +174,7 @@ export function canonicalFactsFromConfig(config: StoreConfig): CanonicalFacts {
       MAX_IDENTITY_LENGTH,
     ) ?? storeDefaults.identity.assistantName,
     ...(supportEmail ? { supportEmail } : {}),
+    ...(supportPhone ? { supportPhone } : {}),
     ...(verifiedSupportHours ? { supportHours: verifiedSupportHours } : {}),
     ...(businessAddress ? { businessAddress } : {}),
     ...(siteUrl ? {

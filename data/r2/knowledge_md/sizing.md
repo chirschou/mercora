@@ -9,7 +9,7 @@ tags: [sizing, fit, faq]
 
 ## Sizing Tips
 
-We offer detailed size charts on every product page.
+If a product comes in more than one size, the available sizes are shown as options on its product page.
 
 If you're between sizes, we recommend sizing up for outerwear and down for base layers.
 
