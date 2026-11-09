@@ -21,4 +21,4 @@ Once signed in, your account shows your orders (https://melt.party/account/order
 
 ## Email Issues
 
-Order emails are sent from orders@mail.melt.party. Check your spam folder if you don’t receive login or order confirmation emails.
+Check your spam folder if you don’t receive login or order confirmation emails.
