@@ -1,9 +1,12 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { env } from "cloudflare:workers";
-import { applyTestMigrations } from "./helpers/d1";
+import { applyD1Migrations } from "cloudflare:test";
 
+// 本文件验证 0019 本身的效果，停在 0019 时点：之后的 0027 会写入 Blog 与 contact 页。
 beforeEach(async () => {
-  await applyTestMigrations();
+  const index = env.TEST_MIGRATIONS.findIndex(({ name }) => name === "0019_add_content_publishing.sql");
+  expect(index).toBeGreaterThan(0);
+  await applyD1Migrations(env.DB, env.TEST_MIGRATIONS.slice(0, index + 1));
 });
 
 describe("content-publishing migration", () => {

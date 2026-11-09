@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getNavigationPages } from "@/lib/models/pages";
+import { getNavigationPages, getPageBySlug } from "@/lib/models/pages";
 import { getSocialMediaSettings } from "@/lib/utils/settings";
 import { getStoreConfig } from "@/lib/store-config";
 
@@ -22,11 +22,13 @@ const GRID_CLASSES = {
 
 export default async function Footer() {
   const store = getStoreConfig();
-  const [pagesResult, socialResult] = await Promise.allSettled([
+  const [pagesResult, socialResult, contactResult] = await Promise.allSettled([
     getNavigationPages({ limit: 100 }),
     getSocialMediaSettings(),
+    getPageBySlug("contact"),
   ]);
   const pages = pagesResult.status === "fulfilled" ? pagesResult.value : [];
+  const hasContactPage = contactResult.status === "fulfilled" && contactResult.value !== null;
   const configuredSocial: Record<string, unknown> = socialResult.status === "fulfilled"
     ? socialResult.value
     : {};
@@ -68,7 +70,9 @@ export default async function Footer() {
     ),
     <div key="support" className="space-y-2">
       <h2 className="mb-3 font-semibold text-foreground">Support</h2>
-      <a href={`mailto:${store.contact.supportEmail}`} className="block hover:text-foreground">Contact support</a>
+      {hasContactPage
+        ? <Link href="/contact" className="block hover:text-foreground">Contact support</Link>
+        : <a href={`mailto:${store.contact.supportEmail}`} className="block hover:text-foreground">Contact support</a>}
       {policyLinks.map(([label, href]) => <Link key={label} href={href} className="block hover:text-foreground">{label}</Link>)}
     </div>,
     ...(social.length > 0 ? [

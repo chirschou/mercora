@@ -56,6 +56,27 @@ column, and is expand-only like every migration in this repository. Gift
 cards issued before it carry no code suffix and are not searchable by one —
 there is no backfill.
 
+## 0027_publish_storefront_pages_and_blog.sql
+
+A content migration with no schema change (FEAT-20261109-01). It writes
+Melt Party's own storefront copy: it overwrites the `about`, `privacy-policy`
+and `terms-of-service` CMS pages by slug, creates the `contact` page, and adds
+two Blog categories and five published posts.
+
+- Before overwriting, it copies each page's current content into
+  `page_versions` when that version has no history row yet, then records the
+  new version. A fresh database and production end up with identical page
+  content, and anything an admin had changed stays recoverable from page
+  history.
+- Re-running its statements is a no-op: the page upsert only fires when a
+  field differs, and categories and posts use `ON CONFLICT(slug) DO NOTHING`,
+  so an existing post with the same slug is never overwritten.
+- Page copy carries a fixed "Last Updated" date, never `date('now')`.
+- There is no down-migration. Roll content back by restoring a page version in
+  the admin Pages editor, or by editing or unpublishing posts in the admin Blog.
+- The Terms of Service page publishes the recurring-purchase terms version
+  that `STORE_SUBSCRIPTION_TERMS_VERSION` in `wrangler.jsonc` must match.
+
 ## Two migrations share the number 0023
 
 `0023_add_order_effects_payload.sql` and `0023_normalize_tax_category_codes.sql`
