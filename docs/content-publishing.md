@@ -4,7 +4,10 @@
 
 Melt Party provides store-neutral CMS pages and Blog publishing. Migration `0019`
 adds the Blog tables and neutral page-template registrations without seeding
-merchant posts, pages, images, or copy.
+merchant posts, pages, images, or copy. Migration `0027` then writes Melt
+Party's own content — the About, Privacy Policy, Terms of Service and Contact
+pages, two Blog categories and five posts — into every database it is applied
+to; see `docs/database-migrations.md`.
 
 ## Public CMS API
 

@@ -127,7 +127,7 @@
     // the Terms of Service page.
     "STORE_FEATURE_SUBSCRIPTION_RECONCILIATION": "true",
     "STORE_FEATURE_SUBSCRIPTION_ACQUISITION": "true",
-    "STORE_SUBSCRIPTION_TERMS_VERSION": "2026-09-07",
+    "STORE_SUBSCRIPTION_TERMS_VERSION": "2026-11-09",
     // Gift cards (docs/runtime-configuration.md). Reconciliation must be
     // deployed and verified before acquisition, because enabling acquisition
     // without reconciliation throws at capability resolution; disable
