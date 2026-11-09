@@ -26,6 +26,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useAdminLayout } from "./AdminLayoutProvider";
 import {
@@ -176,9 +177,7 @@ export default function AdminSidebar() {
         <div className="flex items-center justify-between p-4 border-b border-neutral-700">
           {!sidebarCollapsed && (
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-orange-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">{store.identity.name.slice(0, 1).toUpperCase()}</span>
-              </div>
+              <Image src={store.theme.logoPath} alt="" width={32} height={32} className="w-8 h-8 shrink-0" />
               <div>
                 <h1 className="truncate text-lg font-semibold text-white">{store.identity.name}</h1>
                 <p className="text-gray-400 text-xs">Admin Panel</p>
